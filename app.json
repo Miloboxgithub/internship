@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/publish/publish",
+    "pages/person/person"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "usingComponents": {
+        "custom-tab-bar": "/custom-tab-bar/index"
+     },
+     "rendererOptions": {
+      "skyline": {
+        "defaultDisplayBlock": true,
+        "disableABTest": true,
+        "sdkVersionBegin": "3.0.0",
+        "sdkVersionEnd": "15.255.255"
+      }
+    },
+     "renderer": "skyline",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
+    "list":[
+      {
+        "pagePath": "pages/index/index"
+        
+      },
+      {
+        "pagePath": "pages/publish/publish"
+        
+      },
+      {
+        "pagePath": "pages/person/person"
+       
+      }
+    ]
+  }
+}
