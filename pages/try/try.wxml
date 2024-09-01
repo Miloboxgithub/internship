@@ -1,0 +1,7 @@
+<!-- pages/index/index.wxml -->
+<view class="container">
+  <view class="box"></view>
+  <view class="box"></view>
+  <view class="box"></view>
+  <view class="box"></view>
+</view>

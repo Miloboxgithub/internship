@@ -1,46 +1,43 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/home/home",
     "pages/publish/publish",
-    "pages/person/person"
+    "pages/person/person",
+    "pages/try/try"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarBackgroundColor": "#FFFFFF"
   },
   "usingComponents": {
-        "custom-tab-bar": "/custom-tab-bar/index"
-     },
-     "rendererOptions": {
-      "skyline": {
-        "defaultDisplayBlock": true,
-        "disableABTest": true,
-        "sdkVersionBegin": "3.0.0",
-        "sdkVersionEnd": "15.255.255"
-      }
-    },
-     "renderer": "skyline",
+    "cu-custom": "/style/colorui/components/cu-custom"
+  },
+
+     
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
+ 
   "tabBar": {
     "custom": true,
-    "color": "#000000",
-    "selectedColor": "#000000",
-    "backgroundColor": "#000000",
+   
     "list":[
       {
-        "pagePath": "pages/index/index"
-        
-      },
-      {
-        "pagePath": "pages/publish/publish"
-        
-      },
-      {
-        "pagePath": "pages/person/person"
-       
+        "pagePath": "pages/home/home",
+        "iconPath": "img/1.png",
+        "selectedIconPath": "img/11.png",
+        "text": "实习咨讯"
+      }, {
+        "pagePath": "pages/publish/publish",
+        "iconPath": "img/2.png",
+        "selectedIconPath": "img/22.png",
+        "text": "实习发布"
+      }
+      , {
+        "pagePath": "pages/person/person",
+        "iconPath": "img/3.png",
+        "selectedIconPath": "img/33.png",
+        "text": "个人中心"
       }
     ]
   }

@@ -1,0 +1,59 @@
+.containers{
+  height: 100vh;
+  width: 100vw;
+  padding-top: 10px;
+
+}
+.swiper{
+ 
+  
+  margin-left: 5vw;
+  width: 90vw;
+  height: 150px;
+  border-radius: 10px;
+  /* 确保内容不会溢出 */
+  overflow: hidden;
+}
+
+.swiper image{
+  width: 100%;
+  height: 100%;
+  
+}
+.nav{
+  /* margin-top: 5px; */
+  display: flex;
+  align-items: center;
+  margin-left: 5vw;
+  width: 90vw;
+  height: 48px;
+ }
+ .nav image{
+   height: 6px;
+   width: 10px;
+   margin-left: 1vw;
+   margin-bottom: 4px;
+ }
+ text{
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(25, 25, 25, 1);
+  text-align: center;
+  vertical-align: top;
+ }
+
+.nav1{
+  
+  margin-left: 3vw;
+}
+.nav2{
+  margin-left: 7vw;
+}
+.nav3{
+  margin-left: 7vw;
+}
+.navv{
+  margin-left: 7vw;
+}

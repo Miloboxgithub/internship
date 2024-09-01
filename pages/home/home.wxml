@@ -1,0 +1,20 @@
+<view class="containers">
+
+    <view class="swiper">
+      <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{swiperList}}" wx:key>
+    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+  </swiper-item>
+</swiper>
+    </view>
+    <view class="nav">
+    <view class="nav1" id="types1" bindtap="changetypes"><text>类型</text><image src="{{types1?'/img/shang.png':'/img/xia.png'}}" mode=""/></view>
+    <view class="nav2" id="types2" bindtap="changetypes"><text>行业</text><image src="{{types2?'/img/shang.png':'/img/xia.png'}}" mode=""/></view>
+    <view class="nav3" id="types3" bindtap="changetypes"><text>性质</text><image src="{{types3?'/img/shang.png':'/img/xia.png'}}" mode=""/></view>
+      <view class="navv">sss</view>
+    </view>
+    <view class="item">
+    
+    </view>
+</view>

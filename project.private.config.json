@@ -3,6 +3,28 @@
   "projectname": "%E5%AE%9E%E4%B9%A0%E5%92%A8%E8%AF%A2",
   "setting": {
     "compileHotReLoad": true,
-    "skylineRenderEnable": false
+    "skylineRenderEnable": false,
+    "urlCheck": false
+  },
+  "libVersion": "3.5.5",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/try/try",
+          "pathName": "pages/try/try",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
   }
 }
