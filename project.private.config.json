@@ -11,8 +11,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/try/try",
-          "pathName": "pages/try/try",
+          "name": "pages/person/person",
+          "pathName": "pages/person/person",
           "query": "",
           "launchMode": "default",
           "scene": null

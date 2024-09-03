@@ -9,6 +9,7 @@
   flex-direction: row;
   padding-bottom: env(safe-area-inset-bottom);
   pointer-events: auto;
+  z-index: 2000;
 }
 
 .tab-bar-border {

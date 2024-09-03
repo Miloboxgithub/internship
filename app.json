@@ -2,8 +2,7 @@
   "pages": [
     "pages/home/home",
     "pages/publish/publish",
-    "pages/person/person",
-    "pages/try/try"
+    "pages/person/person"
   ],
   "window": {
     "navigationBarTextStyle": "black",

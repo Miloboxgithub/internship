@@ -1,2 +1,5 @@
-<!--pages/person/person.wxml-->
-<text>pages/person/person.wxml</text>
+<button bindtap="showview">Show</button>
+<view class="bg" bindtap='hideview' style='display:{{display}}'></view>
+<view class="show" bindtap='hideview' style='display:{{display}}'>申请成功
+<view class='txt'>您的密码为:123456</view>
+</view>
