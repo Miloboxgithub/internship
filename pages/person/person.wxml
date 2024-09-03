@@ -1,5 +1,5 @@
-<button bindtap="showview">Show</button>
-<view class="bg" bindtap='hideview' style='display:{{display}}'></view>
-<view class="show" bindtap='hideview' style='display:{{display}}'>申请成功
-<view class='txt'>您的密码为:123456</view>
-</view>
+<scroll-view class="scroll-view" scroll-x="true" scroll-into-view="{{scrollIntoViewId}}">
+  <view class="tab-item" wx:for="{{tabs}}" wx:key="index" data-id="{{item.id}}" bindtap="onTabTap">
+    {{item.name}}
+  </view>
+</scroll-view>
