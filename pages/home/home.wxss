@@ -29,7 +29,6 @@
   margin-left: 5vw;
   width: 90vw;
   height: 48px;
-
 }
 
 .nav image {
@@ -40,7 +39,8 @@
 }
 
 .nav text {
-  font-size: 3.4vw;
+  /* font-size: 3.4vw; */
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0px;
   line-height: 17.38px;
@@ -48,18 +48,28 @@
   text-align: center;
   vertical-align: top;
 }
-
 .nav1 {
-
   margin-left: 3vw;
+  height: 20.67px;
+  width: 36.86px;
+  overflow: hidden;
+ 
 }
-
 .nav2 {
   margin-left: 5vw;
+  height: 20.67px;
+  width: 36.86px;
+  overflow: hidden;
+ 
 }
 
 .nav3 {
   margin-left: 5vw;
+  
+  height: 20.67px;
+  width: 36.86px;
+  overflow: hidden;
+ 
 }
 
 .navv {
@@ -273,24 +283,20 @@
 }
 .zhezhao{
   height: 31px;
-  padding-left: 8vw;
+  padding-left: 5vw;
   background-color: rgb(255, 255, 255,1);
   width: 100vw;
-  position: absolute;
+  /* position: absolute; */
   z-index: 2000;
+ 
+  display: flex;
+  align-items: center;
   
   }
-  .zhezhao::after {
-     content: ""; /* 必须定义content */
-     position: absolute;
-      bottom: 0; /* 紧贴底部 */
-      left: 5vw; /* 从左边开始 */
-      width: 90vw; /* 占据一半的宽度 */
-      height: 0.5px; /* 边框厚度 */
-      background-color: #e0e0e0; /* 自定义颜色 */
-    }
 .zg{
-  width: 87vw;
+  height: 100%;
+  /* border-bottom: solid 0.5px #e0e0e0; */
+  width: 90vw;
   display: flex;
   justify-content: space-between; /* 在flex项之间平均分配剩余空间 */
   align-items: center; /* 垂直居中对齐flex项 */
@@ -299,10 +305,20 @@ font-size: 12px;
 font-weight: 400;
 letter-spacing: 0px;
 line-height: 17.38px;
-color: rgba(56, 139, 255, 1);
+/* color: rgba(56, 139, 255, 1); */
 text-align: left;
 vertical-align: top;
 }
+.zg::after {
+  content: "";
+  position: absolute;
+  margin-top: 31px;
+  left: 5vw;
+  width: 90vw;
+  height: 0.5px;
+  background-color: #e0e0e0;
+}
+.zg text{margin-left: 3vw;}
 .zhezhao image{
   
   height: 8px;

@@ -1,5 +1,8 @@
 Page({
   data: {
+    lei:'类型',
+    xing:'性质',
+    hang:'行业',
     cardCur: 0,
     swiperList: [{
       id: 0,
@@ -7,8 +10,8 @@ Page({
       url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
     }, {
       id: 1,
-        type: 'image',
-        url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509',
+      type: 'image',
+      url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509',
     }, {
       id: 2,
       type: 'image',
@@ -30,87 +33,167 @@ Page({
       type: 'image',
       url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
     }],
-    types1:false,
-    types2:false,
-    types3:false,
-    toppx:0,
+    types1: false,
+    types2: false,
+    types3: false,
+    toppx: 0,
     coitem: [{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    },{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    },{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    },{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    },{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    },{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    },{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    },{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    }
-    ,{
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
-      tags:[{title:'上市公司'},{title:'线下实习'},{title:'深圳'}]
-    },
-    {
-      icon:'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name:'振石控股集团有限公司——社媒运营',
-      time:'2024-12-31',
-      iszhao:true,
-      sum:5000,
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      }, {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      }, {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      }, {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      }, {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      }, {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      }, {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      }, {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      }, {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+        tags: [{
+          title: '上市公司'
+        }, {
+          title: '线下实习'
+        }, {
+          title: '深圳'
+        }]
+      },
+      {
+        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+        name: '振石控股集团有限公司——社媒运营',
+        time: '2024-12-31',
+        iszhao: true,
+        sum: 5000,
+      }
+    ],
+    leixin: [{
+      op: '全部',
+      ch: true
+    }, {
+      op: '线下实习',
+      ch: false
+    }, {
+      op: '远程实习',
+      ch: false
+    }],
+    xinzhi: [{
+      op: '全部',
+      ch: true
+    }, {
+      op: '上市公司',
+      ch: false
+    }, {
+      op: '国企',
+      ch: false
+    }, {
+      op: '外企',
+      ch: false
+    }, {
+      op: '私企',
+      ch: false
     }]
   },
   onLoad() {
     this.towerSwiper('swiperList');
     // 初始化towerSwiper 传已有的数组名即可
-    
+
   },
   handleOuterTouchMove: function (e) {
     e.preventDefault(); // 阻止外层默认滑动行为
@@ -181,35 +264,81 @@ Page({
     }
   },
   onShow() {
-    if (typeof this.getTabBar === 'function' ) {
+    if (typeof this.getTabBar === 'function') {
       this.getTabBar().setData({
-        selected:0
+        selected: 0
       })
     }
     this.getweizhi()
   },
-  changetypes(e){
-console.log(e.currentTarget.id)
-this.setData({
-  [e.currentTarget.id]:!this.data[e.currentTarget.id]
-})
-console.log(this.data.types1)
-  },
-  hideview(){
+  changetypes(e) {
+    let ce = true
+    if (this.data[e.currentTarget.id]) ce = !ce
+    let ts = e.currentTarget.id
     this.setData({
-      types1:false,
-      types2:false,
-      types3:false
+      types1: false,
+      types2: false,
+      types3: false
+    })
+    if (ce)
+      this.setData({
+        [e.currentTarget.id]: !this.data[e.currentTarget.id]
+      })
+  },
+  // 关闭遮罩层
+  hideview() {
+    this.setData({
+      types1: false,
+      types2: false,
+      types3: false
     })
   },
-  getweizhi(){
+  // 获取选框位置
+  getweizhi() {
     const qq = wx.createSelectorQuery();
     qq.select('.divider').boundingClientRect();
-    qq.exec((res)=>{
+    qq.exec((res) => {
       console.log(res[0].top)
       this.setData({
-        toppx: res[0].top   })
+        toppx: res[0].top
+      })
     })
-    
+
+  },
+  //选择类型
+  chooseop(e) {
+    let cc = e.currentTarget.id
+    let leixin = this.data.leixin.slice()
+    leixin.forEach(item => {
+      item.ch = false;
+    })
+    let aa = leixin[cc].op
+    if (cc >= 0 && cc < leixin.length) {
+      leixin[cc].ch = true
+      this.setData({
+        lei:aa
+      })
+    }
+    this.setData({
+      leixin: leixin
+    })
+  },
+  //选择性质
+  chooseopp(e) {
+    let cc = e.currentTarget.id
+    let xinzhi = this.data.xinzhi.slice()
+    xinzhi.forEach(item => {
+      item.ch = false;
+    })
+    let aa = xinzhi[cc].op
+    if (cc >= 0 && cc < xinzhi.length) {
+      xinzhi[cc].ch = true
+      this.setData({
+        xing:aa
+      })
+    }
+    this.setData({
+      xinzhi: xinzhi
+    })
   }
 })

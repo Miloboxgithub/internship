@@ -1,49 +1,73 @@
-<scroll-view class="containers" scroll-y="true"  style="height: 120%;">
+<scroll-view class="containers" scroll-y="true" style="height: 120%;">
 
-    <view class="swiper">
-      <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-  <swiper-item wx:for="{{swiperList}}" wx:key>
-    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
-  </swiper-item>
-</swiper>
+  <view class="swiper">
+    <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper-item wx:for="{{swiperList}}" wx:key>
+        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="nav">
+    <view class="nav1" id="types1" bindtap="changetypes"><text>{{lei}}</text>
+      <image src="{{types1?'/img/shang.png':'/img/xia.png'}}" mode="" />
     </view>
-    <view class="nav">
-    <view class="nav1" id="types1" bindtap="changetypes"><text>类型</text><image src="{{types1?'/img/shang.png':'/img/xia.png'}}" mode=""/></view>
-    <view class="nav2" id="types2" bindtap="changetypes"><text>行业</text><image src="{{types2?'/img/shang.png':'/img/xia.png'}}" mode=""/></view>
-    <view class="nav3" id="types3" bindtap="changetypes"><text>性质</text><image src="{{types3?'/img/shang.png':'/img/xia.png'}}" mode=""/></view>
-      <view class="navv">
-        <view class="search"><image src="/img/搜索.png" mode=""/></view>
-        <view class="fancy-bg"></view>
-      <input type="text" class="input" placeholder="请输入搜索内容" id="search"/>
+    <view class="nav2" id="types2" bindtap="changetypes"><text>{{hang}}</text>
+      <image src="{{types2?'/img/shang.png':'/img/xia.png'}}" mode="" />
+    </view>
+    <view class="nav3" id="types3" bindtap="changetypes"><text>{{xing}}</text>
+      <image src="{{types3?'/img/shang.png':'/img/xia.png'}}" mode="" />
+    </view>
+    <view class="navv">
+      <view class="search">
+        <image src="/img/搜索.png" mode="" />
+      </view>
+      <view class="fancy-bg"></view>
+      <input type="text" class="input" placeholder="请输入搜索内容" id="search" />
+    </view>
+  </view>
+  <view class="divider"></view>
+  <view class="items">
+    <view class="item" wx:for="{{coitem}}" wx:key="index">
+      <view class="coicon">
+        <image src="{{item.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
+      </view>
+      <view class="info">
+        <text class="cotitle" selectable="false" space="false" decode="false">{{item.name}}</text>
+        <view class="tags">
+          <view class="tt">
+            <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
+          </view>
+          <view class="iszhao {{item.iszhao?'gg':'rr'}}">{{item.iszhao?'招募中':'筹备中'}}</view>
+        </view>
+        <view class="fuji">
+          <view class="times">截止时间：{{item.time}}</view>
+          <view class="sums">
+            <image src="/img/浏览.png" mode="" />
+            <text>{{item.sum}}</text>
+            <image src="/img/路径 1.png" mode="" />
+          </view>
+        </view>
       </view>
     </view>
-    <view class="divider"></view>
-    <view class="items" >
-        <view class="item" wx:for="{{coitem}}" wx:key="index">
-            <view class="coicon">
-              <image src="{{item.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode=""/>
-            </view>
-            <view class="info">
-              <text class="cotitle" selectable="false" space="false" decode="false">{{item.name}}</text>
-              <view class="tags">
-              <view class="tt">
-                <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
-              </view><view class="iszhao {{item.iszhao?'gg':'rr'}}">{{item.iszhao?'招募中':'筹备中'}}</view></view>
-              <view class="fuji">
-                  <view class="times">截止时间：{{item.time}}</view>
-                  <view class="sums">
-                  <image src="/img/浏览.png" mode=""/>
-                  <text>{{item.sum}}</text>
-                  <image src="/img/路径 1.png" mode=""/>
-                  </view>
-              </view>
-            </view>
-        </view>
-    </view>
-    <view class="kong">
-    <text>~已经到底啦~</text></view>
+  </view>
+  <view class="kong">
+    <text>~已经到底啦~</text>
+  </view>
 </scroll-view>
 <view class="bg" bindtap='hideview' style="display:{{types1?'block':'none'}}; top: {{toppx}}px;"></view>
-<view style="top:{{toppx}}px; width:100vw; position: absolute; z-index: 2001;">
-<view class="zhezhao" style="display: {{types1?'block':'none'}};"><view class="zg"><text>全部</text><image src="/img/xuan.png" mode=""/></view></view></view>
+<view style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
+  <view class="zhezhao" wx:for="{{leixin}}" wx:key="index" style="display: {{types1?'block':'none'}};">
+    <view class="zg"  id="{{index}}" bind:tap="chooseop" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
+      <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />
+    </view>
+  </view>
+</view>
+<view class="bg" bindtap='hideview' style="display:{{types3?'block':'none'}}; top: {{toppx}}px;"></view>
+<view style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
+  <view class="zhezhao" wx:for="{{xinzhi}}" wx:key="index" style="display: {{types3?'block':'none'}};">
+    <view class="zg"  id="{{index}}" bind:tap="chooseopp" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
+      <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />
+    </view>
+  </view>
+</view>
