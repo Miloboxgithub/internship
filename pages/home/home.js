@@ -3,6 +3,7 @@ Page({
     lei:'类型',
     xing:'性质',
     hang:'行业',
+    hangs:'',
     cardCur: 0,
     swiperList: [{
       id: 0,
@@ -349,9 +350,16 @@ Page({
     let cc=e.detail.value
     console.log(cc)
     this.setData({
-      hang:this.data.industry[cc[0]]
+      hangs:this.data.industry[cc[0]]
     })
   },
+  queren:function(){
+    this.setData({
+      hang:this.data.hangs
+    })
+    this.hideview()
+  },
+  //跳转页面
   navigate: function (e) {
     wx.navigateTo({url: e.currentTarget.dataset.url});
   },

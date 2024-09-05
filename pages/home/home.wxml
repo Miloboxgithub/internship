@@ -77,7 +77,7 @@
 <view class="bg" bindtap='hideview' style="display:{{types2?'block':'none'}}; top: {{toppx}}px;"></view>
 <view class="bpicker" style="display: {{types2?'block':'none'}};">
   <view class="boxse">
-    <view class="quxiao">
+    <view class="quxiao" bindtap='hideview'>
       取消
     </view>
     <view class="navvv">
@@ -87,7 +87,7 @@
       <!-- <view class="fancy-bgs"></view> -->
       <input type="text" class="input" placeholder="" id="search" />
     </view>
-    <view class="queren">
+    <view class="queren" bind:tap="queren">
       确定
     </view>
   </view>
