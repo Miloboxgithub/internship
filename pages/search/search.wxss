@@ -1,0 +1,84 @@
+/* pages/search/search.wxss */
+.search {
+
+  margin-left: 2.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search image {
+  height: 27px;
+  width: 27px;
+  
+  margin-left: 5px;
+}
+
+.fancy-bg {
+  margin-left: 1vw;
+  width: 0.9px;
+  height: 17px;
+  background-color:rgba(0, 0, 0, 0.6);
+}
+
+.input {
+  width: 100%;
+  margin-left: 25px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  line-height: 21.72px;
+  color: rgba(56, 56, 56, 0.4);
+  
+  vertical-align: top;
+}
+.navv {
+  width: 358px;
+  height: 34px;
+  border-radius: 17px;
+  background: rgba(245, 245, 245, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.syl{
+  margin-top: 10px;
+ margin-left: 25px;
+ font-size: 15px;
+font-weight: 600;
+letter-spacing: 0.5px;
+line-height: 21.72px;
+color: rgba(56, 56, 56, 1);
+vertical-align: top;
+}
+.kuai{
+  
+  margin-left: 25px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.items{
+  margin-top: 10px;
+  border-radius: 15px;
+background: rgba(255, 255, 255, 1);
+height: 24px;
+border: 0.5px solid rgba(229, 229, 229, 1);
+margin-right: 8px;
+font-size: 12px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 17.38px;
+color: rgba(79, 79, 79, 1);
+text-align: left;
+vertical-align: top;
+display: flex;
+align-items: center;
+padding: 1px 8px 1px 8px;
+}
+.items text{
+  margin-left: 3px;
+  margin-right: 3px;
+}
+

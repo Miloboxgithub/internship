@@ -33,6 +33,9 @@ Page({
       type: 'image',
       url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
     }],
+    industry:[
+      '游戏设计','机械设计','工业设计','互联网','影视行业','人工智能','大数据'
+    ],
     types1: false,
     types2: false,
     types3: false,
@@ -340,5 +343,16 @@ Page({
     this.setData({
       xinzhi: xinzhi
     })
-  }
+  },
+  //选择器变化
+  bindChange: function (e) {
+    let cc=e.detail.value
+    console.log(cc)
+    this.setData({
+      hang:this.data.industry[cc[0]]
+    })
+  },
+  navigate: function (e) {
+    wx.navigateTo({url: e.currentTarget.dataset.url});
+  },
 })

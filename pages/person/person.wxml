@@ -1,5 +1,0 @@
-<scroll-view class="scroll-view" scroll-x="true" scroll-into-view="{{scrollIntoViewId}}">
-  <view class="tab-item" wx:for="{{tabs}}" wx:key="index" data-id="{{item.id}}" bindtap="onTabTap">
-    {{item.name}}
-  </view>
-</scroll-view>

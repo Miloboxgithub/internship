@@ -8,8 +8,8 @@
   display: flex;
   flex-direction: row;
   padding-bottom: env(safe-area-inset-bottom);
-  pointer-events: auto;
-  z-index: 2000;
+  /* pointer-events: auto; */
+  z-index: 1998;
 }
 
 .tab-bar-border {

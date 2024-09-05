@@ -1,5 +1,5 @@
 <scroll-view class="containers" scroll-y="true" style="height: 120%;">
-
+  <!-- 轮播图 -->
   <view class="swiper">
     <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
       <swiper-item wx:for="{{swiperList}}" wx:key>
@@ -8,17 +8,18 @@
       </swiper-item>
     </swiper>
   </view>
+  <!-- 搜索选择栏 -->
   <view class="nav">
-    <view class="nav1" id="types1" bindtap="changetypes"><text>{{lei}}</text>
+    <view class="nav1" id="types1" bindtap="changetypes" style="color: {{lei=='类型'?'rgba(25, 25, 25, 1)':'rgba(56, 139, 255, 1)'}};"><text>{{lei}}</text>
       <image src="{{types1?'/img/shang.png':'/img/xia.png'}}" mode="" />
     </view>
-    <view class="nav2" id="types2" bindtap="changetypes"><text>{{hang}}</text>
+    <view class="nav2" id="types2" bindtap="changetypes" style="color: {{hang=='行业'?'rgba(25, 25, 25, 1)':'rgba(56, 139, 255, 1)'}};"><text>{{hang}}</text>
       <image src="{{types2?'/img/shang.png':'/img/xia.png'}}" mode="" />
     </view>
-    <view class="nav3" id="types3" bindtap="changetypes"><text>{{xing}}</text>
-      <image src="{{types3?'/img/shang.png':'/img/xia.png'}}" mode="" />
+    <view class="nav3" id="types3" bindtap="changetypes" style="color: {{xing=='性质'?'rgba(25, 25, 25, 1)':'rgba(56, 139, 255, 1)'}};"><text>{{xing}}</text>
+      <image src="{{types3?'/img/shang.png':xing=='性质'?'/img/xia.png':'/img/xiab.png'}}" mode="" />
     </view>
-    <view class="navv">
+    <view class="navv" bind:tap="navigate" data-url="/pages/search/search">
       <view class="search">
         <image src="/img/搜索.png" mode="" />
       </view>
@@ -55,10 +56,11 @@
     <text>~已经到底啦~</text>
   </view>
 </scroll-view>
+<!-- 弹出选择框 -->
 <view class="bg" bindtap='hideview' style="display:{{types1?'block':'none'}}; top: {{toppx}}px;"></view>
 <view style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
   <view class="zhezhao" wx:for="{{leixin}}" wx:key="index" style="display: {{types1?'block':'none'}};">
-    <view class="zg"  id="{{index}}" bind:tap="chooseop" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
+    <view class="zg" id="{{index}}" bind:tap="chooseop" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
       <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />
     </view>
   </view>
@@ -66,8 +68,38 @@
 <view class="bg" bindtap='hideview' style="display:{{types3?'block':'none'}}; top: {{toppx}}px;"></view>
 <view style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
   <view class="zhezhao" wx:for="{{xinzhi}}" wx:key="index" style="display: {{types3?'block':'none'}};">
-    <view class="zg"  id="{{index}}" bind:tap="chooseopp" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
+    <view class="zg" id="{{index}}" bind:tap="chooseopp" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
       <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />
     </view>
   </view>
+</view>
+<!-- 底部选择器 -->
+<view class="bg" bindtap='hideview' style="display:{{types2?'block':'none'}}; top: {{toppx}}px;"></view>
+<view class="bpicker" style="display: {{types2?'block':'none'}};">
+  <view class="boxse">
+    <view class="quxiao">
+      取消
+    </view>
+    <view class="navvv">
+      <view class="searchs">
+        <image src="/img/搜索.png" mode="" />
+      </view>
+      <!-- <view class="fancy-bgs"></view> -->
+      <input type="text" class="input" placeholder="" id="search" />
+    </view>
+    <view class="queren">
+      确定
+    </view>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange">
+    <!-- <picker-view-column>
+      <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
+    </picker-view-column> -->
+    <picker-view-column>
+      <view wx:for="{{industry}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+    </picker-view-column>
+    <!-- <picker-view-column>
+      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
+    </picker-view-column> -->
+  </picker-view>
 </view>
