@@ -26,6 +26,7 @@ Component({
   methods: {
     
     switchTab(e) {
+      //console.log(e)
       const data = e.currentTarget.dataset
       const url = data.path
       wx.switchTab({url})
@@ -33,5 +34,5 @@ Component({
         selected: data.index
       })
     }
-  }
+  },
 })

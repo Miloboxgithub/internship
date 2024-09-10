@@ -363,4 +363,12 @@ Page({
   navigate: function (e) {
     wx.navigateTo({url: e.currentTarget.dataset.url});
   },
+  //带参跳转
+  navigates: function(e){
+    let ww = e.currentTarget.dataset.id
+    let ans=this.data.coitem[ww]
+    let url=`/pkgA/pages/detail/detail?coitem=${ans}`
+    console.log(url)
+    wx.navigateTo({url: url});
+  }
 })

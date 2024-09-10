@@ -5,6 +5,19 @@
     "pages/person/person",
     "pages/search/search"
   ],
+  "subPackages": [
+    {
+      "root": "pkgA",
+      "name":"p1",
+      "pages": [
+        "pages/detail/detail",
+        "pages/warning/warning"
+      ]
+    }
+  ],
+  "sharingInfo": {
+        "shareAppMessage": "onShareAppMessage"
+      },
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#FFFFFF"
@@ -20,7 +33,10 @@
  
   "tabBar": {
     "custom": true,
-   
+    "color": "#808080",
+    "selectedColor": "#388BFF",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
     "list":[
       {
         "pagePath": "pages/home/home",

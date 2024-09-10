@@ -1,0 +1,78 @@
+<scroll-view class="containers" scroll-y="true" style="height: 120%;">
+  <view class="theme"><text>实习详情</text></view>
+  <view class="back" bindtap="goBack">
+    <image src="/pkgA/img/back.png" mode="" />
+  </view>
+  <!-- item bar -->
+  <view class="items">
+    <view class="item">
+      <view class="coicon">
+        <image src="{{coitem.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
+      </view>
+      <view class="info">
+        <text class="cotitle" selectable="false" space="false" decode="false">{{coitem.name}}</text>
+        <view class="tags">
+          <view class="tt">
+            <view class="tag" wx:for="{{coitem.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
+          </view>
+          <view class="iszhao {{coitem.iszhao?'gg':'rr'}}">{{coitem.iszhao?'招募中':'筹备中'}}</view>
+        </view>
+        <view class="fuji">
+          <view class="times">截止时间：{{coitem.time}}</view>
+          <view class="sums">
+            <image src="/img/浏览.png" mode="" />
+            <text>{{coitem.sum}}</text>
+            <image src="/img/路径 1.png" mode="" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="xiang">
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sites">
+        <view class="tou">实习地点：</view>
+        <view style="display: flex;">
+          <view class="site" wx:for="{{site}}">{{item}}</view>
+        </view>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="zhizhe"><view class="tou jian">岗位职责：</view><view class="ott" wx:for="{{ott}}">{{item}}</view></view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="zhizhe"><view class="tou jian">岗位要求：</view><view class="ott" wx:for="{{req}}">{{item}}</view></view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="zhizhe"><view class="tou jian">实习收获：</view><view class="ott" wx:for="{{gain}}">{{item}}</view></view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="zhizhe">
+      <view style="display: flex; justify-content: space-between;"><view class="tou jian">投递方式：</view><view class="site jian" bind:tap="fuzhi">复制</view></view>
+      <view class="ott oot" ><text style=" white-space: nowrap;">链接:    </text>{{links}}</view></view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+    <view class="zhizhe">
+      <view style="display: flex; justify-content: space-between;"><view class="tou jian">截止时间：</view><view class="jian ott">{{timee}}</view></view>
+    </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+    <view class="zhizhe">
+      <view style="display: flex; justify-content: space-between;"><view class="tou jian">备注：</view><view class="jian ott">{{bei}}</view></view>
+    </view></view>
+    <view class="warning">
+    <view style="width: 78vw; margin-left: 1vw; ">
+      <view style="height:20px; width:20px;"><image src="/pkgA/img/警告.png" style="height: 100%; width: 100%;" mode=""/></view>
+      <view class="ott" style="margin-top: 7px;">如您发现用人单位或招聘人员存在违规行为，包括但不限于扣押求职者证件、收取求职者财务、强迫求职者集资或入股、诱导求职者异地入职、发布虚假招聘信息、其它损害求职者权益行为，请<text style="color: rgba(212, 48, 48, 1);font-weight: 500;" bind:tap="navigate" data-url="/pkgA/pages/warning/warning">立即举报</text>。</view>
+    </view>
+    </view>
+  </view>
+  <view class="photoes">
+    <image src="https://img.js.design/assets/img/66a702c0506661dae68357f2.jpg#40d48f981e041de242e1a5eb8f8e0698" mode="scaleToFill"/>
+  </view>
+  <view class="tabbers">
+        <button open-type="share" class="btns"><image src="/pkgA/img/分享.png" mode=""/></button>
+        <view class="abc" bind:tap="shouchang">加入收藏</view>
+        <view class="bca" >复制实习信息</view>
+  </view>
+</scroll-view>

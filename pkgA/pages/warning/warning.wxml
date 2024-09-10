@@ -1,0 +1,31 @@
+<scroll-view class="containers" scroll-y="true" style="height: 120%;">
+  <view class="reason">
+    <view class="syl">搜索历史：</view>
+    <view class="kuai">
+      <block wx:for="{{items}}" wx:key="id">
+        <view class="items {{item.isAc?'active':''}}" bind:tap="toggleButtonStyle" data-index="{{index}}"><text>{{item.text}}</text></view>
+      </block>
+    </view>
+  </view>
+  <view class="des">
+    <view class="syl">详细描述：</view>
+    <!-- <input class="ttt" type="text" id="input-text" placeholder="请尽量详细描述您的问题，以便我们提供更好的帮助" bindinput="handleInput" /> -->
+    <view class="input-group">
+      <textarea class="ttt" placeholder="请尽量详细描述您的问题，以便我们提供更好的帮助" bindinput="handleInput" maxlength="300"></textarea>
+      <text class="char-counter ttt">{{charCount}} / 300</text>
+    </view>
+  </view>
+  <view class="jietu">
+    <view class="syl">相关截图：<text class="tett">（选填，可上传3张）</text></view>
+    <view class="photos">
+      <image src="/pkgA/img/相机.png" mode="" />
+    </view>
+  </view>
+  <view class="calls">
+    <view class="syl">联系方式：</view>
+    <view style="display: flex; justify-content: center;"><input class="inin" type="text" placeholder="请填写邮箱或手机号，以便您接受反馈结果" /></view>
+    <view style="display: flex; justify-content: center;">
+      <view class="sends">提交</view>
+    </view>
+  </view>
+</scroll-view>

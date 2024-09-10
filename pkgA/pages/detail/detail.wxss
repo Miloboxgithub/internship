@@ -1,0 +1,374 @@
+.containers {
+  position: absolute;
+  /* 绝对定位，让它脱离文档流 */
+  z-index: -1;
+  /* 确保背景元素在内容之下 */
+  width: 100%;
+  height: 100%;
+  background: lightblue;
+  overflow: hidden;
+}
+
+.containers::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  --gradDark: rgba(53, 146, 253, 1);
+  --gradLight: #ecebeb;
+  background: linear-gradient(to bottom, var(--gradDark)20%, var(--gradLight)60%);
+  /* background: linear-gradient(to bottom,rgba(53, 146, 253, 1) 40%, rgba(184, 213, 255, 1) 26.39%, rgba(247, 247, 247, 1) 58.08%); */
+}
+
+.theme {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 0px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  vertical-align: top;
+}
+
+.theme text {
+  margin-top: 3vh;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 12vh;
+}
+
+.back image {
+  width: 10px;
+  height: 18px;
+  margin-top: 3vh;
+  margin-left: 8vw;
+}
+
+.items {
+  margin-left: 5vw;
+  width: 90vw;
+
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  padding-bottom: 7px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 1);
+  padding: 5px 15px 10px 10px;
+}
+
+.coicon {
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coicon image {
+  width: 54.55px;
+  height: 34.55px;
+}
+
+.info {
+  width: 100%;
+  margin-left: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 74px;
+}
+
+.cotitle {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(56, 56, 56, 1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.tags {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.fuji {
+  display: flex;
+  justify-content: space-between;
+}
+
+.times {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 14.48px;
+  color: rgba(166, 166, 166, 1);
+  text-align: center;
+  vertical-align: top;
+  border-radius: 3px;
+  background: rgba(245, 245, 245, 1);
+  height: 14px;
+  padding: 1px 4px 1px 4px;
+}
+
+.sums image {
+  width: 14px;
+  height: 14px;
+}
+
+.sums text {
+  margin-right: 10px;
+  margin-left: 3px;
+}
+
+.sums {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 11.58px;
+  color: rgba(56, 56, 56, 0.86);
+  text-align: left;
+  vertical-align: top;
+}
+
+.iszhao {
+  border-radius: 3px;
+  width: 51px;
+  height: 18px;
+
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  vertical-align: top;
+}
+
+.tt {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+}
+
+.gg {
+  background: rgba(0, 204, 82, 1);
+}
+
+.rr {
+  background: rgb(214, 30, 30);
+}
+
+.tag {
+  border-radius: 3px;
+  background: rgba(245, 245, 245, 1);
+  margin-right: 5px;
+  width: 50px;
+  padding-left: 3px;
+  padding-right: 3px;
+  height: 18px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(128, 128, 128, 1);
+  text-align: center;
+  vertical-align: top;
+}
+
+.xiang {
+  margin-top: 25px;
+  width: 90vw;
+  margin-left: 5vw;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  padding-bottom: 20px;
+}
+
+.tou {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(23, 23, 25, 1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.sites {
+  width: 78vw;
+  margin-left: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  padding-bottom: 10px;
+
+}
+
+.site {
+  border-radius: 15px;
+  background: rgba(56, 139, 255, 1);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  vertical-align: top;
+  width: 32px;
+  height: 18px;
+  padding: 1px 5px 1px 5px;
+  margin-left: 8px;
+}
+
+.zhizhe {
+  width: 78vw;
+  margin-left: 1vw;
+  margin-bottom: 10px;
+}
+
+.ott {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(166, 166, 166, 1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.jian {
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+.warning {
+  width: 80vw;
+  margin-left: 5vw;
+  margin-top: 10px;
+}
+
+.oot {
+  width: 100%;
+  /* 设置容器的最大宽度 */
+  white-space: normal;
+  /* 允许正常换行 */
+  word-wrap: break-word;
+  /* 在必要时断开单词以适应容器宽度 */
+  overflow-wrap: break-word;
+  /* 在必要时断开单词以避免溢出 */
+}
+
+.tabbers {
+  width: 100vw;
+  height: 75px;
+  background: rgba(255, 255, 255, 1);
+  margin-top: 60px;
+  display: flex;
+  padding-top: 3vw;
+  justify-content: space-evenly;
+}
+
+.tabbers image {
+  width: 31px;
+  height: 34px;
+}
+
+.abc {
+  width: 100px;
+  height: 34px;
+  opacity: 1;
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 1);
+  border: 1.5px solid rgba(56, 139, 255, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(56, 139, 255, 1);
+  text-align: center;
+  vertical-align: top;
+}
+
+.bca {
+  width: 140px;
+  height: 34px;
+  opacity: 1;
+  border-radius: 17px;
+  background: linear-gradient(90deg, rgba(56, 139, 255, 1) 0%, rgba(56, 139, 255, 0.7) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  vertical-align: top;
+}
+.btns {
+  width: 31px;
+  height: 34px;
+  background-color: rgba(255, 255, 255, 1);
+
+ /* 移除默认样式 */
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+
+}
+.btns::after{
+  border: none;
+}
+.photoes{
+  margin-top: 25px;
+  width: 90vw;
+  height: 100%;
+  margin-left: 5vw;
+  border-radius: 15px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1px solid rgba(247, 247, 247, 1);
+box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
+overflow: hidden;
+}
+.photoes image{
+  height: 100%;
+  width: 100%;
+  display: block;
+}

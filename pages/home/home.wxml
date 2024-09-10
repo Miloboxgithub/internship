@@ -29,7 +29,7 @@
   </view>
   <view class="divider"></view>
   <view class="items">
-    <view class="item" wx:for="{{coitem}}" wx:key="index">
+    <view class="item" wx:for="{{coitem}}" wx:key="index" bind:tap="navigates" data-url="/pkgA/pages/detail/detail" data-id="{{index}}">
       <view class="coicon">
         <image src="{{item.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
       </view>

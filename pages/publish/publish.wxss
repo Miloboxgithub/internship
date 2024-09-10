@@ -1,1 +1,94 @@
-/* pages/publish/publish.wxss */
+/* pages/index/index.wxss */
+.container {
+  position: relative;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.custom-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 11vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(53, 146, 253, 1), rgb(138, 185, 252)); /* 渐变背景 */
+  padding: 0 16px;
+  z-index: 1000; /* 确保导航栏在最顶层 */
+  transition: top 0.3s ease-in-out; /* 平滑过渡效果 */
+  display: flex;
+  justify-content: center;
+}
+
+.nav-title {
+  font-size: 17px;
+font-weight: 500;
+letter-spacing: 0px;
+line-height: 0px;
+color: rgb(255, 255, 255);
+text-align: center;
+vertical-align: top;
+margin-top: 5vh;
+}
+
+.nav-button {
+  color: white;
+  font-size: 16px;
+  border: none;
+  background: transparent;
+}
+
+.content {
+  position: absolute;
+  top: 11vh;
+  height: 100%;
+  background: linear-gradient(to bottom, rgb(138, 185, 252), rgb(255, 255, 255));
+}
+.tables{
+  width: 90vw;
+  margin-left: 5vw;
+  margin-top: 3vh;
+  border-radius: 15px;
+background: rgba(255, 255, 255, 1);
+box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
+}
+.tou {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(23, 23, 25, 1);
+  text-align: left;
+  vertical-align: top;
+}
+.sites {
+  width: 78vw;
+  margin-left: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  padding-bottom: 10px;
+}
+.sitess{
+  width: 78vw;
+  margin-left: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.tst{
+  font-size: 14px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 20.27px;
+color: rgba(166, 166, 166, 1);
+text-align: left;
+vertical-align: top;
+margin-right: 5vw;
+width: 50vw;
+}
