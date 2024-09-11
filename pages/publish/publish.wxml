@@ -3,7 +3,7 @@
   <view class="custom-nav-bar" id="navBar">
     <view class="nav-title">实习发布</view>
   </view>
-  <scroll-view scroll-y bindscrolltolower="onScrollToLower" class="content" scroll-with-animation>
+  <scroll-view scroll-y bindscrolltolower="onScrollToLower" class="content" scroll-with-animation style="height: 150%;">
     <!-- 页面内容 -->
     <view class="tables">
       <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -15,9 +15,99 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">行业<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        
+        <view class="you"><image src="/img/you.png" mode=""/></view>
       </view>
     </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">公司性质<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <view class="you"><image src="/img/you.png" mode=""/></view>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">招聘岗位<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <input class="tst" type="text" placeholder="请填写招聘岗位"/>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">实习类型<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <view class="tansview">
+            <view class="{{types0?'you':'zuo'}}" bind:tap="changetypes">线下</view>
+            <view class="{{types0?'zuo':'you'}}" bind:tap="changetypes">远程</view>
+        </view>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">实习地点<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <input class="tst" type="text" placeholder="请填写实习地点"/>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitesss">
+        <view class="tou">岗位职责<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <input class="tsts" type="text" placeholder="请填写岗位职责"/>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitesss">
+        <view class="tou">岗位要求<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <input class="tsts" type="text" placeholder="请填写岗位要求"/>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitesss">
+        <view class="tou">实习收获<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <input class="tsts" type="text" placeholder="请填写实习收获"/>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitesss">
+        <view class="tou">投递方式<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <input class="tsts" type="text" placeholder="请填写投递方式"/>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">截止时间<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <view class="you"><image src="/img/you.png" mode=""/></view>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitesss">
+        <view class="tou">公司Logo<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <view class="photos">
+      <image src="/pkgA/img/相机.png" mode="" />
+    </view>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitesss">
+        <view class="tou">资讯图片<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <view class="photos">
+      <image src="/pkgA/img/相机.png" mode="" />
+    </view>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sites">
+        <view class="tou">备注</view>
+        <input class="tst" type="text" placeholder="请填写公司名称"/>
+      </view>
+    </view>
+    <view style="  width: 80vw; margin-left: 5vw; ">
+    <view class="bottoms">
+        <view class="yingsi">
+          <view class="checks" bind:tap="changecheck" style="background: {{checks?'rgba(56, 139, 255, 1);':''}}"><image src="{{checks?'/img/gou.png':''}}" mode=""/></view>
+          <view>隐私协议</view>
+        </view>
+        <view class="btns">
+          <view class="reset">重置</view>
+          <view class="sendmsg">发布实习</view>
+        </view>
+    </view></view>
     </view>
     <!-- 添加更多的内容 -->
   </scroll-view>
