@@ -1,0 +1,31 @@
+<view class="containers">
+<view class="heads">
+<image src="/pkgA/img/头像.png" mode=""/>
+</view>
+<view class="details">
+  <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">ID</view>
+        <view class="you">CZ180627</view>
+      </view>
+    </view>
+  <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">昵称</view>
+        <view class="you">微信用户0237</view>
+      </view>
+    </view>
+  <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">性别</view>
+        <view class="you"><view style="margin-right: 10px;">男</view><image src="/img/you.png" mode=""/></view>
+      </view>
+    </view>
+  <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+      <view class="sitess">
+        <view class="tou">地区</view>
+        <view class="you"><view style="margin-right: 10px;">广东深圳</view><image src="/img/you.png" mode=""/></view>
+      </view>
+    </view>
+</view>
+</view>

@@ -15,7 +15,9 @@
         "pages/privacy/privacy",
         "pages/us/us",
         "pages/service/service",
-        "pages/law/law"
+        "pages/law/law",
+        "pages/setup/setup",
+        "pages/collection/collection"
       ]
     }
   ],

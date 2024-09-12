@@ -1,5 +1,6 @@
 Page({
   data: {
+    hua:true,
     lei:'类型',
     xing:'性质',
     hang:'行业',
@@ -288,6 +289,13 @@ Page({
       this.setData({
         [e.currentTarget.id]: !this.data[e.currentTarget.id]
       })
+    // let as=this.data
+    // if(as.types1||as.types2||as.types3){
+    //   this.setData({
+    //     hua:false
+    //   })
+    //   console.log(123)
+    // }
   },
   // 关闭遮罩层
   hideview() {
@@ -296,6 +304,10 @@ Page({
       types2: false,
       types3: false
     })
+      //隐藏tabber
+      this.getTabBar().setData({
+        chans:false
+      })
   },
   // 获取选框位置
   getweizhi() {
@@ -370,5 +382,24 @@ Page({
     let url=`/pkgA/pages/detail/detail?coitem=${ans}`
     console.log(url)
     wx.navigateTo({url: url});
-  }
+  },
+  changetypest(e) {
+    let ce = true
+    if (this.data[e.currentTarget.id]) ce = !ce
+    let ts = e.currentTarget.id
+    this.setData({
+      types1: false,
+      types2: false,
+      types3: false
+    })
+    if (ce)
+      this.setData({
+        [e.currentTarget.id]: !this.data[e.currentTarget.id]
+      })
+      //隐藏tabber
+      this.getTabBar().setData({
+        chans:!this.getTabBar().data.chans
+      })
+      console.log(1234)
+  },
 })

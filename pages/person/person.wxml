@@ -19,15 +19,15 @@
     <view class="items">
       <view class="tts">常用服务</view>
       <view class="sss">
-        <view class="s1">
+        <view class="s1" bind:tap="navigate" data-url="/pkgA/pages/collection/collection">
           <image src="/img/shouc.png" mode="" />
           <view style="margin-top: 5px;">收藏</view>
         </view>
-        <view class="s1">
+        <view class="s1" bind:tap="navigate" data-url="">
           <image src="/img/icon_添加.png" mode="" />
           <view style="margin-top: 5px;">发布</view>
         </view>
-        <view class="s1">
+        <view class="s1" bind:tap="navigate" data-url="/pkgA/pages/setup/setup">
           <image src="/img/设置.png" mode="" />
           <view style="margin-top: 5px;">设置</view>
         </view>
