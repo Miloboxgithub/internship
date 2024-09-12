@@ -1,0 +1,12 @@
+.containers{
+  width: 92vw;
+  margin-left: 4vw;
+  white-space: pre;
+  white-space: pre-wrap;
+  font-size: 16px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 23.17px;
+color: rgba(25, 25, 25, 1);
+padding-top: 30px;
+}

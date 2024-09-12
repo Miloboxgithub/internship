@@ -12,7 +12,10 @@
       "pages": [
         "pages/detail/detail",
         "pages/warning/warning",
-        "pages/privacy/privacy"
+        "pages/privacy/privacy",
+        "pages/us/us",
+        "pages/service/service",
+        "pages/law/law"
       ]
     }
   ],

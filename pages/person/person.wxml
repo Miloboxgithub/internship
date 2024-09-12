@@ -2,35 +2,56 @@
   <view class="custom-nav-bar" id="navBar">
     <view class="nav-title">个人中心</view>
     <view class="head-box">
-        <view class="heads">
-        <image src="/img/头像.png" mode=""/>
-        </view>
-        <view class="texts">
+      <view class="heads">
+        <image src="/img/头像.png" mode="" />
+      </view>
+      <view class="texts">
         <view class="ts1">
           未登录/注册
         </view>
         <view class="ts2">
           点击头像可登录/注册
         </view>
-        </view>
-  </view>
+      </view>
+    </view>
   </view>
   <view class="pers">
     <view class="items">
       <view class="tts">常用服务</view>
       <view class="sss">
-      <view class="s1"><image src="/img/shouc.png" mode=""/><view style="margin-top: 5px;">收藏</view></view>
-      <view class="s1"><image src="/img/icon_添加.png" mode=""/><view style="margin-top: 5px;">发布</view></view>
-      <view class="s1"><image src="/img/设置.png" mode=""/><view style="margin-top: 5px;">设置</view></view>
+        <view class="s1">
+          <image src="/img/shouc.png" mode="" />
+          <view style="margin-top: 5px;">收藏</view>
+        </view>
+        <view class="s1">
+          <image src="/img/icon_添加.png" mode="" />
+          <view style="margin-top: 5px;">发布</view>
+        </view>
+        <view class="s1">
+          <image src="/img/设置.png" mode="" />
+          <view style="margin-top: 5px;">设置</view>
+        </view>
       </view>
     </view>
     <view class="items">
       <view class="tts">其他服务</view>
       <view class="sss">
-      <view class="s2"><image style="width: 30px;height: 26px;" src="/img/us.png" mode=""/><view style="margin-top: 5px;">关于我们</view></view>
-      <view class="s2"><image style="width: 24.16px;height: 26px;"  src="/img/yingsi.png" mode=""/><view style="margin-top: 5px;">隐私政策</view></view>
-      <view class="s2"><image style="width: 24.53px;height: 26px;"  src="/img/servie.png" mode=""/><view style="margin-top: 5px;">服务协议</view></view>
-      <view class="s2"><image style="width: 23px;height: 26px;"  src="/img/layw.png" mode=""/><view style="margin-top: 5px;">法律声明</view></view>
+        <view class="s2" bind:tap="navigate" data-url="/pkgA/pages/us/us">
+          <image style="width: 30px;height: 26px;" src="/img/us.png" mode="" />
+          <view style="margin-top: 5px;">关于我们</view>
+        </view>
+        <view class="s2" bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy">
+          <image style="width: 24.16px;height: 26px;" src="/img/yingsi.png" mode="" />
+          <view style="margin-top: 5px;">隐私政策</view>
+        </view>
+        <view class="s2" bind:tap="navigate" data-url="/pkgA/pages/service/service">
+          <image style="width: 24.53px;height: 26px;" src="/img/servie.png" mode="" />
+          <view style="margin-top: 5px;">服务协议</view>
+        </view>
+        <view class="s2" bind:tap="navigate" data-url="/pkgA/pages/law/law">
+          <image style="width: 23px;height: 26px;" src="/img/layw.png" mode="" />
+          <view style="margin-top: 5px;">法律声明</view>
+        </view>
       </view>
     </view>
   </view>
