@@ -11,6 +11,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pkgA/pages/privacy/privacy",
+          "pathName": "pkgA/pages/privacy/privacy",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pkgA/pages/warning/warning",
           "pathName": "pkgA/pages/warning/warning",
           "query": "",

@@ -1,0 +1,130 @@
+.custom-nav-bar {
+ 
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0 16px;
+  z-index: 10; /* 确保导航栏在最顶层 */
+  transition: top 0.3s ease-in-out; /* 平滑过渡效果 */
+  display: flex;
+  justify-content: center;
+  width: 100;
+height: 250px;
+background: linear-gradient(25.94deg, rgba(184, 213, 255, 1) 0%, rgba(53, 146, 252, 1) 100%);
+}
+
+.nav-title {
+  font-size: 17px;
+font-weight: 500;
+letter-spacing: 0px;
+line-height: 0px;
+color: rgb(255, 255, 255);
+text-align: center;
+vertical-align: top;
+margin-top: 8vh;
+}
+.pers{
+  position: fixed;
+  top: 220px;
+  width: 100%;
+height: 100vh;
+opacity: 1;
+z-index: 1000;
+border-radius: 25px 25px 0px 0px;
+background: linear-gradient(180deg, rgba(227, 238, 255, 1) 0%, rgba(232, 241, 255, 1) 0%, rgba(241, 242, 243, 1) 26.39%, rgba(247, 247, 247, 1) 58.08%);
+}
+.items{
+  width: 90vw;
+  margin-left: 5vw;
+  margin-top: 2vh;
+height: 104px;
+opacity: 1;
+border-radius: 15px;
+background: rgba(255, 255, 255, 1);
+box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
+
+}
+.tts{
+  position: relative;
+  top:7px;
+  left: 17px;
+font-size: 14px;
+font-weight: 500;
+letter-spacing: 0px;
+line-height: 20.27px;
+color: rgba(56, 56, 56, 1);
+text-align: left;
+vertical-align: top;
+}
+.sss{
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.s1{
+  font-size: 12px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 17.38px;
+color: rgba(56, 56, 56, 1);
+text-align: center;
+vertical-align: top;
+}
+.s2{
+  font-size: 12px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 17.38px;
+color: rgba(56, 56, 56, 1);
+text-align: center;
+vertical-align: top;
+}
+.s1 image{
+  width: 28.8px;
+  height: 27.88px;
+}
+.heads image{
+
+  width: 65px;
+height: 65px;
+}
+.head-box{
+  left: 31px;
+top: 114px;
+  position: fixed;
+
+}
+.ts1{
+  position: fixed;
+  left: 112px;
+top: 117px;
+width: 98px;
+height: 28px;
+opacity: 1;
+/** 文本1 */
+font-size: 18px;
+font-weight: 500;
+letter-spacing: 0px;
+line-height: 26.06px;
+color: rgba(255, 255, 255, 1);
+text-align: left;
+vertical-align: top;
+}
+.ts2{
+  position: fixed;
+  left: 112px;
+top: 149px;
+width: 136px;
+height: 22px;
+opacity: 1;
+/** 文本1 */
+font-size: 14px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 20.27px;
+color: rgba(255, 255, 255, 1);
+text-align: left;
+vertical-align: top;
+
+}

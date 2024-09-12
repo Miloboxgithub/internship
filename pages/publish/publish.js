@@ -40,5 +40,8 @@ Page({
     this.setData({
       checks:!this.data.checks
     })
+  },
+  navigate: function(e){
+    wx.navigateTo({url:e.currentTarget.dataset.url});
   }
 });

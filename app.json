@@ -11,7 +11,8 @@
       "name":"p1",
       "pages": [
         "pages/detail/detail",
-        "pages/warning/warning"
+        "pages/warning/warning",
+        "pages/privacy/privacy"
       ]
     }
   ],

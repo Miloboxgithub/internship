@@ -1,9 +1,9 @@
 <!-- pages/index/index.wxml -->
-<view class="container">
+<view class="containers">
   <view class="custom-nav-bar" id="navBar">
     <view class="nav-title">实习发布</view>
   </view>
-  <scroll-view scroll-y bindscrolltolower="onScrollToLower" class="content" scroll-with-animation style="height: 150%;">
+  <scroll-view scroll-y scroll-with-animation class="content" scroll-with-animation style="height: 150vh; z-index: 50;">
     <!-- 页面内容 -->
     <view class="tables">
       <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -101,7 +101,7 @@
     <view class="bottoms">
         <view class="yingsi">
           <view class="checks" bind:tap="changecheck" style="background: {{checks?'rgba(56, 139, 255, 1);':''}}"><image src="{{checks?'/img/gou.png':''}}" mode=""/></view>
-          <view>隐私协议</view>
+          <view bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy">隐私协议</view>
         </view>
         <view class="btns">
           <view class="reset">重置</view>
