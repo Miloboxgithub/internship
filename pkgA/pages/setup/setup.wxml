@@ -12,20 +12,80 @@
   <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">昵称</view>
-        <view class="you">微信用户0237</view>
+       <input class="you" placeholder="微信用户0237" bindinput="inputChange" type="text" value="{{inputValue}}"/>
+        <!-- <view class="you">微信用户0237</view> -->
       </view>
     </view>
   <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">性别</view>
-        <view class="you"><view style="margin-right: 10px;">男</view><image src="/img/you.png" mode=""/></view>
+        <view class="you" bind:tap="changetypes1"><view style="margin-right: 10px;">{{sex}}</view><image src="/img/you.png" mode=""/></view>
       </view>
     </view>
   <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">地区</view>
-        <view class="you"><view style="margin-right: 10px;">广东深圳</view><image src="/img/you.png" mode=""/></view>
+        <view class="you" bind:tap="changetypes2"><view style="margin-right: 10px;">广东深圳</view><image src="/img/you.png" mode=""/></view>
       </view>
     </view>
 </view>
+</view>
+
+<!-- 底部选择器 -->
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; top:0px;"></view>
+<view class="bpicker" catchtouchmove="true" style="display: {{types1?'block':'none'}};">
+  <view class="boxse">
+    <view class="quxiao" bindtap='hideview'>
+      取消
+    </view>
+    <!-- <view class="navvv">
+      <view class="searchs">
+        <image src="/img/搜索.png" mode="" />
+      </view>
+      <input type="text" class="input" placeholder="" id="search" />
+    </view> -->
+    <view class="queren" bind:tap="queren1">
+      确定
+    </view>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange1">
+    <!-- <picker-view-column>
+      <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
+    </picker-view-column> -->
+    <picker-view-column>
+      <view wx:for="{{industry}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+    </picker-view-column>
+    <!-- <picker-view-column>
+      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
+    </picker-view-column> -->
+  </picker-view>
+</view>
+<!-- 底部选择器 -->
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; top:0px;"></view>
+<view class="bpicker" catchtouchmove="true" style="display: {{types2?'block':'none'}};">
+  <view class="boxse">
+    <view class="quxiao" bindtap='hideview'>
+      取消
+    </view>
+    <!-- <view class="navvv">
+      <view class="searchs">
+        <image src="/img/搜索.png" mode="" />
+      </view>
+      <input type="text" class="input" placeholder="" id="search" />
+    </view> -->
+    <view class="queren" bind:tap="queren2">
+      确定
+    </view>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 200px; " value="{{value}}" bindchange="bindChange2">
+    <picker-view-column >
+      <view wx:for="{{ys}}" style="line-height: 50px ;text-align: center;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{industrys}}" style="line-height: 50px; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+    </picker-view-column>
+    <!-- <picker-view-column>
+      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
+    </picker-view-column> -->
+  </picker-view>
 </view>

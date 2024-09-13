@@ -11,6 +11,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pkgA/pages/myfabu/myfabu",
+          "pathName": "pkgA/pages/myfabu/myfabu",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pkgA/pages/collection/collection",
+          "pathName": "pkgA/pages/collection/collection",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pkgA/pages/privacy/privacy",
           "pathName": "pkgA/pages/privacy/privacy",
           "query": "",

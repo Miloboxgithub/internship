@@ -1,3 +1,8 @@
+.conatiners{
+  height: 100vh;
+  width: 100vw;
+  background: rgba(245, 245, 245, 1);
+}
 .containers {
   background: rgba(245, 245, 245, 1);
   height: 120vh;
@@ -118,10 +123,10 @@ height: 14px;
   border-radius: 15px;
 background: rgba(255, 255, 255, 1);
 box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
-  padding-bottom: 7px;
+  padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 2px;
+  padding-top: 5px;
 }
 .blues{
   position: relative;
@@ -154,7 +159,7 @@ box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
   flex-direction: column;
   justify-content: space-around;
   height: 74px;
-  margin-top: 14px;
+
 }
 
 .cotitle {
@@ -315,196 +320,7 @@ box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
 .zg text {
   margin-left: 3vw;
 }
-
-.zhezhao image {
-
-  height: 8px;
-  width: 11px;
-}
-
-.bg {
-  display: none;
-  position: absolute;
-
-  left: 0%;
-  width: 100vw;
-  height: 1000px;
-  background-color: black;
-  z-index: 1001;
-  -moz-opacity: 0.7;
-  opacity: 0.70;
-  filter: alpha(opacity=70);
-}
-
-.bpicker {
-  bottom: 0;
-  width: 100vw;
-  height: 416px;
-
-  position: absolute;
-  z-index: 2000;
-  background: rgba(255, 255, 255, 1);
-}
-
-.boxse {
-  margin-top: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.searchs {
-
-  margin-left: 2.5vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.searchs image {
-  height: 27px;
-  width: 27px;
-  margin-left: 4px;
-}
-
-.fancy-bgs {
-  margin-left: 0.8vw;
-  width: 1.8px;
-  height: 13px;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.navvv .input {
-  width: 100%;
-  margin-left: 5px;
-  background: none;
-  border: none;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0px;
-  line-height: 14.48px;
-  color: rgba(166, 166, 166, 1);
-  text-align: left;
-  vertical-align: top;
-}
-
-.navvv {
-  width: 10px;
-  width: 228px;
-  height: 34px;
-  border-radius: 17px;
-  background: rgba(245, 245, 245, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
-
-.quxiao {
-  margin-left: 3vw;
-  height: 34px;
-  font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0px;
-  line-height: 23.17px;
-  color: rgba(166, 166, 166, 1);
-  text-align: center;
-  vertical-align: top;
-  display: flex;
-  align-items: center;
-}
-
-.queren {
-  margin-right: 3vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 30px;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 0px;
-  line-height: 23.17px;
-  color: rgba(255, 255, 255, 1);
-  text-align: center;
-  vertical-align: top;
-  border-radius: 15px;
-  background: rgba(56, 139, 255, 1);
-}
-.chico{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  height: 80px;
-  background: rgba(255, 255, 255, 1);
-
-}
-.deletes{
-  width: 97px;
-height: 34px;
-opacity: 1;
-border-radius: 17px;
-background: rgba(255, 255, 255, 1);
-border: 1.5px solid rgba(56, 139, 255, 1);
-font-size: 14px;
-font-weight: 500;
-letter-spacing: 0px;
-line-height: 20.27px;
-color: rgba(56, 139, 255, 1);
-text-align: center;
-vertical-align: top;
-display: flex;
-align-items: center;
-justify-content: center;
-margin-top: 10px;
-margin-left: 5px;
-}
-.copys{
-  width: 123px;
-height: 34px;
-opacity: 1;
-border-radius: 17px;
-background: linear-gradient(90deg, rgba(56, 139, 255, 1) 0%, rgba(56, 139, 255, 0.7) 100%);
-font-size: 14px;
-font-weight: 500;
-letter-spacing: 0px;
-line-height: 20.27px;
-color: rgba(255, 255, 255, 1);
-text-align: center;
-vertical-align: top;
-display: flex;
-align-items: center;
-justify-content: center;
-margin-top: 10px;
-}
-.xuan > view:first-child{
-  font-size: 10px;
-font-weight: 400;
-letter-spacing: 0px;
-line-height: 14.48px;
-color: rgba(128, 128, 128, 1);
-margin-top: 5px;
-}
-.xuan > view:nth-child(2){
-  font-size: 12px;
-font-weight: 500;
-letter-spacing: 0px;
-line-height: 17.38px;
-color: rgba(25, 25, 25, 1);
-text-align: justify;
-vertical-align: top;
-display: flex;
-align-items: center;
-margin-top: 8px;
-}
-.xuan > view:nth-child(2) image{
+.edit image{
   width: 14px;
-height: 14px;
-}
-.xuan > view:nth-child(2) .imggg{
-  width: 10px;
-  height: 10px;
-  position: relative;
-  right: 12px;
+  height: 14px;
 }

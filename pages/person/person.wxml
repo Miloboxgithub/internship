@@ -23,7 +23,7 @@
           <image src="/img/shouc.png" mode="" />
           <view style="margin-top: 5px;">收藏</view>
         </view>
-        <view class="s1" bind:tap="navigate" data-url="">
+        <view class="s1" bind:tap="navigate" data-url="/pkgA/pages/myfabu/myfabu">
           <image src="/img/icon_添加.png" mode="" />
           <view style="margin-top: 5px;">发布</view>
         </view>

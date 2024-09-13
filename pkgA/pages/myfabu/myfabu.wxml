@@ -1,0 +1,31 @@
+<scroll-view class="conatiners" scroll-y="true">
+  <view class="items">
+    <view class="item" wx:for="{{coitem}}" wx:key="index"  data-id="{{index}}">
+ <view class="boox">
+      <view class="coicon">
+        <image src="{{item.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
+      </view>
+ </view>
+      <view class="info" bind:tap="navigates" data-url="/pkgA/pages/fabudetail/fabudetail">
+      <view style="display: flex; justify-content: space-between;">
+        <text class="cotitle" selectable="false" space="false" decode="false">{{item.name}}</text>
+        <view class="edit"><image src="/pkgA/img/编辑.png" mode=""/></view>
+      </view>
+        <view class="tags">
+          <view class="tt">
+            <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
+          </view>
+          <view class="iszhao {{item.iszhao?'gg':'rr'}}">{{item.iszhao?'招募中':'筹备中'}}</view>
+        </view>
+        <view class="fuji">
+          <view class="times">截止时间：{{item.time}}</view>
+          <view class="sums">
+            <image src="/img/浏览.png" mode="" />
+            <text>{{item.sum}}</text>
+            <image src="/img/路径 1.png" mode="" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

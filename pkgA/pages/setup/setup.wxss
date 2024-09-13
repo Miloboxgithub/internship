@@ -41,6 +41,11 @@ display: flex;
 align-items: center;
 
 }
+.you::placeholder{
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(25, 25, 25, 1);
+}
 .you image{
   width: 5.26px;
 height: 9.02px;
@@ -58,4 +63,113 @@ height: 9.02px;
   width: 96vw;
   margin-left: 2vw;
   margin-top: 30px;
+}
+.bg {
+  display: none;
+  position: absolute;
+
+  left: 0%;
+  width: 100vw;
+  height: 1000px;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.7;
+  opacity: 0.70;
+  filter: alpha(opacity=70);
+}
+
+.bpicker {
+  bottom: 0;
+  width: 100vw;
+  height: 316px;
+
+  position: absolute;
+  z-index: 2000;
+  background: rgba(255, 255, 255, 1);
+}
+
+.boxse {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchs {
+
+  margin-left: 2.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchs image {
+  height: 27px;
+  width: 27px;
+  margin-left: 4px;
+}
+
+.fancy-bgs {
+  margin-left: 0.8vw;
+  width: 1.8px;
+  height: 13px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.navvv .input {
+  width: 100%;
+  margin-left: 5px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 14.48px;
+  color: rgba(166, 166, 166, 1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.navvv {
+  width: 10px;
+  width: 228px;
+  height: 34px;
+  border-radius: 17px;
+  background: rgba(245, 245, 245, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.quxiao {
+  margin-left: 3vw;
+  height: 34px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 23.17px;
+  color: rgba(166, 166, 166, 1);
+  text-align: center;
+  vertical-align: top;
+  display: flex;
+  align-items: center;
+}
+
+.queren {
+  margin-right: 3vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 23.17px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  vertical-align: top;
+  border-radius: 15px;
+  background: rgba(56, 139, 255, 1);
 }

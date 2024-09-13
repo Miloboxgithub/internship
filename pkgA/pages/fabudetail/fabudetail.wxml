@@ -1,7 +1,7 @@
 <!-- pages/index/index.wxml -->
 <view class="containers">
   <view class="custom-nav-bar" id="navBar">
-    <view class="nav-title">实习发布</view>
+    <view class="nav-title">我的发布</view>
   </view>
   <scroll-view scroll-y scroll-with-animation class="content" scroll-with-animation style="height: 150vh; z-index: 50;">
     <!-- 页面内容 -->
@@ -97,13 +97,14 @@
         <input class="tst" type="text" placeholder="请填写备注信息"/>
       </view>
     </view>
-    <view style="  width: 80vw; margin-left: 5vw; ">
+    <view style="  width: 90vw;">
     <view class="bottoms">
-        <view class="yingsi">
+        <view class="yingsi" style="margin-left: 5vw;">
           <view class="checks" bind:tap="changecheck" style="background: {{checks?'rgba(56, 139, 255, 1);':''}}"><image src="{{checks?'/img/gou.png':''}}" mode=""/></view>
           <view bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy">隐私协议</view>
         </view>
         <view class="btns">
+        <view class="chexiao">撤销</view>
           <view class="reset">重置</view>
           <view class="sendmsg">发布实习</view>
         </view>
@@ -111,34 +112,4 @@
     </view>
     <!-- 添加更多的内容 -->
   </scroll-view>
-</view>
-
-<!-- 底部选择器 -->
-<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; top:0px;"></view>
-<view class="bpicker" catchtouchmove="true" style="display: {{types1?'block':'none'}};">
-  <view class="boxse">
-    <view class="quxiao" bindtap='hideview'>
-      取消
-    </view>
-    <!-- <view class="navvv">
-      <view class="searchs">
-        <image src="/img/搜索.png" mode="" />
-      </view>
-      <input type="text" class="input" placeholder="" id="search" />
-    </view> -->
-    <view class="queren" bind:tap="queren1">
-      确定
-    </view>
-  </view>
-  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange1">
-    <!-- <picker-view-column>
-      <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
-    </picker-view-column> -->
-    <picker-view-column>
-      <view wx:for="{{industry}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
-    </picker-view-column>
-    <!-- <picker-view-column>
-      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
-    </picker-view-column> -->
-  </picker-view>
 </view>

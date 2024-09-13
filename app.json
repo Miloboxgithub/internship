@@ -17,7 +17,9 @@
         "pages/service/service",
         "pages/law/law",
         "pages/setup/setup",
-        "pages/collection/collection"
+        "pages/collection/collection",
+        "pages/myfabu/myfabu",
+        "pages/fabudetail/fabudetail"
       ]
     }
   ],

@@ -1,2 +1,74 @@
-<!--pkgA/pages/collection/collection.wxml-->
-<text>pkgA/pages/collection/collection.wxml</text>
+<scroll-view class="containers" scroll-y="true">
+  <!-- 搜索选择栏 -->
+  <view class="nav">
+    <view class="nav1" id="types1" bindtap="changetypes" style="color: {{lei=='类型'?'rgba(25, 25, 25, 1)':'rgba(56, 139, 255, 1)'}};"><text>{{lei}}</text>
+      <image src="{{types1?'/img/shang.png':'/img/xia.png'}}" mode="" />
+    </view>
+    <view class="nav3" id="types2" bindtap="changetypes" style="color: {{zhuang=='状态'?'rgba(25, 25, 25, 1)':'rgba(56, 139, 255, 1)'}};"><text>{{zhuang}}</text>
+      <image src="{{types2?'/img/shang.png':zhuang=='状态'?'/img/xia.png':'/img/xiab.png'}}" mode="" />
+    </view>
+    <view class="navv">
+      <view class="search">
+        <image src="/img/搜索.png" mode="" />
+      </view>
+      <view class="fancy-bg"></view>
+      <input type="text" class="input" placeholder="" id="search" />
+    </view>
+  </view>
+  <view class="items">
+    <view class="item" wx:for="{{coitem}}" wx:key="index"  data-id="{{index}}">
+ <view class="boox">
+  <view class="abc" bind:tap="dianji" data-id="{{index}}"><image src="/pkgA/img/圆形 1.png" class="blacks" mode=""/><image src="/pkgA/img/圆形 2.png"  style="display: {{item.isdian?'':'none'}};"  class="blues" mode=""/></view>
+      <view class="coicon">
+        <image src="{{item.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
+      </view>
+ </view>
+      <view class="info" bind:tap="navigates" data-url="/pkgA/pages/detail/detail">
+        <text class="cotitle" selectable="false" space="false" decode="false">{{item.name}}</text>
+        <view class="tags">
+          <view class="tt">
+            <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
+          </view>
+          <view class="iszhao {{item.iszhao?'gg':'rr'}}">{{item.iszhao?'招募中':'筹备中'}}</view>
+        </view>
+        <view class="fuji">
+          <view class="times">截止时间：{{item.time}}</view>
+          <view class="sums">
+            <image src="/img/浏览.png" mode="" />
+            <text>{{item.sum}}</text>
+            <image src="/img/路径 1.png" mode="" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="chico">
+  <view style="width: 90vw; margin-left: 5vw;  display: flex;justify-content:space-around;">
+      <view class="xuan"><view>已选<text style="color: rgba(56, 139, 255, 1);">{{numbs}}</text>个企业</view>
+      <view bind:tap="quanxuans"><image src="/pkgA/img/圆形 1.png" mode=""/><image style="display: {{quanxuan?'':'none'}};"  class="imggg" src="/pkgA/img/圆形 2.png" mode=""/><view style="position: absolute;left: 13vw;">全选</view></view>
+      </view>
+      <view class="deletes">取消收藏</view>
+      <view class="copys">复制投递信息</view>
+    </view>
+  </view>
+</scroll-view>
+<!-- fnskdjgbkfj -->
+<view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 200030; position: fixed; top: 0;"></view>
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; top: {{toppx}}px;"></view>
+<view catchtouchmove="true" style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
+  <view class="zhezhao" wx:for="{{leixin}}" wx:key="index" style="display: {{types1?'block':'none'}};">
+    <view class="zg" id="{{index}}" bind:tap="chooseop" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
+      <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />
+    </view>
+  </view>
+</view>
+<!-- fjsghjsfhgk -->
+<view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 200030; position: fixed; top: 0;"></view>
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; top: {{toppx}}px;"></view>
+<view catchtouchmove="true" style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
+  <view class="zhezhao" wx:for="{{zhuangtai}}" wx:key="index" style="display: {{types2?'block':'none'}};">
+    <view class="zg" id="{{index}}" bind:tap="choosetai" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
+      <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />
+    </view>
+  </view>
+</view>
