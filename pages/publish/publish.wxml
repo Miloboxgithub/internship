@@ -85,7 +85,7 @@
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
-        <view class="tou">资讯图片<text style="color: rgba(255, 0, 0, 1);">*</text></view>
+        <view class="tou">资讯图片</view>
         <view class="photos">
       <image src="/pkgA/img/相机.png" mode="" />
     </view>

@@ -46,7 +46,7 @@
           <view class="sums">
             <image src="/img/浏览.png" mode="" />
             <text>{{item.sum}}</text>
-            <image src="/img/路径 1.png" mode="" />
+            <!-- <image src="/img/路径 1.png" mode="" /> -->
           </view>
         </view>
       </view>
@@ -83,12 +83,8 @@
     <view class="quxiao" bindtap='hideview'>
       取消
     </view>
-    <view class="navvv">
-      <view class="searchs">
-        <image src="/img/搜索.png" mode="" />
-      </view>
-      <!-- <view class="fancy-bgs"></view> -->
-      <input type="text" class="input" placeholder="" id="search" />
+    <view style="font-weight: 500; margin-left: 3.5vw;">
+      请选择行业
     </view>
     <view class="queren" bind:tap="queren">
       确定

@@ -36,7 +36,6 @@
           <view class="sums">
             <image src="/img/浏览.png" mode="" />
             <text>{{item.sum}}</text>
-            <image src="/img/路径 1.png" mode="" />
           </view>
         </view>
       </view>

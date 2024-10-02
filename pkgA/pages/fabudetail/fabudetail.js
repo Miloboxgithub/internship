@@ -43,5 +43,32 @@ Page({
   },
   navigate: function(e){
     wx.navigateTo({url:e.currentTarget.dataset.url});
+  },
+  shanchu: function(){
+    var that = this;
+    wx.showModal({
+      title: '删除后无法恢复！',
+      // content: '删除后无法恢复！',
+      success: function(res) {
+        if (res.confirm) {
+          console.log('用户点击了确定');
+          // 这里执行实际的删除逻辑
+          that.deleteItem(e);
+        } else if (res.cancel) {
+          console.log('用户点击了取消');
+          // 用户点击了取消，不需要做任何事情
+        }
+      },
+      fail: function(err) {
+        console.error('调用showModal失败：', err);
+      }
+    });
+  },
+  xiugai: function(){
+    wx.showToast({
+      title: '修改成功！',
+      icon: 'success',
+      duration: 2000
+    });
   }
 });

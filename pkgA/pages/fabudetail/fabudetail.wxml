@@ -104,9 +104,8 @@
           <view bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy">隐私协议</view>
         </view>
         <view class="btns">
-        <view class="chexiao">撤销</view>
-          <view class="reset">重置</view>
-          <view class="sendmsg">发布实习</view>
+        <view class="chexiao" bind:tap="shanchu">删除</view>
+          <view class="sendmsg" bind:tap="xiugai">提交修改</view>
         </view>
     </view></view>
     </view>

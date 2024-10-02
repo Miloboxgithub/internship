@@ -207,6 +207,8 @@
     padding-bottom: 10px;
     }
     .btns{
+      width: 70vw;
+      margin-left: 10vw;
       margin-top: 4vh;
       margin-bottom: 3vh;
       display: flex;
