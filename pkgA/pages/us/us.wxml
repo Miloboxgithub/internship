@@ -1,6 +1,6 @@
 <view class="containers">
   <view class="scan">
-  <image src="https://img.js.design/assets/img/668d6de1a364472da9af54ca.jpg#51ff656ec2f7b91742b1cd90d17e70b3" mode=""/>
+  <image src="/pkgA/img/校园大使汇公众号二维码.jpg.png" mode=""/>
   </view>
   <view class="tst">联系方式：18718513415</view>
   <view class="tst">电子邮箱：czzp@idealjobs.cn</view>

@@ -3,7 +3,7 @@ Component({
     chans:false,
     selected:0,
     color: "#808080",
-    selectedColor: "#388BFF",
+    selectedColor: "rgba(80, 177, 178, 1)",
     list: [{
       "pagePath": "/pages/home/home",
       "iconPath": "/img/1.png",

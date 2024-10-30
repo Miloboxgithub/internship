@@ -17,7 +17,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  --gradDark: rgba(53, 146, 253, 1);
+  --gradDark: rgba(80, 177, 178, 1);
   --gradLight: #ecebeb;
   background: linear-gradient(to bottom, var(--gradDark)20%, var(--gradLight)60%);
   /* background: linear-gradient(to bottom,rgba(53, 146, 253, 1) 40%, rgba(184, 213, 255, 1) 26.39%, rgba(247, 247, 247, 1) 58.08%); */
@@ -179,7 +179,7 @@
 }
 
 .gg {
-  background: rgba(0, 204, 82, 1);
+  background: rgba(80, 177, 178, 1);
 }
 
 .rr {
@@ -236,7 +236,7 @@
 
 .site {
   border-radius: 15px;
-  background: rgba(56, 139, 255, 1);
+  background: rgba(80, 177, 178, 1);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0px;
@@ -309,7 +309,7 @@
   opacity: 1;
   border-radius: 17px;
   background: rgba(255, 255, 255, 1);
-  border: 1.5px solid rgba(56, 139, 255, 1);
+  border: 1.5px solid rgba(80, 177, 178, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -317,7 +317,7 @@
   font-weight: 500;
   letter-spacing: 0px;
   line-height: 20.27px;
-  color: rgba(56, 139, 255, 1);
+  color: rgba(80, 177, 178, 1);
   text-align: center;
   vertical-align: top;
 }
@@ -327,7 +327,7 @@
   height: 34px;
   opacity: 1;
   border-radius: 17px;
-  background: linear-gradient(90deg, rgba(56, 139, 255, 1) 0%, rgba(56, 139, 255, 0.7) 100%);
+  background: linear-gradient(90deg, rgba(80, 177, 178, 1) 0%, rgba(80, 177, 178, 0.7) 100%);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: linear-gradient(to bottom, rgba(53, 146, 253, 1), rgb(138, 185, 252)); /* 渐变背景 */
+    background: linear-gradient(to bottom, rgba(80, 177, 178, 1), rgba(124, 222, 210, 1)); /* 渐变背景 */
     padding: 0 16px;
     z-index: 1000; /* 确保导航栏在最顶层 */
     transition: top 0.3s ease-in-out; /* 平滑过渡效果 */
@@ -43,7 +43,7 @@
     position: absolute;
     top: 11vh;
     height: 100%;
-    background: linear-gradient(to bottom, rgb(138, 185, 252), rgb(255, 255, 255));
+    background: linear-gradient(to bottom, rgba(124, 222, 210, 1), rgb(255, 255, 255));
   }
   .tables{
     width: 90vw;
@@ -122,7 +122,7 @@
     width: 25vw;
   height: 30px;
   border-radius: 17px;
-  background: linear-gradient(90deg, rgba(54, 136, 255, 1) 0%, rgba(128, 181, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(80, 177, 178, 1)0%, rgba(124, 222, 210, 1)100%);
   }
   .zuo{
     width: 46px;
@@ -180,7 +180,7 @@
   font-weight: 400;
   letter-spacing: 0px;
   line-height: 20.27px;
-  color: rgba(56, 139, 255, 1);
+  color: rgba(80, 177, 178, 1);
   text-align: left;
   vertical-align: top;
   display: flex;
@@ -191,7 +191,7 @@
   height: 16px;
   opacity: 1;
   border-radius: 2px;
-  border: 1px solid rgba(56, 139, 255, 1);
+  border: 1px solid rgba(80, 177, 178, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -220,7 +220,7 @@
   height: 48px;
   opacity: 1;
   border-radius: 17px;
-  border: 1.5px solid rgba(79, 120, 255, 1);
+  border: 1.5px solid rgba(80, 177, 178, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -237,7 +237,7 @@
   height: 48px;
   opacity: 1;
   border-radius: 17px;
-  background: linear-gradient(90deg, rgba(54, 137, 255, 1) 0%, rgba(128, 181, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(80, 177, 178, 1) 0%, rgba(124, 222, 210, 1)100%);
   font-size: 17px;
   font-weight: 500;
   letter-spacing: 0px;

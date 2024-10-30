@@ -43,7 +43,7 @@
   </view>
   <view class="chico">
   <view style="width: 90vw; margin-left: 5vw;  display: flex;justify-content:space-around;">
-      <view class="xuan"><view>已选<text style="color: rgba(56, 139, 255, 1);">{{numbs}}</text>个企业</view>
+      <view class="xuan"><view>已选<text style="color: rgba(80, 177, 178, 1);">{{numbs}}</text>个企业</view>
       <view bind:tap="quanxuans"><image src="/pkgA/img/圆形 1.png" mode=""/><image style="display: {{quanxuan?'':'none'}};"  class="imggg" src="/pkgA/img/圆形 2.png" mode=""/><view style="position: absolute;left: 13vw;">全选</view></view>
       </view>
       <view class="deletes">取消收藏</view>

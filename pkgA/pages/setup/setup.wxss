@@ -171,5 +171,5 @@ height: 9.02px;
   text-align: center;
   vertical-align: top;
   border-radius: 15px;
-  background: rgba(56, 139, 255, 1);
+  background: rgba(80, 177, 178, 1);
 }
