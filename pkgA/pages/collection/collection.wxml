@@ -66,7 +66,7 @@
 <view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; top: {{toppx}}px;"></view>
 <view catchtouchmove="true" style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
   <view class="zhezhao" wx:for="{{zhuangtai}}" wx:key="index" style="display: {{types2?'block':'none'}};">
-    <view class="zg" id="{{index}}" bind:tap="choosetai" style="color: {{item.ch?'rgba(56, 139, 255, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
+    <view class="zg" id="{{index}}" bind:tap="choosetai" style="color: {{item.ch?'rgba(80, 177, 178, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
       <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />
     </view>
   </view>

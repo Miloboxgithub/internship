@@ -1,132 +1,285 @@
 .custom-nav-bar {
- 
+
   top: 0;
   left: 0;
   right: 0;
   padding: 0 16px;
-  z-index: 10; /* 确保导航栏在最顶层 */
-  transition: top 0.3s ease-in-out; /* 平滑过渡效果 */
+  z-index: 10;
+  /* 确保导航栏在最顶层 */
+  transition: top 0.3s ease-in-out;
+  /* 平滑过渡效果 */
   display: flex;
   justify-content: center;
   width: 100;
-height: 250px;
+  height: 250px;
 
 
-background: linear-gradient(25.94deg, rgba(124, 222, 210, 1)  0%, rgba(80, 177, 178, 1) 100%);
+  background: linear-gradient(25.94deg, rgba(124, 222, 210, 1) 0%, rgba(80, 177, 178, 1) 100%);
 }
 
 .nav-title {
   font-size: 17px;
-font-weight: 500;
-letter-spacing: 0px;
-line-height: 0px;
-color: rgb(255, 255, 255);
-text-align: center;
-vertical-align: top;
-margin-top: 8vh;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 0px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  vertical-align: top;
+  margin-top: 8vh;
 }
-.pers{
+
+.pers {
   position: fixed;
   top: 220px;
   width: 100%;
-height: 100vh;
-opacity: 1;
-z-index: 1000;
-border-radius: 25px 25px 0px 0px;
-background: linear-gradient(180deg, rgba(227, 238, 255, 1) 0%, rgba(232, 241, 255, 1) 0%, rgba(241, 242, 243, 1) 26.39%, rgba(247, 247, 247, 1) 58.08%);
+  height: 100vh;
+  opacity: 1;
+  z-index: 1000;
+  border-radius: 25px 25px 0px 0px;
+  background: linear-gradient(180deg, rgba(227, 238, 255, 1) 0%, rgba(232, 241, 255, 1) 0%, rgba(241, 242, 243, 1) 26.39%, rgba(247, 247, 247, 1) 58.08%);
 }
-.items{
+
+.items {
   width: 90vw;
   margin-left: 5vw;
   margin-top: 2vh;
-height: 104px;
-opacity: 1;
-border-radius: 15px;
-background: rgba(255, 255, 255, 1);
-box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
+  height: 104px;
+  opacity: 1;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
 
 }
-.tts{
+
+.tts {
   position: relative;
-  top:7px;
+  top: 7px;
   left: 17px;
-font-size: 14px;
-font-weight: 500;
-letter-spacing: 0px;
-line-height: 20.27px;
-color: rgba(56, 56, 56, 1);
-text-align: left;
-vertical-align: top;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(56, 56, 56, 1);
+  text-align: left;
+  vertical-align: top;
 }
-.sss{
+
+.sss {
   margin-top: 18px;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-.s1{
+
+.s1 {
   font-size: 12px;
-font-weight: 400;
-letter-spacing: 0px;
-line-height: 17.38px;
-color: rgba(56, 56, 56, 1);
-text-align: center;
-vertical-align: top;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(56, 56, 56, 1);
+  text-align: center;
+  vertical-align: top;
 }
-.s2{
+
+.s2 {
   font-size: 12px;
-font-weight: 400;
-letter-spacing: 0px;
-line-height: 17.38px;
-color: rgba(56, 56, 56, 1);
-text-align: center;
-vertical-align: top;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(56, 56, 56, 1);
+  text-align: center;
+  vertical-align: top;
 }
-.s1 image{
+
+.s1 image {
   width: 28.8px;
   height: 27.88px;
 }
-.heads image{
+
+.heads image {
 
   width: 65px;
-height: 65px;
+  height: 65px;
 }
-.head-box{
+
+.head-box {
   left: 31px;
-top: 114px;
+  top: 114px;
   position: fixed;
 
 }
-.ts1{
+
+.ts1 {
   position: fixed;
   left: 112px;
-top: 117px;
-width: 98px;
-height: 28px;
-opacity: 1;
-/** 文本1 */
-font-size: 18px;
+  top: 117px;
+  width: 98px;
+  height: 28px;
+  opacity: 1;
+  /** 文本1 */
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 26.06px;
+  color: rgba(255, 255, 255, 1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ts2 {
+  position: fixed;
+  left: 112px;
+  top: 149px;
+  width: 136px;
+  height: 22px;
+  opacity: 1;
+  /** 文本1 */
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(255, 255, 255, 1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.btnLogin {
+  width: 250px;
+  height: 46px;
+  position: absolute;
+  opacity: 0;
+}
+
+.bg {
+  display: none;
+  position: absolute;
+
+  left: 0%;
+  width: 100vw;
+  height: 1400px;
+  background-color: black;
+  z-index: 1001;
+  -moz-opacity: 0.7;
+  opacity: 0.70;
+  filter: alpha(opacity=70);
+}
+
+.loginMode {
+  width: 100vw;
+  height: auto;
+  opacity: 1;
+  border-top-left-radius: 12px; /* 设置左上角圆角 */
+  border-top-right-radius: 12px; /* 设置右上角圆角 */
+  background: rgba(255, 255, 255, 1);
+  position:fixed;
+  z-index: 2000;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.temt{
+  font-size: 18px;
 font-weight: 500;
 letter-spacing: 0px;
 line-height: 26.06px;
-color: rgba(255, 255, 255, 1);
-text-align: left;
+color: rgba(0, 0, 0, 1);
+text-align: center;
 vertical-align: top;
+margin-top: 15px;
 }
-.ts2{
-  position: fixed;
-  left: 112px;
-top: 149px;
-width: 136px;
-height: 22px;
-opacity: 1;
-/** 文本1 */
-font-size: 14px;
+.ser{
+  font-size: 12px;
 font-weight: 400;
 letter-spacing: 0px;
-line-height: 20.27px;
-color: rgba(255, 255, 255, 1);
-text-align: left;
+line-height: 17.38px;
+color: rgba(0, 0, 0, 1);
+text-align: center;
 vertical-align: top;
-
+margin-top: 8px;
+}
+.phonelogin{
+  width: 250px;
+height: 46px;
+opacity: 1;
+border-radius: 23px;
+background: rgba(80, 177, 178, 1);
+margin: auto;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 16px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 23.17px;
+color: rgba(255, 255, 255, 1);
+text-align: justify;
+vertical-align: top;
+margin-top: 20px;
+margin-bottom: 20px;
+position: relative;
+}
+.phonelogin image{
+  width: 12.07px;
+height: 17.93px;
+margin-right: 15px;
+}
+.msglogin image{
+  width: 17.5px;
+  height: 17.5px;
+margin-right: 15px;
+}
+.msglogin{
+  width: 250px;
+height: 46px;
+opacity: 1;
+border-radius: 23px;
+background: rgba(229, 229, 229, 1);
+font-size: 16px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 23.17px;
+color: rgba(56, 56, 56, 1);
+text-align: justify;
+vertical-align: top;
+margin: auto;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 20px;
+}
+.ist{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 14.48px;
+color: rgba(0, 0, 0, 1);
+text-align: justify;
+vertical-align: top;
+margin: auto;
+margin-bottom: 40px;
+}
+.gous{
+  width: 14px;
+height: 14px;
+border-radius: 2px;
+  border: 2px solid rgba(80, 177, 178, 1);
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gous image{
+  width: 11px;
+height: 8px;
+}
+.chas{
+  position:absolute;
+  width: 20px;
+height: 20px;
+top: 11px;right: 13px;
 }

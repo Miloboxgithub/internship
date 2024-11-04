@@ -11,6 +11,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/trys/trys",
+          "pathName": "pages/trys/trys",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pkgA/pages/myfabu/myfabu",
           "pathName": "pkgA/pages/myfabu/myfabu",
           "query": "",

@@ -67,12 +67,6 @@
     <view class="quxiao" bindtap='hideview'>
       取消
     </view>
-    <!-- <view class="navvv">
-      <view class="searchs">
-        <image src="/img/搜索.png" mode="" />
-      </view>
-      <input type="text" class="input" placeholder="" id="search" />
-    </view> -->
     <view class="queren" bind:tap="queren2">
       确定
     </view>
@@ -84,8 +78,5 @@
     <picker-view-column>
       <view wx:for="{{industrys}}" style="line-height: 50px; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
     </picker-view-column>
-    <!-- <picker-view-column>
-      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
-    </picker-view-column> -->
   </picker-view>
 </view>

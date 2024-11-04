@@ -16,7 +16,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    oop:true
+    oop:true,
+    apiUrl: 'https://example.com/api'  // 你的 API 基础 URL
+    
   },
   pickerchange:function(){
       

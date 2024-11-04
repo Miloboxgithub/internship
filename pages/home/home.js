@@ -1,10 +1,12 @@
+const app = getApp(); // 获取全局 App 实例
+const apiUrl = app.globalData.apiUrl; // 获取全局 API 前缀
 Page({
   data: {
-    hua:true,
-    lei:'类型',
-    xing:'性质',
-    hang:'行业',
-    hangs:'',
+    hua: true,
+    lei: '类型',
+    xing: '性质',
+    hang: '行业',
+    hangs: '',
     cardCur: 0,
     swiperList: [{
       id: 0,
@@ -35,8 +37,8 @@ Page({
       type: 'image',
       url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
     }],
-    industry:[
-      '游戏设计','机械设计','工业设计','互联网','影视行业','人工智能','大数据'
+    industry: [
+      '游戏设计', '机械设计', '工业设计', '互联网', '影视行业', '人工智能', '大数据'
     ],
     types1: false,
     types2: false,
@@ -198,7 +200,50 @@ Page({
   onLoad() {
     this.towerSwiper('swiperList');
     // 初始化towerSwiper 传已有的数组名即可
-
+    this.fetchData()
+  },
+  fetchData: function () {
+    wx.request({
+      url: `${apiUrl}/api/internship/getAllInternship`, // 拼接完整的 URL
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res)
+          this.setData({
+            coitem: []
+          })
+          let op = []
+          let ch = res.data
+          ch.forEach((item, index) => {
+            let tt = {
+              icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+              name: item.companyName,
+              time: '2024-12-31',
+              iszhao: true,
+              sum: 5000,
+              tags: [{
+                title: '上市公司'
+              }, {
+                title: '线下实习'
+              }, {
+                title: '深圳'
+              }]
+            }
+          })
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
   },
   handleOuterTouchMove: function (e) {
     e.preventDefault(); // 阻止外层默认滑动行为
@@ -304,10 +349,10 @@ Page({
       types2: false,
       types3: false
     })
-      //隐藏tabber
-      this.getTabBar().setData({
-        chans:false
-      })
+    //隐藏tabber
+    this.getTabBar().setData({
+      chans: false
+    })
   },
   // 获取选框位置
   getweizhi() {
@@ -332,7 +377,7 @@ Page({
     if (cc >= 0 && cc < leixin.length) {
       leixin[cc].ch = true
       this.setData({
-        lei:aa
+        lei: aa
       })
     }
     this.setData({
@@ -350,7 +395,7 @@ Page({
     if (cc >= 0 && cc < xinzhi.length) {
       xinzhi[cc].ch = true
       this.setData({
-        xing:aa
+        xing: aa
       })
     }
     this.setData({
@@ -359,29 +404,33 @@ Page({
   },
   //选择器变化
   bindChange: function (e) {
-    let cc=e.detail.value
+    let cc = e.detail.value
     console.log(cc)
     this.setData({
-      hangs:this.data.industry[cc[0]]
+      hangs: this.data.industry[cc[0]]
     })
   },
-  queren:function(){
+  queren: function () {
     this.setData({
-      hang:this.data.hangs
+      hang: this.data.hangs
     })
     this.hideview()
   },
   //跳转页面
   navigate: function (e) {
-    wx.navigateTo({url: e.currentTarget.dataset.url});
+    wx.navigateTo({
+      url: e.currentTarget.dataset.url
+    });
   },
   //带参跳转
-  navigates: function(e){
+  navigates: function (e) {
     let ww = e.currentTarget.dataset.id
-    let ans=this.data.coitem[ww]
-    let url=`/pkgA/pages/detail/detail?coitem=${ans}`
+    let ans = this.data.coitem[ww]
+    let url = `/pkgA/pages/detail/detail?coitem=${ans}`
     console.log(url)
-    wx.navigateTo({url: url});
+    wx.navigateTo({
+      url: url
+    });
   },
   changetypest(e) {
     let ce = true
@@ -396,10 +445,10 @@ Page({
       this.setData({
         [e.currentTarget.id]: !this.data[e.currentTarget.id]
       })
-      //隐藏tabber
-      this.getTabBar().setData({
-        chans:!this.getTabBar().data.chans
-      })
-      console.log(1234)
+    //隐藏tabber
+    this.getTabBar().setData({
+      chans: !this.getTabBar().data.chans
+    })
+    console.log(1234)
   },
 })

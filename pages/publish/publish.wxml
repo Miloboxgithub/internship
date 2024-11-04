@@ -15,13 +15,13 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">行业<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <view class="you"><image src="/img/you.png" mode=""/></view>
+        <view class="you" bindtap="changetypest1"><image src="/img/you.png" mode=""/></view>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">公司性质<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <view class="you"><image src="/img/you.png" mode=""/></view>
+        <view class="you" bindtap="changetypest2"><image src="/img/you.png" mode=""/></view>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -72,22 +72,27 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">截止时间<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <view class="you"><image src="/img/you.png" mode=""/></view>
+        <view class="you" bindtap="changetypest3"><image src="/img/you.png" mode=""/></view>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">公司Logo<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <view class="photos">
-      <image src="/pkgA/img/相机.png" mode="" />
-    </view>
+        <view bind:tap="{{logoImageUrl?'':'chooseImagelogo'}}" class="photos">
+      <image class="photosimg" src="{{logoImageUrl || '/pkgA/img/相机.png'}}"  mode="aspectFill" />
+      <image src="/img/cha.png" wx:if="{{logoImageUrl}}" bindtap="removeLogo" class="delete-button"></image>
+      <image src="/img/yess.png" wx:if="{{logoImageUrl}}" class="yes-button"></image>
       </view>
+    </view>
+    
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">资讯图片</view>
-        <view class="photos">
-      <image src="/pkgA/img/相机.png" mode="" />
+        <view bind:tap="{{zixunImageUrl?'':'chooseImagezixun'}}" class="photos">
+      <image class="photosimg" src="{{zixunImageUrl || '/pkgA/img/相机.png'}}"  mode="aspectFill" />
+      <image src="/img/cha.png" wx:if="{{zixunImageUrl}}" bindtap="removeZixun" class="delete-button"></image>
+      <image src="/img/yess.png" wx:if="{{zixunImageUrl}}" class="yes-button"></image>
     </view>
       </view>
     </view>
@@ -100,7 +105,7 @@
     <view style="  width: 80vw; margin-left: 5vw; ">
     <view class="bottoms">
         <view class="yingsi">
-          <view class="checks" bind:tap="changecheck" style="background: {{checks?'rgba(56, 139, 255, 1);':''}}"><image src="{{checks?'/img/gou.png':''}}" mode=""/></view>
+          <view class="checks" bind:tap="changecheck" style="background: {{checks?'rgba(80, 177, 178, 1)':''}}"><image src="{{checks?'/img/gou.png':''}}" mode=""/></view>
           <view bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy">隐私协议</view>
         </view>
         <view class="btns">
@@ -120,25 +125,53 @@
     <view class="quxiao" bindtap='hideview'>
       取消
     </view>
-    <!-- <view class="navvv">
-      <view class="searchs">
-        <image src="/img/搜索.png" mode="" />
-      </view>
-      <input type="text" class="input" placeholder="" id="search" />
-    </view> -->
     <view class="queren" bind:tap="queren1">
       确定
     </view>
   </view>
   <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange1">
-    <!-- <picker-view-column>
-      <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
-    </picker-view-column> -->
     <picker-view-column>
       <view wx:for="{{industry}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
     </picker-view-column>
-    <!-- <picker-view-column>
-      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
-    </picker-view-column> -->
+  </picker-view>
+</view>
+<!-- 底部选择器 -->
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; top:0px; height: 200vh;"></view>
+<view class="bpicker"  catchtouchmove="true" style="display: {{types2?'block':'none'}};">
+  <view class="boxse">
+    <view class="quxiao" bindtap='hideview'>
+      取消
+    </view>
+    <view class="queren" bind:tap="queren2">
+      确定
+    </view>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange2">
+    <picker-view-column>
+      <view wx:for="{{xinzhi}}" wx:key="*this" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>
+<!-- 底部选择器 -->
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types3?'block':'none'}}; top:0px;"></view>
+<view class="bpickers" catchtouchmove="true" style="display: {{types3?'block':'none'}}; ">
+  <view class="boxse">
+    <view class="quxiao" bindtap='hideview'>
+      取消
+    </view>
+    <view class="queren" bind:tap="queren3">
+      确定
+    </view>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange3">
+    <picker-view-column>
+      <view wx:for="{{years}}" wx:key="*this" style="line-height: 50px; width: 33vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{months}}" wx:key="*this" style="line-height: 50px; width: 33vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{days}}" wx:key="*this" style="line-height: 50px; width: 33vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+    </picker-view-column>
   </picker-view>
 </view>

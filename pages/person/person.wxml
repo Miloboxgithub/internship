@@ -2,7 +2,8 @@
   <view class="custom-nav-bar" id="navBar">
     <view class="nav-title">个人中心</view>
     <view class="head-box">
-      <view class="heads">
+      <view class="heads" bind:tap="loginMode">
+        <!-- <button class="btnLogin" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button> -->
         <image src="/img/头像.png" mode="" />
       </view>
       <view class="texts">
@@ -55,4 +56,17 @@
       </view>
     </view>
   </view>
+</view>
+
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{logins?'block':'none'}}; top:25vw;"></view>
+<view class="loginMode"style="display:{{logins?'block':'none'}};">
+    <view class="temt">欢迎来到实习大全</view>
+    <view class="ser">更多机会，更优选择！</view>
+    <view class="phonelogin"><image src="/img/phone.png"/>手机号快捷登录<button class="btnLogin" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button></view>
+  <view class="msglogin" bind:tap="navigate" data-url="/pkgA/pages/msg/msg"><image src="/img/msg.png"/>短信验证码登录</view>
+  <view class="ist">
+  <view class="gous" bind:tap="gous" style="background: {{gous?'rgba(80, 177, 178, 1)':''}};"><image src="{{gous?'/img/gou.png':''}}" mode=""/></view>
+  我已阅读并同意用户服务协议和隐私政策
+  </view>
+  <image class="chas" bind:tap="hideview" src="/img/cha1.png" mode=""/>
 </view>

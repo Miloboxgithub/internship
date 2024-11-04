@@ -1,6 +1,6 @@
 <scroll-view class="containers" scroll-y="true" style="height: 120%;">
   <view class="reason">
-    <view class="syl">搜索历史：</view>
+    <view class="syl">举报原因：</view>
     <view class="kuai">
       <block wx:for="{{items}}" wx:key="id">
         <view class="items {{item.isAc?'active':''}}" bind:tap="toggleButtonStyle" data-index="{{index}}"><text>{{item.text}}</text></view>
@@ -17,9 +17,22 @@
   </view>
   <view class="jietu">
     <view class="syl">相关截图：<text class="tett">（选填，可上传3张）</text></view>
-    <view class="photos">
-      <image src="/pkgA/img/相机.png" mode="" />
+    <view style="display: flex;">
+    <view class="photos" bind:tap="{{ImageUrl1?'':'chooseImage1'}}">
+      <image class="photosimg" src="{{ImageUrl1 || '/pkgA/img/相机.png'}}"  mode="aspectFill" />
+      <image src="/img/cha.png" wx:if="{{ImageUrl1}}" bindtap="remove1" class="delete-button"></image>
+      <image src="/img/yess.png" wx:if="{{ImageUrl1}}" class="yes-button"></image>
     </view>
+    <view class="photos" wx:if="{{ImageUrl1}}" bind:tap="{{ImageUrl2?'':'chooseImage2'}}">
+      <image class="photosimg" src="{{ImageUrl2 || '/pkgA/img/相机.png'}}"  mode="aspectFill" />
+      <image src="/img/cha.png" wx:if="{{ImageUrl2}}" bindtap="remove2" class="delete-button"></image>
+      <image src="/img/yess.png" wx:if="{{ImageUrl2}}" class="yes-button"></image>
+    </view>
+    <view class="photos" wx:if="{{ImageUrl2}}" bind:tap="{{ImageUrl3?'':'chooseImage3'}}">
+      <image class="photosimg" src="{{ImageUrl3 || '/pkgA/img/相机.png'}}"  mode="aspectFill" />
+      <image src="/img/cha.png" wx:if="{{ImageUrl3}}" bindtap="remove3" class="delete-button"></image>
+      <image src="/img/yess.png" wx:if="{{ImageUrl3}}" class="yes-button"></image>
+    </view></view>
   </view>
   <view class="calls">
     <view class="syl">联系方式：</view>

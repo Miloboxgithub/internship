@@ -1,0 +1,62 @@
+/* login.wxss */
+.container {
+  padding: 20px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  width: 300px;
+height: 44px;
+opacity: 1;
+border-radius: 23px;
+background: rgba(245, 245, 245, 1);
+font-size: 12px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 17.38px;
+color: rgba(166, 166, 166, 1);
+text-align: justify;
+vertical-align: top;
+position: relative;
+}
+.sad{
+  width: 32px;
+height: 1.2px;
+opacity: 1;
+transform: rotate(90deg);
+background:  rgba(166, 166, 166, 1);
+}
+
+.input-group input {
+
+}
+
+.input-group button {
+  margin-left: 10px;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+opacity: 0;
+}
+.login{
+  margin-top: 13px;
+  width: 300px;
+height: 44px;
+opacity: 1;
+border-radius: 23px;
+background: rgba(206, 237, 237, 1);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+font-weight: 500;
+letter-spacing: 0px;
+line-height: 26.06px;
+color: rgba(255, 255, 255, 1);
+text-align: justify;
+vertical-align: top;
+}
