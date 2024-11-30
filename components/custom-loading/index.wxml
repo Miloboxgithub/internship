@@ -1,0 +1,7 @@
+<!-- components/custom-loading/custom-loading.wxml -->
+<view class="loading-mask" hidden="{{!show}}">
+  <view class="loading-content">
+    <view class="spinner"></view>
+    <text class="loading-text">{{title}}</text>
+  </view>
+</view>

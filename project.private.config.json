@@ -11,6 +11,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/trys/trys",
           "pathName": "pages/trys/trys",
           "query": "",

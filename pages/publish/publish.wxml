@@ -3,13 +3,13 @@
   <view class="custom-nav-bar" id="navBar">
     <view class="nav-title">实习发布</view>
   </view>
-  <scroll-view scroll-y scroll-with-animation class="content" scroll-with-animation style="height: 150vh; z-index: 50;">
+  <scroll-view scroll-y scroll-with-animation class="content" scroll-with-animation style="height: auto; z-index: 500;">
     <!-- 页面内容 -->
     <view class="tables">
       <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sites">
         <view class="tou">公司<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <input class="tst" type="text" placeholder="请填写公司名称"/>
+        <input class="tst" bindinput="inputed" data-name="companyName"  type="text" value="{{companyName}}" placeholder="请填写公司名称"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -27,7 +27,7 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">招聘岗位<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <input class="tst" type="text" placeholder="请填写招聘岗位"/>
+        <input class="tst" bindinput="inputed" data-name="position" type="text" value="{{position}}" placeholder="请填写招聘岗位"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -39,34 +39,34 @@
         </view>
       </view>
     </view>
-    <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+    <view wx:if="{{!types0}}" style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">实习地点<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <input class="tst" type="text" placeholder="请填写实习地点"/>
+        <input class="tst"  bindinput="inputed" data-name="location" type="text" value="{{location}}" placeholder="请填写实习地点"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">岗位职责<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <input class="tsts" type="text" placeholder="请填写岗位职责"/>
+        <input class="tsts"  bindinput="inputed" data-name="description" type="text" value="{{description}}" placeholder="请填写岗位职责"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">岗位要求<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <input class="tsts" type="text" placeholder="请填写岗位要求"/>
+        <input class="tsts"  bindinput="inputed" data-name="requirements" type="text" value="{{requirements}}" placeholder="请填写岗位要求"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">实习收获<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <input class="tsts" type="text" placeholder="请填写实习收获"/>
+        <input class="tsts" type="text"  bindinput="inputed" data-name="acquisitions"  placeholder="请填写实习收获"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">投递方式<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <input class="tsts" type="text" placeholder="请填写投递方式"/>
+        <input class="tsts" type="text" bindinput="inputed" data-name="contactInfo" placeholder="请填写投递方式"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -99,10 +99,10 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">备注</view>
-        <input class="tst" type="text" placeholder="请填写备注信息"/>
+        <input class="tst" type="text" bindinput="inputed" data-name="memo" placeholder="请填写备注信息"/>
       </view>
     </view>
-    <view style="  width: 80vw; margin-left: 5vw; ">
+    <view style="  width: 80vw; margin-left: 5vw;  margin-bottom: 200px;">
     <view class="bottoms">
         <view class="yingsi">
           <view class="checks" bind:tap="changecheck" style="background: {{checks?'rgba(80, 177, 178, 1)':''}}"><image src="{{checks?'/img/gou.png':''}}" mode=""/></view>
@@ -110,7 +110,7 @@
         </view>
         <view class="btns">
           <view class="reset">重置</view>
-          <view class="sendmsg">发布实习</view>
+          <view class="sendmsg" bind:tap="PostMsg">发布实习</view>
         </view>
     </view></view>
     </view>
@@ -129,9 +129,9 @@
       确定
     </view>
   </view>
-  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange1">
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{companyType}}" bindchange="bindChange1">
     <picker-view-column>
-      <view wx:for="{{industry}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+      <view wx:for="{{industryes}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
     </picker-view-column>
   </picker-view>
 </view>
@@ -146,10 +146,10 @@
       确定
     </view>
   </view>
-  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange2">
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{industry}}" bindchange="bindChange2">
     <picker-view-column>
       <view wx:for="{{xinzhi}}" wx:key="*this" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
-    </picker-view-column>
+    </picker-view-column> 
   </picker-view>
 </view>
 <!-- 底部选择器 -->

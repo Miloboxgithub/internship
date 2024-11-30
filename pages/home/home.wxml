@@ -1,4 +1,5 @@
 <scroll-view class="containers" scroll-y="true" style="height: 120%;">
+  <custom-loading show="{{lolo}}" title="加载中..."></custom-loading>
   <!-- 轮播图 -->
   <view class="swiper">
     <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
@@ -31,7 +32,7 @@
   <view class="items">
     <view class="item" wx:for="{{coitem}}" wx:key="index" bind:tap="navigates" data-url="/pkgA/pages/detail/detail" data-id="{{index}}">
       <view class="coicon">
-        <image src="{{item.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
+        <image src="{{item.icon}}" mode="aspectFit" lazy-load="false" mode="" />
       </view>
       <view class="info">
         <text class="cotitle" selectable="false" space="false" decode="false">{{item.name}}</text>
@@ -78,7 +79,7 @@
 </view>
 <!-- 底部选择器 -->
 <view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; top: {{toppx}}px;"></view>
-<view class="bpicker" catchtouchmove="true" style="display: {{types2?'block':'none'}};">
+<view class="bpicker" catchtouchmove="true" style="display: {{types2?'block':'none'}}; position: fixed; bottom: 0;">
   <view class="boxse">
     <view class="quxiao" bindtap='hideview'>
       取消
@@ -91,14 +92,8 @@
     </view>
   </view>
   <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange">
-    <!-- <picker-view-column>
-      <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
-    </picker-view-column> -->
     <picker-view-column>
       <view wx:for="{{industry}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
     </picker-view-column>
-    <!-- <picker-view-column>
-      <view wx:for="{{days}}" style="line-height: 50px">{{item}}日</view>
-    </picker-view-column> -->
   </picker-view>
 </view>

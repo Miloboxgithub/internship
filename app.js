@@ -11,14 +11,16 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res.code)
+        wx.setStorageSync('code',res.code)
       }
     })
   },
   globalData: {
     userInfo: null,
     oop:true,
-    apiUrl: 'https://example.com/api'  // 你的 API 基础 URL
-    
+    apiUrl: 'http://8.134.149.194:80' , // 你的 API 基础 URL
+    sharecoitem:[],
   },
   pickerchange:function(){
       

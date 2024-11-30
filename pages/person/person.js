@@ -1,3 +1,5 @@
+const app = getApp(); // 获取全局 App 实例
+const apiUrl = app.globalData.apiUrl; // 获取全局 API 前缀
 Page({
   data:{
     logins:false,
@@ -16,6 +18,7 @@ Page({
     wx.navigateTo({url: e.currentTarget.dataset.url});
   },
   getPhoneNumber (e) {
+    if(this.gous){
     const { errMsg, encryptedData, iv } = e.detail;
 
     if (errMsg === 'getPhoneNumber:ok') {
@@ -28,6 +31,36 @@ Page({
         icon: 'none'
       });
     }
+  }
+  else{
+    wx.showToast({
+      title: '请勾选',
+      icon: 'none'
+    });
+  }
+  },
+  handlePhoneNumber(encryptedData, iv){
+    console.log(encryptedData, iv)
+    wx.request({
+      url: `${apiUrl}/wx/login`, // 拼接完整的 URL
+      method: 'POST',
+      data:{
+        js_code:wx.getStorageSync('code')
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res,'login')
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+    });
   },
   loginMode()
   {

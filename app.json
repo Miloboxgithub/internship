@@ -33,7 +33,9 @@
     "navigationBarBackgroundColor": "#FFFFFF"
   },
   "usingComponents": {
-    "cu-custom": "/style/colorui/components/cu-custom"
+    "cu-custom": "/style/colorui/components/cu-custom",
+    "custom-loading": "/components/custom-loading/index",
+    "custom-modal": "/components/custom-modal/index"
   },
 
      

@@ -15,27 +15,27 @@ Page({
     }, {
       id: 1,
       type: 'image',
-      url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509',
+      url: 'https://picsum.photos/700/301',
     }, {
       id: 2,
       type: 'image',
-      url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
+      url: 'https://picsum.photos/700/300'
     }, {
       id: 3,
       type: 'image',
-      url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
+      url: 'https://picsum.photos/700/302'
     }, {
       id: 4,
       type: 'image',
-      url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
+      url: 'https://picsum.photos/700/303'
     }, {
       id: 5,
       type: 'image',
-      url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
+      url: 'https://picsum.photos/700/304'
     }, {
       id: 6,
       type: 'image',
-      url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
+      url: 'https://picsum.photos/700/305'
     }],
     industry: [
       '游戏设计', '机械设计', '工业设计', '互联网', '影视行业', '人工智能', '大数据'
@@ -45,6 +45,7 @@ Page({
     types3: false,
     toppx: 0,
     coitem: [{
+        id: 1,
         icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
         name: '振石控股集团有限公司——社媒运营',
         time: '2024-12-31',
@@ -58,6 +59,7 @@ Page({
           title: '深圳'
         }]
       }, {
+        id: 11,
         icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
         name: '振石控股集团有限公司——社媒运营',
         time: '2024-12-31',
@@ -195,7 +197,8 @@ Page({
     }, {
       op: '私企',
       ch: false
-    }]
+    }],
+    lolo: false
   },
   onLoad() {
     this.towerSwiper('swiperList');
@@ -203,6 +206,11 @@ Page({
     this.fetchData()
   },
   fetchData: function () {
+    let that = this
+    this.setData({
+      coitem: [],
+      lolo: false
+    })
     wx.request({
       url: `${apiUrl}/api/internship/getAllInternship`, // 拼接完整的 URL
       method: 'GET',
@@ -211,27 +219,32 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res)
-          this.setData({
-            coitem: []
-          })
-          let op = []
-          let ch = res.data
-          ch.forEach((item, index) => {
-            let tt = {
-              icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
+          console.log(res.data.data)
+          let op = res.data.data
+          let tt = []
+          op.forEach((item, k) => {
+            let t = {
+              // icon:item.companyLogo,
+              id: item.id,
+              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
+              icon: item.companyLogo,
               name: item.companyName,
-              time: '2024-12-31',
+              time: that.extractDate(item.applicationDeadLine),
               iszhao: true,
-              sum: 5000,
+              sum: item.salary,
               tags: [{
-                title: '上市公司'
+                title: item.companyType
               }, {
-                title: '线下实习'
+                title: item.positionType
               }, {
-                title: '深圳'
+                title: item.location
               }]
             }
+            tt.push(t)
+          })
+          that.setData({
+            coitem: tt,
+            lolo: false
           })
         } else {
           console.error('请求失败:', res);
@@ -244,6 +257,10 @@ Page({
         console.log('请求完成');
       }
     });
+  },
+  extractDate(dateTimeString) {
+    // 使用字符串分割方法提取日期部分
+    return dateTimeString.split('T')[0];
   },
   handleOuterTouchMove: function (e) {
     e.preventDefault(); // 阻止外层默认滑动行为
@@ -320,6 +337,42 @@ Page({
       })
     }
     this.getweizhi()
+    if(app.globalData.sharecoitem.length==0)
+    this.fetchData()
+    else{
+      let that =this
+      that.setData({
+        coitem:[],
+        lolo:true,
+      })
+      let op = app.globalData.sharecoitem
+          let tt = []
+          op.forEach((item, k) => {
+            let t = {
+              // icon:item.companyLogo,
+              id: item.id,
+              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
+              icon: item.companyLogo,
+              name: item.companyName,
+              time: that.extractDate(item.applicationDeadLine),
+              iszhao: true,
+              sum: item.salary,
+              tags: [{
+                title: item.companyType
+              }, {
+                title: item.positionType
+              }, {
+                title: item.location
+              }]
+            }
+            tt.push(t)
+          })
+          that.setData({
+            coitem: tt,
+            lolo: false
+          })
+          app.globalData.sharecoitem=[]
+    }
   },
   changetypes(e) {
     let ce = true
@@ -401,6 +454,67 @@ Page({
     this.setData({
       xinzhi: xinzhi
     })
+    console.log(this.data.xinzhi[cc].op)
+    let ctype = this.data.xinzhi[cc].op
+    
+    let that = this
+    this.setData({
+      coitem: [],
+      lolo: false
+    })
+    if(ctype!='全部')
+    wx.request({
+      url: `${apiUrl}/api/internship/filterByType`, // 拼接完整的 URL
+      method: 'GET',
+      data:{
+        CompanyType:ctype
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res.data.data)
+          let op = res.data.data
+          let tt = []
+          op.forEach((item, k) => {
+            let t = {
+              // icon:item.companyLogo,
+              id: item.id,
+              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
+              icon: item.companyLogo,
+              name: item.companyName,
+              time: that.extractDate(item.applicationDeadLine),
+              iszhao: true,
+              sum: item.salary,
+              tags: [{
+                title: item.companyType
+              }, {
+                title: item.positionType
+              }, {
+                title: item.location
+              }]
+            }
+            tt.push(t)
+          })
+          that.setData({
+            coitem: tt,
+            lolo: false
+          })
+
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+    else that.fetchData()
+    that.hideview()
   },
   //选择器变化
   bindChange: function (e) {
@@ -425,7 +539,7 @@ Page({
   //带参跳转
   navigates: function (e) {
     let ww = e.currentTarget.dataset.id
-    let ans = this.data.coitem[ww]
+    let ans = this.data.coitem[ww].id
     let url = `/pkgA/pages/detail/detail?coitem=${ans}`
     console.log(url)
     wx.navigateTo({

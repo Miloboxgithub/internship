@@ -1,4 +1,5 @@
-<scroll-view class="containers" scroll-y="true" style="height: 120%;">
+<scroll-view class="containers" scroll-y="true" style="height: auto;">
+  <custom-loading show="{{lolo}}" title="加载中..."></custom-loading>
   <view class="theme"><text>实习详情</text></view>
   <view class="back" bindtap="goBack">
     <image src="/pkgA/img/back.png" mode="" />
@@ -66,12 +67,12 @@
     </view>
     </view>
   </view>
-  <view class="photoes">
-    <image src="https://img.js.design/assets/img/66a702c0506661dae68357f2.jpg#40d48f981e041de242e1a5eb8f8e0698" mode="scaleToFill"/>
-  </view>
+  <!-- <view class="photoes"> -->
+    <image class="photoess" src="{{picture}}" mode="aspectFill"/>
+  <!-- </view> -->
   <view class="tabbers">
         <button open-type="share" class="btns"><image src="/pkgA/img/分享.png" mode=""/></button>
         <view class="abc" bind:tap="shouchang">加入收藏</view>
-        <view class="bca" >复制实习信息</view>
+        <view class="bca" bind:tap="fuzhimsg">复制实习信息</view>
   </view>
 </scroll-view>

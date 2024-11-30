@@ -3,10 +3,10 @@
 <view style="display:flex; justify-content: center; margin-top: 10px;">
   <view class="navv">
       <view class="search">
-        <image src="/img/搜索.png" mode="" />
+        <image bind:tap="searchs" src="/img/搜索.png" mode="" />
       </view>
       <view class="fancy-bg"></view>
-      <input type="text" class="input" placeholder="{{contents}}" id="search" />
+      <input type="text" bindblur="inputed" class="input" placeholder="{{contents}}" id="search" />
     </view>
 </view>
 <view class="syl">搜索历史</view>

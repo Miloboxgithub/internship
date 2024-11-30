@@ -1,0 +1,13 @@
+<view class="modal-mask" hidden="{{!show}}">
+  <view class="modal-container">
+    <view class="modal-header">
+      <text class="modal-title">预约人:{{title}}</text>
+    </view>
+    <view class="modal-body">
+      <text class="modal-content">{{content}}</text>
+    </view>
+    <view class="modal-footer">
+      <button bindtap="confirm">确定</button>
+    </view>
+  </view>
+</view>
