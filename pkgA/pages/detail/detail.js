@@ -35,6 +35,7 @@ Page({
     lolo:false,
     picture:'',
     bei:'',
+    idd:0,
   },
 
   /**
@@ -45,6 +46,9 @@ Page({
         console.log(options.coitem,'------------')
       }
       this.GetData(options.coitem)
+      this.setData({
+        idd:options.coitem
+      })
   },
   GetData(id){
     let that = this
@@ -154,6 +158,10 @@ Page({
     wx.request({
       url: `${apiUrl}/api/favorites/add`, // 拼接完整的 URL
       method: 'GET',
+      data:{
+        userId:5,
+        internshipId:parseInt(this.data.idd)
+      },
       header: {
         'content-type': 'application/json'
       },

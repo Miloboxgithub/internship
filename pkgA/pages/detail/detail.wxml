@@ -68,7 +68,7 @@
     </view>
   </view>
   <!-- <view class="photoes"> -->
-    <image class="photoess" src="{{picture}}" mode="aspectFill"/>
+    <image class="photoess" src="{{picture}}" mode="widthFix"/>
   <!-- </view> -->
   <view class="tabbers">
         <button open-type="share" class="btns"><image src="/pkgA/img/分享.png" mode=""/></button>

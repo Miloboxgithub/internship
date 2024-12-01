@@ -360,6 +360,7 @@
   border: none;
 }
 .photoess{
+  
   margin-top: 25px;
   width: 90vw;
   margin-left: 5vw;

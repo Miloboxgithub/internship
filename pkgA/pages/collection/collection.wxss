@@ -259,7 +259,9 @@ box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
   border-radius: 3px;
   background: rgba(245, 245, 245, 1);
   margin-right: 5px;
-  width: 60px;
+  width: auto;
+  padding-left: 5px;
+  padding-right: 5px;
   height: 18px;
   font-size: 12px;
   font-weight: 400;
@@ -269,6 +271,7 @@ box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
   text-align: center;
   vertical-align: top;
 }
+
 
 .zhezhao {
   height: 31px;

@@ -1,4 +1,5 @@
 <scroll-view class="containers" scroll-y="true">
+  <custom-loading show="{{lolo}}" title="加载中..."></custom-loading>
   <!-- 搜索选择栏 -->
   <view class="nav">
     <view class="nav1" id="types1" bindtap="changetypes" style="color: {{lei=='类型'?'rgba(25, 25, 25, 1)':'rgba(56, 139, 255, 1)'}};"><text>{{lei}}</text>

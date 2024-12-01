@@ -1,16 +1,18 @@
-// pkgA/pages/collection/collection.js
+const app = getApp(); // 获取全局 App 实例
+const apiUrl = app.globalData.apiUrl; // 获取全局 API 前缀
+let coco = []
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    quanxuan:false,
-    numbs:0,
-    lei:'类型',
-    zhuang:'状态',
-    types1:false,
-    types2:false,
+    quanxuan: false,
+    numbs: 0,
+    lei: '类型',
+    zhuang: '状态',
+    types1: false,
+    types2: false,
     leixin: [{
       op: '全部',
       ch: true
@@ -32,65 +34,76 @@ Page({
       ch: false
     }],
     toppx: 0,
-    coitem: [{
-      icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name: '振石控股集团有限公司——社媒运营',
-      time: '2024-12-31',
-      iszhao: true,
-      sum: 5000,
-      tags: [{
-        title: '上市公司'
-      }, {
-        title: '线下实习'
-      }, {
-        title: '深圳'
-      }],
-      isdian:false
-    }, {
-      icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-      name: '振石控股集团有限公司——社媒运营',
-      time: '2024-12-31',
-      iszhao: true,
-      sum: 5000,
-      tags: [{
-        title: '上市公司'
-      }, {
-        title: '线下实习'
-      }, {
-        title: '深圳'
-      }],
-      isdian:false
-    }, 
-  ],
+    coitem: [],
   },
-  quanxuans(){
+  fetchList() {
+    let that = this
+    coco = []
+    wx.request({
+      url: `${apiUrl}/api/favorites/list`, // 拼接完整的 URL
+      method: 'GET',
+      data: {
+        userId: 5
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          let arr = res.data.data
+          // arr.forEach((item, index) => {
+          //   that.fetchData(item.internshipID)
+          // })
+          // 使用 Promise.all 等待所有 fetchData 完成
+          Promise.all(arr.map(item => that.fetchData(item.internshipID))).then(() => {
+              console.log('All fetchData calls are completed.');
+              // 在这里调用完成后的函数
+              that.setData({
+                coitem: coco
+              })
+            })
+            .catch(error => {
+              console.error('Error in fetching data:', error);
+            });
+
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+  },
+  quanxuans() {
     this.setData({
-      quanxuan:!this.data.quanxuan
+      quanxuan: !this.data.quanxuan
     })
     let co = this.data.coitem
-    co.forEach(item=>{
-      item.isdian=this.data.quanxuan
+    co.forEach(item => {
+      item.isdian = this.data.quanxuan
     })
     this.setData({
-      coitem:co
+      coitem: co
     })
-     co = this.data.coitem
-    let sum=0
-    co.forEach(item=>{
-      if(item.isdian){
+    co = this.data.coitem
+    let sum = 0
+    co.forEach(item => {
+      if (item.isdian) {
         sum++
       }
     })
     this.setData({
-      numbs:sum
+      numbs: sum
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
-  },
+  onLoad(options) {},
   changetypes(e) {
     let ce = true
     if (this.data[e.currentTarget.id]) ce = !ce
@@ -114,7 +127,7 @@ Page({
     if (cc >= 0 && cc < leixin.length) {
       leixin[cc].ch = true
       this.setData({
-        lei:aa
+        lei: aa
       })
     }
     this.setData({
@@ -131,45 +144,96 @@ Page({
     if (cc >= 0 && cc < zhuangtai.length) {
       zhuangtai[cc].ch = true
       this.setData({
-        zhuang:aa
+        zhuang: aa
       })
     }
     this.setData({
-      zhuangtai:zhuangtai
+      zhuangtai: zhuangtai
     })
   },
-  dianji(e){
+  dianji(e) {
     let cc = e.currentTarget.dataset.id
     let di = this.data.coitem.slice()
     if (cc >= 0 && cc < di.length) {
       di[cc].isdian = !di[cc].isdian
     }
     this.setData({
-      coitem:di
+      coitem: di
     })
     let co = this.data.coitem
-    let sum=0
-    co.forEach(item=>{
-      if(item.isdian){
+    let sum = 0
+    co.forEach(item => {
+      if (item.isdian) {
         sum++
       }
     })
-    let cha=false
-    if(sum==co.length)cha=true
+    let cha = false
+    if (sum == co.length) cha = true
 
     this.setData({
-      numbs:sum,
-      quanxuan:cha
+      numbs: sum,
+      quanxuan: cha
     })
   },
-    //带参跳转
-    navigates: function(e){
-      let ww = e.currentTarget.dataset.id
-      let ans=this.data.coitem[ww]
-      let url=`/pkgA/pages/detail/detail?coitem=${ans}`
-      console.log(url)
-      wx.navigateTo({url: url});
-    },
+  //带参跳转
+  navigates: function (e) {
+    let ww = e.currentTarget.dataset.id
+    let ans = this.data.coitem[ww]
+    let url = `/pkgA/pages/detail/detail?coitem=${ans}`
+    console.log(url)
+    wx.navigateTo({
+      url: url
+    });
+  },
+  fetchData: function (id) {
+    let that = this
+    return new Promise((resolve, reject) => {
+    wx.request({
+      url: `${apiUrl}/api/internship/getInternshipDetails/${id}`, // 拼接完整的 URL
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          let item = res.data.data
+          let t = {
+            // icon:item.companyLogo,
+            id: item.id,
+            // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
+            icon: item.companyLogo,
+            name: item.companyName,
+            time: that.extractDate(item.applicationDeadLine),
+            iszhao: true,
+            sum: item.salary,
+            tags: [{
+              title: item.companyType
+            }, {
+              title: item.positionType
+            }, {
+              title: item.location
+            }]
+          }
+          coco.push(t)
+        } else {
+          console.error('请求失败:', res);
+        }
+        resolve(res);
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+        reject(err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+  })
+  },
+  extractDate(dateTimeString) {
+    // 使用字符串分割方法提取日期部分
+    return dateTimeString.split('T')[0];
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -182,7 +246,7 @@ Page({
    */
   onShow() {
     this.getweizhi()
-    
+    this.fetchList()
   },
   getweizhi() {
     const qq = wx.createSelectorQuery();
