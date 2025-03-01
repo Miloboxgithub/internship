@@ -31,34 +31,29 @@ Page({
     requirements: '',
     contactInfo: '',
     contactInfo: '',
-
+    internshipType:'',
   },
   PostMsg() {
     let pmsg = {
       companyName: this.data.companyName,
-      companyType: this.data.xin,
-      industry: this.data.hangs,
-      salary: 540,
-      position: this.data.position,
+      industryType: this.data.xin,
+      businessNature: this.data.hangs,
+      jobPosition: this.data.position,
+      internshipType:this.data.internshipType,
       location: this.data.location,
-      description: this.data.description,
-      requirements: this.data.requirements,
-      acquisitions: this.data.acquisitions,
-      contactInfo: this.data.contactInfo,
-      applicationDeadLine: this.translateTime(this.data.applicationDeadLine),
+      responsibility: this.data.description,
+      requirement: this.data.requirements,
+      harvest: this.data.acquisitions,
+      deliveryMethod: this.data.contactInfo,
+      deadline: this.translateTime(this.data.applicationDeadLine),
       companyLogo: this.data.logoImageUrl,
       picture: this.data.zixunImageUrl,
-      memo: this.data.memo,
-      postedBy: 5
-    }
-    if (this.data.types0) {
-      pmsg.positionType = '远程'
-    } else {
-      pmsg.positionType = '线下'
+      remark: this.data.memo,
+      //postedBy: 5
     }
     console.log(pmsg)
     wx.request({
-      url: `${apiUrl}/api/internship/insertInternship`, // 拼接完整的 URL
+      url: `${apiUrl}/internship/addInternship`, // 拼接完整的 URL
       method: 'POST',
       data: pmsg,
       header: {
@@ -137,10 +132,19 @@ Page({
     }
   },
   changetypes: function () {
-    console.log(this.data.types0)
     this.setData({
       types0: !this.data.types0
     })
+    if(this.data.types0){
+      this.setData({
+        internshipType:'远程'
+      })
+    }
+    else{
+      this.setData({
+        internshipType:'线下'
+      })
+    }
   },
   changecheck: function () {
     this.setData({

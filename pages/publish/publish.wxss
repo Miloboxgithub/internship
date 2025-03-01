@@ -38,7 +38,12 @@ margin-top: 5vh;
   border: none;
   background: transparent;
 }
-
+textarea{
+  margin-top: 10px;
+  min-height: 26px;
+  word-wrap: break-word;
+  
+}
 .content {
   position: absolute;
   top: 11vh;

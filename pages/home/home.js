@@ -203,7 +203,7 @@ Page({
   onLoad() {
     this.towerSwiper('swiperList');
     // 初始化towerSwiper 传已有的数组名即可
-    this.fetchData()
+    //this.fetchData()
   },
   fetchData: function () {
     let that = this
@@ -337,8 +337,8 @@ Page({
       })
     }
     this.getweizhi()
-    if(app.globalData.sharecoitem.length==0)
-    this.fetchData()
+    if(app.globalData.sharecoitem.length==0){}
+    //this.fetchData()
     else{
       let that =this
       that.setData({

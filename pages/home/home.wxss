@@ -6,8 +6,6 @@
 }
 
 .swiper {
-
-
   margin-left: 5vw;
   width: 90vw;
   height: 150px;
@@ -19,7 +17,6 @@
 .swiper image {
   width: 100%;
   height: 100%;
-
 }
 
 .nav {
@@ -452,4 +449,67 @@
   vertical-align: top;
   border-radius: 15px;
   background: rgba(80, 177, 178, 1);
+}
+.dashi{
+  /* left: 16px;
+top: 274px; */
+position: relative;
+width: 48%;
+height: 55px;
+opacity: 1;
+border-radius: 8px;
+background: linear-gradient(180deg, rgba(72, 103, 230, 1) 0%, rgba(82, 119, 233, 1) 26.16%, rgba(95, 138, 237, 1) 49.61%, rgba(111, 162, 241, 1) 72.15%, rgba(129, 189, 246, 1) 98.2%, rgba(59, 146, 245, 0) 100%);
+
+}
+.neitui{
+position: relative;
+width: 48%;
+height: 55px;
+opacity: 1;
+border-radius: 8px;
+background: linear-gradient(180deg, rgba(248, 134, 68, 1) 0%, rgba(251, 164, 86, 1) 50.85%, rgba(254, 194, 104, 1) 100%);
+
+}
+.zizi{
+ position: absolute;
+  left: 15px;
+top: 9px;
+width: 80px;
+height: 24px;
+opacity: 1;
+/** 文本1 */
+font-size: 16px;
+font-weight: 700;
+letter-spacing: 0px;
+line-height: 23.17px;
+color: rgba(255, 255, 255, 1);
+text-align: left;
+vertical-align: top;
+
+}
+.zizizi{
+  position: absolute;
+  left: 15px;
+top: 33px;
+width: 100px;
+height: 15px;
+opacity: 1;
+/** 文本1 */
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0px;
+line-height: 14.48px;
+color: rgba(255, 255, 255, 1);
+text-align: left;
+vertical-align: top;
+
+}
+.imim{
+  position: absolute;
+  right: 16px;
+top: 11.5px;
+width: 27.82px;
+height: 33.74px;
+opacity: 1;
+/* transform: rotate(15deg); */
 }

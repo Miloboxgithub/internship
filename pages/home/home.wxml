@@ -9,6 +9,18 @@
       </swiper-item>
     </swiper>
   </view>
+  <view style="width: 90vw; margin-left: 5vw; display: flex; align-items: center; justify-content: space-between; margin-top: 12px;">
+    <view class="dashi">
+    <view class="zizi">校园大使汇</view>
+    <view class="zizizi">投递校园大使职位</view>
+    <image src="/img/dashi.svg" mode="" class="imim"/>
+    </view>
+    <view class="neitui">
+    <view class="zizi">内推码</view>
+    <view class="zizizi">内推码，求职快人一步</view>
+    <image src="/img/neitui .svg" mode="" class="imim"/>
+    </view>
+  </view>
   <!-- 搜索选择栏 -->
   <view class="nav">
     <view class="nav1" id="types1" bindtap="changetypes" style="color: {{lei=='类型'?'rgba(25, 25, 25, 1)':'rgba(80, 177, 178, 1)'}};"><text>{{lei}}</text>
