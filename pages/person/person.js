@@ -17,13 +17,63 @@ Page({
   navigate: function (e) {
     wx.navigateTo({url: e.currentTarget.dataset.url});
   },
+  onHandleLogin(e) {
+    const detail = e.detail;
+    console.log('phoneOneClickLogin errCode', detail.errCode)
+  },
+  meng(){
+    wx.showToast({
+      title: '请先勾选阅读协议',
+      icon: 'none'
+    });
+  },
   getPhoneNumber (e) {
-    if(this.gous){
     const { errMsg, encryptedData, iv } = e.detail;
-
     if (errMsg === 'getPhoneNumber:ok') {
-      // 获取成功，处理 encryptedData 和 iv
-      this.handlePhoneNumber(encryptedData, iv);
+      // 获取登录凭证
+      wx.login({
+        success: (res) => {
+          if (res.code) {
+            console.log('loginCode：',res.code)
+            console.log('phoneCode：',e.detail.code)
+            wx.request({
+              url: `${apiUrl}/user/phoneLogin`, // 拼接完整的 URL
+              method: 'POST',
+              data:{
+                loginCode: res.code, // 登录凭证
+                phoneCode: e.detail.code, // 电话凭证
+                avatar: null, // 头像
+                nickName: null // 昵称
+              },
+              header: {
+                'content-type': 'application/json'
+              },
+              success: (res) => {
+                console.log(res,'login')
+                if (res.statusCode === 200) {
+                  console.log(res,'login')
+                } else {
+                  console.error('请求失败:', res);
+                }
+              },
+              fail: (err) => {
+                console.error('请求失败:', err);
+              },
+            });
+          } else {
+            wx.showToast({
+              title: '获取登录凭证失败',
+              icon: 'none'
+            });
+          }
+        },
+        fail: (err) => {
+          wx.showToast({
+            title: '获取登录凭证失败',
+            icon: 'none'
+          });
+        }
+      });
     } else {
       // 获取失败，处理错误
       wx.showToast({
@@ -31,18 +81,11 @@ Page({
         icon: 'none'
       });
     }
-  }
-  else{
-    wx.showToast({
-      title: '请勾选',
-      icon: 'none'
-    });
-  }
   },
   handlePhoneNumber(encryptedData, iv){
     console.log(encryptedData, iv)
     wx.request({
-      url: `${apiUrl}/wx/login`, // 拼接完整的 URL
+      url: `${apiUrl}/user/phoneLogin`, // 拼接完整的 URL
       method: 'POST',
       data:{
         js_code:wx.getStorageSync('code')
@@ -85,5 +128,6 @@ Page({
     this.setData({
       gous:!this.data.gous
     })
+    console.log(this.data.gous)
   },
 })

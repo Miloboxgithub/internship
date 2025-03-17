@@ -225,6 +225,28 @@ position: relative;
 height: 17.93px;
 margin-right: 15px;
 }
+.meng{
+  background-color: rgb(160, 70, 70,0);
+  width: 250px;
+  height: 46px;
+  position: absolute;
+  margin-top: 20px;
+  border-radius: 23px;
+  left: 50%;
+  transform: translateX(-50%); /* 旋转并保持居中 */
+  z-index: 10;
+}
+.mengs{
+  background-color: rgb(160, 70, 70,0);
+  width: 250px;
+  height: 46px;
+  position: absolute;
+  margin-top: 86px;
+  border-radius: 23px;
+  left: 50%;
+  transform: translateX(-50%); /* 旋转并保持居中 */
+  z-index: 10;
+}
 .msglogin image{
   width: 17.5px;
   height: 17.5px;

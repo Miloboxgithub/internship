@@ -187,48 +187,117 @@ Page({
   },
   fetchData: function (id) {
     let that = this
-    return new Promise((resolve, reject) => {
     wx.request({
-      url: `${apiUrl}/api/internship/getInternshipDetails/${id}`, // 拼接完整的 URL
+      url: `${apiUrl}/internship/getMyCollection`, // 拼接完整的 URL
       method: 'GET',
       header: {
         'content-type': 'application/json'
       },
       success: (res) => {
+        console.log(res)
         if (res.statusCode === 200) {
-          let item = res.data.data
-          let t = {
-            // icon:item.companyLogo,
-            id: item.id,
-            // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
-            icon: item.companyLogo,
-            name: item.companyName,
-            time: that.extractDate(item.applicationDeadLine),
-            iszhao: true,
-            sum: item.salary,
-            tags: [{
-              title: item.companyType
-            }, {
-              title: item.positionType
-            }, {
-              title: item.location
-            }]
-          }
-          coco.push(t)
+          console.log(res.data.data)
+          let op = res.data.data
+          let tt = []
+          op.forEach((item, k) => {
+            let t = {
+              //id: item.id,
+              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
+              icon: item.companyLogo,
+              name: item.companyName,
+              time: that.extractDate(item.applicationDeadLine),
+              isdian: false,
+              sum: item.salary,
+              tags: [{
+                title: item.companyType
+              }, {
+                title: item.positionType
+              }, {
+                title: item.location
+              }]
+            }
+            tt.push(t)
+          })
+          that.setData({
+            coitem: tt,
+            lolo: false
+          })
+
         } else {
           console.error('请求失败:', res);
         }
-        resolve(res);
       },
       fail: (err) => {
         console.error('请求失败:', err);
-        reject(err);
       },
       complete: () => {
         console.log('请求完成');
       }
     });
-  })
+  //   return new Promise((resolve, reject) => {
+  //   wx.request({
+  //     url: `${apiUrl}/api/internship/getInternshipDetails/${id}`, // 拼接完整的 URL
+  //     method: 'GET',
+  //     header: {
+  //       'content-type': 'application/json'
+  //     },
+  //     success: (res) => {
+  //       if (res.statusCode === 200) {
+  //         let item = res.data.data
+  //         let t = {
+  //           // icon:item.companyLogo,
+  //           id: item.id,
+  //           // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
+  //           icon: item.companyLogo,
+  //           name: item.companyName,
+  //           time: that.extractDate(item.applicationDeadLine),
+  //           iszhao: true,
+  //           sum: item.salary,
+  //           tags: [{
+  //             title: item.companyType
+  //           }, {
+  //             title: item.positionType
+  //           }, {
+  //             title: item.location
+  //           }]
+  //         }
+  //         coco.push(t)
+  //       } else {
+  //         console.error('请求失败:', res);
+  //       }
+  //       resolve(res);
+  //     },
+  //     fail: (err) => {
+  //       console.error('请求失败:', err);
+  //       reject(err);
+  //     },
+  //     complete: () => {
+  //       console.log('请求完成');
+  //     }
+  //   });
+  // })
+  },
+  deletes:function(){
+    wx.request({
+      url: `${apiUrl}/internship/cancelCollection/6`, // 拼接完整的 URL
+      method: 'DELETE',
+      header: {
+        'content-type': 'application/json'
+      },success: (res) => {
+        console.log(res)
+        if (res.statusCode === 200) {
+          console.log(res.data.data)
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    })
   },
   extractDate(dateTimeString) {
     // 使用字符串分割方法提取日期部分

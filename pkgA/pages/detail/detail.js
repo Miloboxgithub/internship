@@ -42,12 +42,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-      if(options.coitem){
-        console.log(options.coitem,'------------')
+      if(options.id){
+        console.log(options.id,'------------')
       }
-      this.GetData(options.coitem)
+      this.GetData(options.id)
       this.setData({
-        idd:options.coitem
+        idd:options.id
       })
   },
   GetData(id){
@@ -57,33 +57,34 @@ Page({
       lolo:true
     })
     wx.request({
-      url: `${apiUrl}/api/internship/getInternshipDetails/${id}`, // 拼接完整的 URL
+      url: `${apiUrl}/internship/select/${id}`, // 拼接完整的 URL
       method: 'GET',
       
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
         if (res.statusCode === 200) {
           let ans= res.data.data
-          console.log(ans)
+          console.log(ans,'ans')
           let site = [] ,ott = [] , req=[] , gain=[]
           if(Array.isArray(ans.location))site=ans.location
           else site.push(ans.location)
-          ott.push(ans.description)
+          ott.push(ans.responsibility)
           req.push(ans.requirement)
-          gain.push(ans.acquisitions)
+          gain.push(ans.harvest)
           that.setData({
             coitem:{
               icon:ans.companyLogo,
               name:ans.companyName,
-              time:that.extractDate(ans.applicationDeadLine),
+              time:that.extractDate(ans.deadline),
             iszhao:true,
-            sum:ans.salary,
+            sum:ans.pageview,
             tags: [{
-              title: ans.companyType
+              title: ans.businessNature
             }, {
-              title: ans.positionType
+              title: ans.jobPosition
             }, {
               title: ans.location
             }]
@@ -92,10 +93,10 @@ Page({
             ott,
             req,
             gain,
-            links:ans.contactInfo,
-            timee:that.extractDates(ans.applicationDeadLine),
-            picture:ans.picture,
-            bei:ans.memo
+            links:ans.userAccount,
+            timee:ans.deadline,
+            picture:ans.consultPhoto,
+            bei:ans.remark
           })
           that.setData({
             lolo:false

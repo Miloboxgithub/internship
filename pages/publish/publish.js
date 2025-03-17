@@ -9,12 +9,15 @@ Page({
     types2: false,
     types3: false,
     industryes: [
-      '游戏设计', '机械设计', '工业设计', '互联网', '影视行业', '人工智能', '大数据'
+      {
+        op:'无',
+        id:0
+      }
     ],
-    xinzhi: ['上市公司',
-      '国企',
-      '外企',
-      '私企',
+    xinzhi: [{
+      op:'无',
+      id:0
+    }
     ],
     years: [2024, 2025, 2026],
     months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -31,13 +34,13 @@ Page({
     requirements: '',
     contactInfo: '',
     contactInfo: '',
-    internshipType:'',
+    internshipType:'线下',
   },
   PostMsg() {
     let pmsg = {
       companyName: this.data.companyName,
-      industryType: this.data.xin,
-      businessNature: this.data.hangs,
+      industryType: this.data.hangs.op,
+      businessNature: this.data.xin.op,
       jobPosition: this.data.position,
       internshipType:this.data.internshipType,
       location: this.data.location,
@@ -47,17 +50,20 @@ Page({
       deliveryMethod: this.data.contactInfo,
       deadline: this.translateTime(this.data.applicationDeadLine),
       companyLogo: this.data.logoImageUrl,
-      picture: this.data.zixunImageUrl,
+      consultPhoto: this.data.zixunImageUrl,
+      pageview : 0,//浏览量
+      weights : 1,//权重
       remark: this.data.memo,
-      //postedBy: 5
+      industryTypeId:this.data.hangs.id ,
+      businessNatureId:this.data.xin.id,
     }
-    console.log(pmsg)
+    console.log(pmsg,wx.getStorageSync('v_token'))
     wx.request({
       url: `${apiUrl}/internship/addInternship`, // 拼接完整的 URL
       method: 'POST',
       data: pmsg,
       header: {
-        'content-type': 'application/json'
+        token:wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
@@ -85,19 +91,85 @@ Page({
       }
     });
   },
+  onLoad() {
+    this.getType()
+  },
+  getType(){
+    wx.request({
+      url: `${apiUrl}/businessNature/getBusinessNatureList`, // 拼接完整的 URL
+      method: 'GET',
+      header: {
+        'content-type': 'application/json',
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          let ttt = this.data.xinzhi
+          res.data.data.forEach((i,k)=>{
+            ttt.push({
+              op:i.businessNature,
+              id:i.id
+            })
+          })
+          this.setData({
+            xinzhi:ttt
+          })
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+    wx.request({
+      url: `${apiUrl}/industryType/getIndustryTypeList`, // 拼接完整的 URL
+      method: 'GET',
+      header: {
+        'content-type': 'application/json',
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          let ttt = this.data.industryes
+          res.data.data.forEach((i,k)=>{
+            ttt.push({
+              op:i.industryType,
+              id:i.id
+            })
+          })
+          this.setData({
+            industryes:ttt
+          })
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+  },
   translateTime(dateString) {
-    const [year, month, day] = dateString.split('-').map(part => parseInt(part, 10));
-
-    // 给月份和日期加上前导零
-    const formattedMonth = month.toString().padStart(2, '0');
-    const formattedDay = day.toString().padStart(2, '0');
-
-    // 组合成格式化后的日期字符串
-    dateString = `${year}-${formattedMonth}-${formattedDay}`;
-    const isoString = dateString + 'T23:59:59';
-
-    console.log(isoString); // 输出: 2025-01-11T23:59:59.000Z
-    return isoString
+    // 解析日期字符串
+    const date = new Date(dateString);
+  
+    // 提取年、月、日、时、分、秒
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+  
+    // 组合成目标格式
+    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  
+    return formattedDate;
   },
   inputed(e) {
     console.log(e.detail.value)

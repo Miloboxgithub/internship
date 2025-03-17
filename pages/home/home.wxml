@@ -89,8 +89,8 @@
     </view>
   </view>
 </view>
-<!-- 底部选择器 -->
-<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; top: {{toppx}}px;"></view>
+<!-- 底部选择器 行业 -->
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; top: 0px;"></view>
 <view class="bpicker" catchtouchmove="true" style="display: {{types2?'block':'none'}}; position: fixed; bottom: 0;">
   <view class="boxse">
     <view class="quxiao" bindtap='hideview'>
@@ -105,7 +105,7 @@
   </view>
   <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange">
     <picker-view-column>
-      <view wx:for="{{industry}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+      <view wx:for="{{industry}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item.op}}</view>
     </picker-view-column>
   </picker-view>
 </view>

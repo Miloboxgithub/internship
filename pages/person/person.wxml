@@ -62,6 +62,8 @@
 <view class="loginMode"style="display:{{logins?'block':'none'}};">
     <view class="temt">欢迎来到实习大全</view>
     <view class="ser">更多机会，更优选择！</view>
+    <view class="meng" wx:if="{{!gous}}" bind:tap="meng"></view>
+    <view class="mengs" wx:if="{{!gous}}" bind:tap="meng"></view>
     <view class="phonelogin"><image src="/img/phone.png"/>手机号快捷登录<button class="btnLogin" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button></view>
   <view class="msglogin" bind:tap="navigate" data-url="/pkgA/pages/msg/msg"><image src="/img/msg.png"/>短信验证码登录</view>
   <view class="ist">

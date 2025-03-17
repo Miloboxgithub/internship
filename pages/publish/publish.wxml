@@ -131,7 +131,7 @@
   </view>
   <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{companyType}}" bindchange="bindChange1">
     <picker-view-column>
-      <view wx:for="{{industryes}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+      <view wx:for="{{industryes}}" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item.op}}</view>
     </picker-view-column>
   </picker-view>
 </view>
@@ -148,7 +148,7 @@
   </view>
   <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{industry}}" bindchange="bindChange2">
     <picker-view-column>
-      <view wx:for="{{xinzhi}}" wx:key="*this" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+      <view wx:for="{{xinzhi}}" wx:key="*this" style="line-height: 50px; width: 100vw; text-align: center; font-size: 18px;font-weight: 500;">{{item.op}}</view>
     </picker-view-column> 
   </picker-view>
 </view>

@@ -1,4 +1,5 @@
-// pkgA/pages/warning/warning.js
+const app = getApp(); // 获取全局 App 实例
+const apiUrl = app.globalData.apiUrl; // 获取全局 API 前缀
 Page({
 
   /**
@@ -11,11 +12,45 @@ Page({
       ImageUrl1:'',
       ImageUrl2:'',
       ImageUrl3:'',
+      contactWay:'',
   },
   onLoad(options) {
 
   },
-
+  submits(){
+    console.log(this.data.contactWay)
+    let reason = ''
+    this.data.items.forEach((i,k)=>{
+      if(i.isAc)reason = i.text
+    })
+    console.log(reason)
+    wx.request({
+      url: `${apiUrl}/report/addReport`, // 拼接完整的 URL
+      method: 'POST',
+      data:{
+        "reason": reason,
+    "description": this.data.inputText,
+    "screenshot": this.data.ImageUrl1,
+    "contactWay": this.data.contactWay
+      },
+      header: {
+        'content-type': 'application/json'
+      },success: (res) => {
+        console.log(res)
+        if (res.statusCode === 200) {
+          console.log(res.data.data)
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    })
+  },
   toggleButtonStyle: function(event) {
         // 获取被点击按钮的索引
         const index = event.currentTarget.dataset.index;
