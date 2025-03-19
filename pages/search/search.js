@@ -23,32 +23,35 @@ Page({
   searchs(){
     let msg = this.data.msg
     wx.request({
-      url: `${apiUrl}/api/internship/search`, // 拼接完整的 URL
-      method: 'GET',
-      data:{
-        keyword:msg
-      },
+      url: `${apiUrl}/internship/esSearch?content=${msg}`, // 拼接完整的 URL
+      method: 'POST',
+      // data:{
+      //   content:msg
+      // },
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res,res.data.data,'search')
+          console.log(res.data,'search')
           app.globalData.sharecoitem = res.data.data
           if(res.data.data.length!=0){
             wx.switchTab({
-              url: '/pages/home/home',
+              url: '/pages/home/home?op=1',
             })
           }
           else{
             wx.showToast({
               title: '没有这个数据',
+              icon:'error'
             },1000)
           }
         } else {
           console.error('请求失败:', res);
           wx.showToast({
             title: '搜索失败',
+            icon:'error'
           },1000)
         }
       },
@@ -56,6 +59,7 @@ Page({
         console.error('请求失败:', err);
         wx.showToast({
           title: '搜索失败',
+          icon:'error'
         },1000)
       },
     });

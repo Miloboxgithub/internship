@@ -77,8 +77,8 @@ Page({
           wx.switchTab({
             url: '/pages/home/home',
           })
-        },2000)
-        
+        },1500)
+        app.globalData.pub = true
         } else {
           console.error('请求失败:', res);
         }
@@ -233,16 +233,25 @@ Page({
       types1: !this.data.types1
     })
     console.log(this.data.hangs)
+    this.getTabBar().setData({
+      chans: false
+    })
   },
   queren2: function () {
     this.setData({
       types2: !this.data.types2
     })
     console.log(this.data.xin)
+    this.getTabBar().setData({
+      chans: false
+    })
   },
   queren3: function () {
     this.setData({
       types3: !this.data.types3
+    })
+    this.getTabBar().setData({
+      chans: false
     })
   },
   hideview() {

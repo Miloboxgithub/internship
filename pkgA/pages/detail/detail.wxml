@@ -8,7 +8,7 @@
   <view class="items">
     <view class="item">
       <view class="coicon">
-        <image src="{{coitem.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
+        <image src="{{coitem.icon}}" mode="aspectFit" lazy-load="false" mode="" />
       </view>
       <view class="info">
         <text class="cotitle" selectable="false" space="false" decode="false">{{coitem.name}}</text>

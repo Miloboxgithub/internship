@@ -44,133 +44,7 @@ Page({
     types2: false,
     types3: false,
     toppx: 0,
-    coitem: [{
-        id: 1,
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      }, {
-        id: 11,
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      }, {
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      }, {
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      }, {
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      }, {
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      }, {
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      }, {
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      }, {
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-        tags: [{
-          title: '上市公司'
-        }, {
-          title: '线下实习'
-        }, {
-          title: '深圳'
-        }]
-      },
-      {
-        icon: 'https://img.js.design/assets/img/6557681b09dc6027548deca3.png#e04933f171c303ed86198233ba372fb9',
-        name: '振石控股集团有限公司——社媒运营',
-        time: '2024-12-31',
-        iszhao: true,
-        sum: 5000,
-      }
+    coitem: [
     ],
     leixin: [{
       op: '全部',
@@ -187,7 +61,8 @@ Page({
       ch: true,
       id:0,
     }],
-    lolo: false
+    lolo: false,
+    page:1,
   },
   onLoad() {
     this.towerSwiper('swiperList');
@@ -204,7 +79,7 @@ Page({
       'content-type': 'application/json'
     },
     success: (res) => {
-     console.log(res)
+     console.log(res.data)
      if(res.statusCode==200){
       wx.setStorageSync('v_token',res.data.data);
       //console.log(wx.getStorageSync('v_token'),'123321')
@@ -223,15 +98,14 @@ Page({
   fetchData: function () {
     let that = this
     this.setData({
-      coitem: [],
-      lolo: false
+      lolo: true
     })
     wx.request({
       url: `${apiUrl}/internship/getByPage`, // 拼接完整的 URL
       method: 'POST',
       data:{
-        "page": 1,
-        "pageSize": 30
+        "page": this.data.page,
+        "pageSize": 20
       },
       header: {
         'content-type': 'application/json',
@@ -241,14 +115,13 @@ Page({
         if (res.statusCode === 200) {
           console.log(res)
           let op = res.data.data.records
-          let tt = []
+          let tt = that.data.coitem
           op.forEach((item, k) => {
             let t = {
               id: item.id,
-              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
               icon: item.companyLogo,
               name: item.companyName,
-              time: that.extractDate(item.deadline),
+              time: item.deadline,
               iszhao: true,
               sum: item.pageview,
               tags: [{
@@ -259,12 +132,15 @@ Page({
                 title: item.location
               }]
             }
+            if(item.internshipType=='远程'){
+              t.tags.pop()
+              console.log(t.tags)
+            }
             if(!t.sum)t.sum = 0
             tt.push(t)
           })
           that.setData({
-            coitem: tt,
-            lolo: false
+            coitem: tt
           })
         } else {
           console.error('请求失败:', res);
@@ -275,8 +151,18 @@ Page({
       },
       complete: () => {
         console.log('请求完成');
+        that.setData({
+          lolo:false
+        })
       }
     });
+  },
+  onReachBottom(){
+    if(this.data.lolo)return
+    this.setData({
+      page:this.data.page + 1
+    })
+    this.fetchData()
   },
   getType(){
     wx.request({
@@ -423,6 +309,10 @@ Page({
     if(app.globalData.sharecoitem.length==0){}
     //this.fetchData()
     else{
+      wx.showToast({
+        title: '搜索成功',
+        icon:'success'
+      },1000)
       let that =this
       that.setData({
         coitem:[],
@@ -432,22 +322,25 @@ Page({
           let tt = []
           op.forEach((item, k) => {
             let t = {
-              // icon:item.companyLogo,
               id: item.id,
-              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
               icon: item.companyLogo,
               name: item.companyName,
-              time: that.extractDate(item.applicationDeadLine),
+              time: item.deadline,
               iszhao: true,
-              sum: item.salary,
+              sum: item.pageview,
               tags: [{
-                title: item.companyType
+                title: item.businessNature
               }, {
-                title: item.positionType
+                title: item.internshipType
               }, {
                 title: item.location
               }]
             }
+            if(item.internshipType=='远程'){
+              t.tags.pop()
+              console.log(t.tags)
+            }
+            if(!t.sum)t.sum = 0
             tt.push(t)
           })
           that.setData({
@@ -455,6 +348,13 @@ Page({
             lolo: false
           })
           app.globalData.sharecoitem=[]
+    }
+    if(app.globalData.pub){
+      this.setData({
+        page:1,
+        coitem:[]
+      })
+      this.fetchData();
     }
   },
   changetypes(e) {
@@ -489,6 +389,15 @@ Page({
     this.getTabBar().setData({
       chans: false
     })
+  },
+  onPullDownRefresh() {
+    this.setData({
+      page:1,
+      coitem:[]
+    })
+    this.fetchData();
+    // 下拉刷新完成后，需要调用 wx.stopPullDownRefresh 停止刷新动画
+    wx.stopPullDownRefresh();
   },
   // 获取选框位置
   getweizhi() {

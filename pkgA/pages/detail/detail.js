@@ -74,6 +74,20 @@ Page({
           ott.push(ans.responsibility)
           req.push(ans.requirement)
           gain.push(ans.harvest)
+          let tags =  [{
+            title: ans.businessNature
+          }, {
+            title: ans.internshipType
+          }, {
+            title: ans.location
+          }]
+          if(ans.internshipType!='线下'){
+            tags =  [{
+              title: ans.businessNature
+            }, {
+              title: ans.internshipType
+            }]
+          }
           that.setData({
             coitem:{
               icon:ans.companyLogo,
@@ -81,13 +95,7 @@ Page({
               time:that.extractDate(ans.deadline),
             iszhao:true,
             sum:ans.pageview,
-            tags: [{
-              title: ans.businessNature
-            }, {
-              title: ans.jobPosition
-            }, {
-              title: ans.location
-            }]
+            tags:tags
             },
             site,
             ott,
@@ -98,6 +106,7 @@ Page({
             picture:ans.consultPhoto,
             bei:ans.remark
           })
+
           that.setData({
             lolo:false
           })
