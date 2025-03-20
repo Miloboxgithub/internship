@@ -19,9 +19,13 @@ Page({
       id:0
     }
     ],
-    years: [2024, 2025, 2026],
+    hangs:'',
+    xin:'',
+    value: [0, 0, 0], // 默认选择的年月日索引
+    years: [],
     months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-    days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+    days: [],
+    currentDate:'', // 当前日期
     logoImageUrl: '',
     zixunImageUrl: '',
     //  postmsg
@@ -35,8 +39,107 @@ Page({
     contactInfo: '',
     contactInfo: '',
     internshipType:'线下',
+    applicationDeadLine:'',
   },
   PostMsg() {
+    const {companyName, hangs, xin, position, internshipType, location, description, requirements, acquisitions, contactInfo, applicationDeadLine, logoImageUrl } = this.data;
+
+    // 检查每个字段是否为空
+    if (!companyName) {
+      wx.showToast({
+        title: '请填写公司名称',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!hangs.op) {
+      wx.showToast({
+        title: '请填写行业类型',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!xin.op) {
+      wx.showToast({
+        title: '请填写公司性质',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!position) {
+      wx.showToast({
+        title: '请填写招聘岗位',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!internshipType) {
+      wx.showToast({
+        title: '请填写实习类型',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!this.data.types0&&!location) {
+      wx.showToast({
+        title: '请填写实习地点',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!description) {
+      wx.showToast({
+        title: '请填写岗位职责',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!requirements) {
+      wx.showToast({
+        title: '请填写岗位要求',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!acquisitions) {
+      wx.showToast({
+        title: '请填写实习收获',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!contactInfo) {
+      wx.showToast({
+        title: '请填写投递方式',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!applicationDeadLine) {
+      wx.showToast({
+        title: '请填写截止时间',
+        icon: 'none'
+      });
+      return;
+    }
+    if (!logoImageUrl) {
+      wx.showToast({
+        title: '请填写公司Logo',
+        icon: 'none'
+      });
+      return;
+    }
+
+    // 如果所有字段都已填写，提交表单
+    console.log('提交表单', this.data);
+    // 这里可以添加提交表单的代码，例如使用 wx.request 发送数据到服务器
+    if(!this.data.checks){
+      wx.showToast({
+        title: '请阅读并勾选隐私协议!',
+        icon:'none'
+      })
+      return;
+    }
     let pmsg = {
       companyName: this.data.companyName,
       industryType: this.data.hangs.op,
@@ -93,6 +196,7 @@ Page({
   },
   onLoad() {
     this.getType()
+    this.initDatePicker();
   },
   getType(){
     wx.request({
@@ -184,6 +288,52 @@ Page({
         selected: 1
       })
     }
+  },
+
+reset(){
+  wx.reLaunch({
+    url: '/pages/publish/publish'
+  });
+  wx.showToast({
+    title: '重置成功',
+  })
+},
+  initDatePicker() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const day = date.getDate();
+    // 获取年份数组
+    const years = [];
+    for (let i = 0; i < 3; i++) {
+      years.push(year + i);
+    }
+    this.setData({ years: years });
+    // 获取日期数组
+    this.updateDaysOfMonth(year, month + 1);
+    // 设置picker-view的value
+    const yearIndex = this.data.years.indexOf(year);
+    const monthIndex = month;
+    const dayIndex = day - 1; // days数组索引从0开始
+    this.setData({
+      value: [yearIndex, monthIndex, dayIndex]
+    });
+    // 更新当前日期字符串
+    this.setData({
+      currentDate: `${year}-${month + 1}-${day}`
+    });
+  },
+  getDaysOfMonth(year) {
+    const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    let daysInMonth = [31, 28 + isLeapYear, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    return daysInMonth;
+  },
+  updateDaysOfMonth(year, month) {
+    console.log(year,month)
+    const daysInMonth = this.getDaysOfMonth(year)[month - 1];
+    this.setData({
+      days: Array.from({ length: daysInMonth }, (_, i) => i + 1)
+    });
   },
   onScrollToLower: function (e) {
     this.setData({
@@ -282,7 +432,6 @@ Page({
     this.getTabBar().setData({
       chans: !this.getTabBar().data.chans
     })
-    console.log(1234)
   },
   changetypest2(e) {
     let ce = true
@@ -337,12 +486,11 @@ Page({
   },
   bindChange3: function (e) {
     let cc = e.detail.value
-    //console.log(cc,'cc')
     let y = this.data.years[cc[0]]
     let m = this.data.months[cc[1]]
     let d = this.data.days[cc[2]]
     console.log(y + '-' + m + '-' + d, this.translateTime(y + '-' + m + '-' + d))
-
+    this.updateDaysOfMonth(y, m);
     this.setData({
       applicationDeadLine: y + '-' + m + '-' + d
     })

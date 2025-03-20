@@ -24,7 +24,7 @@
         <image src="{{item.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
       </view>
  </view>
-      <view class="info" bind:tap="navigates" data-url="/pkgA/pages/detail/detail">
+      <view class="info" bind:tap="navigates" data-url="/pkgA/pages/detail/detail"  data-id="{{index}}">
         <text class="cotitle" selectable="false" space="false" decode="false">{{item.name}}</text>
         <view class="tags">
           <view class="tt">
@@ -42,7 +42,7 @@
       </view>
     </view>
   </view>
-  <view class="chico">
+  <view class="chico" wx:if="{{numbs!=0}}">
   <view style="width: 90vw; margin-left: 5vw;  display: flex;justify-content:space-around;">
       <view class="xuan"><view>已选<text style="color: rgba(80, 177, 178, 1);">{{numbs}}</text>个企业</view>
       <view bind:tap="quanxuans"><image src="/pkgA/img/圆形 1.png" mode=""/><image style="display: {{quanxuan?'':'none'}};"  class="imggg" src="/pkgA/img/圆形 2.png" mode=""/><view style="position: absolute;left: 13vw;">全选</view></view>

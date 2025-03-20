@@ -21,7 +21,8 @@
         "pages/collection/collection",
         "pages/myfabu/myfabu",
         "pages/fabudetail/fabudetail",
-        "pages/msg/msg"
+        "pages/msg/msg",
+        "pages/Promotion/Promotion"
       ]
     }
   ],

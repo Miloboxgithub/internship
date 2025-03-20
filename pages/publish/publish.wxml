@@ -15,13 +15,13 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">行业<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <view class="you" bindtap="changetypest1"><image src="/img/you.png" mode=""/></view>
+        <view class="you" bindtap="changetypest1">{{hangs.op}}<image src="/img/you.png" mode=""/></view>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">公司性质<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <view class="you" bindtap="changetypest2"><image src="/img/you.png" mode=""/></view>
+        <view class="you" bindtap="changetypest2">{{xin.op}}<image src="/img/you.png" mode=""/></view>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -34,8 +34,8 @@
       <view class="sitess">
         <view class="tou">实习类型<text style="color: rgba(255, 0, 0, 1);">*</text></view>
         <view class="tansview">
-            <view class="{{types0?'you':'zuo'}}" bind:tap="changetypes">线下</view>
-            <view class="{{types0?'zuo':'you'}}" bind:tap="changetypes">远程</view>
+            <view class="{{types0?'yous':'zuo'}}" bind:tap="changetypes">线下</view>
+            <view class="{{types0?'zuo':'yous'}}" bind:tap="changetypes">远程</view>
         </view>
       </view>
     </view>
@@ -72,7 +72,7 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">截止时间<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <view class="you" bindtap="changetypest3"><image src="/img/you.png" mode=""/></view>
+        <view class="you" bindtap="changetypest3">{{applicationDeadLine}}<image src="/img/you.png" mode=""/></view>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -102,14 +102,14 @@
         <textarea auto-height class="tst" type="text" bindinput="inputed" data-name="memo" placeholder="请填写备注信息"/>
       </view>
     </view>
-    <view style="  width: 80vw; margin-left: 5vw;  margin-bottom: 200px;">
+    <view style=" width: 80vw; margin-left: 5vw;  margin-bottom: 200px;">
     <view class="bottoms">
         <view class="yingsi">
           <view class="checks" bind:tap="changecheck" style="background: {{checks?'rgba(80, 177, 178, 1)':''}}"><image src="{{checks?'/img/gou.png':''}}" mode=""/></view>
           <view bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy">隐私协议</view>
         </view>
         <view class="btns">
-          <view class="reset">重置</view>
+          <view class="reset" bind:tap="reset">重置</view>
           <view class="sendmsg" bind:tap="PostMsg">发布实习</view>
         </view>
     </view></view>

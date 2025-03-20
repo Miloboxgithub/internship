@@ -36,6 +36,7 @@ Page({
     picture:'',
     bei:'',
     idd:0,
+    cpp:{},
   },
 
   /**
@@ -67,6 +68,9 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
           let ans= res.data.data
+          this.setData({
+            cpp:ans
+          })
           console.log(ans,'ans')
           let site = [] ,ott = [] , req=[] , gain=[]
           if(Array.isArray(ans.location))site=ans.location
@@ -121,6 +125,27 @@ Page({
         console.log('请求完成');
       }
     });
+    wx.request({
+      url: `${apiUrl}/internship/addPageView/${id}`, // 拼接完整的 URL
+      method: 'PUT',
+      header: {
+        'content-type': 'application/json',
+        'token': wx.getStorageSync('v_token') // 传递 token
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+         console.log(res.data)
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
   },
   extractDate(dateTimeString) {
     // 使用字符串分割方法提取日期部分
@@ -164,16 +189,13 @@ Page({
           });
   },
   shouchang(){
-    
+    let id = this.data.idd
     wx.request({
-      url: `${apiUrl}/api/favorites/add`, // 拼接完整的 URL
-      method: 'GET',
-      data:{
-        userId:5,
-        internshipId:parseInt(this.data.idd)
-      },
+      url: `${apiUrl}/internship/addCollection/${id}`, // 拼接完整的 URL
+      method: 'POST',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        token:wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
@@ -207,23 +229,41 @@ Page({
     });
     
   },
-  fuzhimsg(){
+  copyText: function(event) {
+    // 定义要复制的文本，包含换行符
+    let c = this.data.cpp
+    console.log(c)
+    const textToCopy = `
+    公司名称：${c.companyName}
+    公司类型：${c.businessNature}
+    招聘岗位：${c.jobPosition}
+    实习类型：${c.internshipType}
+    实习地点：${c.location}
+    岗位职责：${c.responsibility}
+    岗位要求：${c.requirement}
+    实习收获：${c.harvest}
+    投递方式：${c.deliveryMethod}
+    截止时间：${c.deadline}
+    `;
+
     wx.setClipboardData({
-      data: '12345',
+      data: textToCopy,
       success: function(res) {
         wx.showToast({
           title: '复制成功',
+          icon: 'success',
+          duration: 2000
         });
       },
       fail: function(err) {
-        console.error('复制失败：', err);
+        console.error('复制失败', err);
         wx.showToast({
-          title: '复制失败，请重试',
+          title: '复制失败',
           icon: 'none',
           duration: 2000
         });
       }
-    })
+    });
   },
   onShareAppMessage: function (res) {
       //  if (res.from === 'button') {

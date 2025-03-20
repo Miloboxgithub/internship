@@ -82,9 +82,9 @@ Page({
      console.log(res.data)
      if(res.statusCode==200){
       wx.setStorageSync('v_token',res.data.data);
-      //console.log(wx.getStorageSync('v_token'),'123321')
      this.fetchData()
      }
+
     },
     fail: (err) => {
       console.error('请求失败:', err);
@@ -93,7 +93,7 @@ Page({
       console.log('请求完成');
     }
   });
-   
+  // this.fetchData()
   },
   fetchData: function () {
     let that = this

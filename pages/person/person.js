@@ -4,6 +4,7 @@ Page({
   data:{
     logins:false,
     gous:false,
+    islogins:true,
   },
   onShow: function () {
     if (typeof this.getTabBar === 'function' &&
@@ -28,6 +29,7 @@ Page({
     });
   },
   getPhoneNumber (e) {
+    let that = this
     const { errMsg, encryptedData, iv } = e.detail;
     if (errMsg === 'getPhoneNumber:ok') {
       // 获取登录凭证
@@ -49,9 +51,16 @@ Page({
                 'content-type': 'application/json'
               },
               success: (res) => {
-                console.log(res,'login')
                 if (res.statusCode === 200) {
-                  console.log(res,'login')
+                  console.log(res.data,'login')
+                  wx.showToast({
+                    title: '登录成功！',
+                  })
+                  that.hideview()
+                  this.setData({
+                    islogins:false
+                  })
+                  wx.setStorageSync('v_token',res.data.data);
                 } else {
                   console.error('请求失败:', res);
                 }

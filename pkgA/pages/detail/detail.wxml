@@ -73,6 +73,6 @@
   <view class="tabbers">
         <button open-type="share" class="btns"><image src="/pkgA/img/分享.png" mode=""/></button>
         <view class="abc" bind:tap="shouchang">加入收藏</view>
-        <view class="bca" bind:tap="fuzhimsg">复制实习信息</view>
+        <view class="bca" bind:tap="copyText">复制实习信息</view>
   </view>
 </scroll-view>

@@ -7,10 +7,13 @@
         <image src="/img/头像.png" mode="" />
       </view>
       <view class="texts">
-        <view class="ts1">
+        <view class="ts1" wx:if="{{islogins}}">
           未登录/注册
         </view>
-        <view class="ts2">
+        <view class="ts1" wx:if="{{!islogins}}">
+          微信用户
+        </view>
+        <view class="ts2" wx:if="{{islogins}}">
           点击头像可登录/注册
         </view>
       </view>
@@ -27,6 +30,10 @@
         <view class="s1" bind:tap="navigate" data-url="/pkgA/pages/myfabu/myfabu">
           <image src="/img/icon_添加.png" mode="" />
           <view style="margin-top: 5px;">发布</view>
+        </view>
+        <view class="s1" bind:tap="navigate" data-url="/pkgA/pages/Promotion/Promotion">
+          <image src="/img/商城1.png" mode="" />
+          <view style="margin-top: 5px;">置顶推广</view>
         </view>
         <view class="s1" bind:tap="navigate" data-url="/pkgA/pages/setup/setup">
           <image src="/img/设置.png" mode="" />

@@ -22,6 +22,7 @@ App({
     apiUrl: 'http://119.29.119.100:8082' , // 你的 API 基础 URL
     sharecoitem:[],
     pub:false,
+    
   },
   pickerchange:function(){
       

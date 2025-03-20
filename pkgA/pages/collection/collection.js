@@ -35,37 +35,53 @@ Page({
     }],
     toppx: 0,
     coitem: [],
+    lolo: false,
   },
   fetchList() {
     let that = this
     coco = []
+    this.setData({
+      lolo: true,
+      coitem: []
+    })
     wx.request({
-      url: `${apiUrl}/api/favorites/list`, // 拼接完整的 URL
+      url: `${apiUrl}/internship/getMyCollection`, // 拼接完整的 URL
       method: 'GET',
-      data: {
-        userId: 5
-      },
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          let arr = res.data.data
-          // arr.forEach((item, index) => {
-          //   that.fetchData(item.internshipID)
-          // })
-          // 使用 Promise.all 等待所有 fetchData 完成
-          Promise.all(arr.map(item => that.fetchData(item.internshipID))).then(() => {
-              console.log('All fetchData calls are completed.');
-              // 在这里调用完成后的函数
-              that.setData({
-                coitem: coco
-              })
-            })
-            .catch(error => {
-              console.error('Error in fetching data:', error);
-            });
-
+          let op = res.data.data
+          let tt = that.data.coitem
+          if(op)
+          op.forEach((item, k) => {
+            let t = {
+              id: item.id,
+              icon: item.companyLogo,
+              name: item.companyName,
+              time: item.deadline,
+              iszhao: true,
+              sum: item.pageview,
+              tags: [{
+                title: item.businessNature
+              }, {
+                title: item.internshipType
+              }, {
+                title: item.location
+              }]
+            }
+            if (item.internshipType == '远程') {
+              t.tags.pop()
+              console.log(t.tags)
+            }
+            if (!t.sum) t.sum = 0
+            tt.push(t)
+          })
+          that.setData({
+            coitem: tt
+          })
         } else {
           console.error('请求失败:', res);
         }
@@ -75,6 +91,9 @@ Page({
       },
       complete: () => {
         console.log('请求完成');
+        this.setData({
+          lolo: false
+        })
       }
     });
   },
@@ -100,6 +119,7 @@ Page({
       numbs: sum
     })
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -178,8 +198,8 @@ Page({
   //带参跳转
   navigates: function (e) {
     let ww = e.currentTarget.dataset.id
-    let ans = this.data.coitem[ww]
-    let url = `/pkgA/pages/detail/detail?coitem=${ans}`
+    let ans = this.data.coitem[ww].id
+    let url = `/pkgA/pages/detail/detail?id=${ans}`
     console.log(url)
     wx.navigateTo({
       url: url
@@ -234,59 +254,76 @@ Page({
         console.log('请求完成');
       }
     });
-  //   return new Promise((resolve, reject) => {
-  //   wx.request({
-  //     url: `${apiUrl}/api/internship/getInternshipDetails/${id}`, // 拼接完整的 URL
-  //     method: 'GET',
-  //     header: {
-  //       'content-type': 'application/json'
-  //     },
-  //     success: (res) => {
-  //       if (res.statusCode === 200) {
-  //         let item = res.data.data
-  //         let t = {
-  //           // icon:item.companyLogo,
-  //           id: item.id,
-  //           // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
-  //           icon: item.companyLogo,
-  //           name: item.companyName,
-  //           time: that.extractDate(item.applicationDeadLine),
-  //           iszhao: true,
-  //           sum: item.salary,
-  //           tags: [{
-  //             title: item.companyType
-  //           }, {
-  //             title: item.positionType
-  //           }, {
-  //             title: item.location
-  //           }]
-  //         }
-  //         coco.push(t)
-  //       } else {
-  //         console.error('请求失败:', res);
-  //       }
-  //       resolve(res);
-  //     },
-  //     fail: (err) => {
-  //       console.error('请求失败:', err);
-  //       reject(err);
-  //     },
-  //     complete: () => {
-  //       console.log('请求完成');
-  //     }
-  //   });
-  // })
+    //   return new Promise((resolve, reject) => {
+    //   wx.request({
+    //     url: `${apiUrl}/api/internship/getInternshipDetails/${id}`, // 拼接完整的 URL
+    //     method: 'GET',
+    //     header: {
+    //       'content-type': 'application/json'
+    //     },
+    //     success: (res) => {
+    //       if (res.statusCode === 200) {
+    //         let item = res.data.data
+    //         let t = {
+    //           // icon:item.companyLogo,
+    //           id: item.id,
+    //           // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
+    //           icon: item.companyLogo,
+    //           name: item.companyName,
+    //           time: that.extractDate(item.applicationDeadLine),
+    //           iszhao: true,
+    //           sum: item.salary,
+    //           tags: [{
+    //             title: item.companyType
+    //           }, {
+    //             title: item.positionType
+    //           }, {
+    //             title: item.location
+    //           }]
+    //         }
+    //         coco.push(t)
+    //       } else {
+    //         console.error('请求失败:', res);
+    //       }
+    //       resolve(res);
+    //     },
+    //     fail: (err) => {
+    //       console.error('请求失败:', err);
+    //       reject(err);
+    //     },
+    //     complete: () => {
+    //       console.log('请求完成');
+    //     }
+    //   });
+    // })
   },
-  deletes:function(){
+  deletes: function () {
+    let that = this
+    let ids = []
+    if (this.data.coitem.length > 0)
+      this.data.coitem.forEach((i, k) => {
+        if (i.isdian) {
+          ids.push(i.id)
+        }
+      })
     wx.request({
-      url: `${apiUrl}/internship/cancelCollection/6`, // 拼接完整的 URL
-      method: 'DELETE',
+      url: `${apiUrl}/internship/cancelCollectionByList`, // 拼接完整的 URL
+      method: 'POST',
+      data:ids,
       header: {
-        'content-type': 'application/json'
-      },success: (res) => {
-        console.log(res)
+        'content-type': 'application/json',
+        token: wx.getStorageSync('v_token')
+      },
+      success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data.data)
+          console.log(res.data)
+          setTimeout(() => {
+            that.fetchList()
+          }, 1000)
+          wx.showToast({
+            title: '取消成功',
+            icon: 'success'
+          })
         } else {
           console.error('请求失败:', res);
         }

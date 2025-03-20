@@ -114,9 +114,11 @@ width: 50vw;
   vertical-align: top;
 width: 78vw;
 }
+
 .you image{
   width: 5.26px;
 height: 9.02px;
+margin-left: 20px;
 }
 .tansview{
   margin-right: 30vw;
@@ -148,7 +150,7 @@ text-align: left;
 vertical-align: top;
 
 }
-.you{
+.yous{
   width: 46px;
   height: 26px;
   opacity: 1;
@@ -163,7 +165,22 @@ line-height: 20.27px;
 color: rgba(255, 255, 255, 1);
 text-align: left;
 vertical-align: top;
-
+}
+.you{
+  width: auto;
+  height: 26px;
+  opacity: 1;
+  border-radius: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 20.27px;
+color: rgb(139, 138, 138);
+text-align: left;
+vertical-align: top;
 }
 .photos{
   width: 65px;
