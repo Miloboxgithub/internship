@@ -24,6 +24,25 @@ App({
     pub:false,
     
   },
+  timeSub(timestamp){
+    let date = new Date(timestamp);
+    let formattedDate = date.toISOString().split('T')[0]; // 将日期时间字符串转换为 ISO 格式，然后分割并取日期部分
+    return formattedDate; // 输出: 2052-03-17
+  },
+  cmpToday(givenDateTimeString){
+    // 将给定的日期时间字符串转换为 Date 对象
+    let givenDateTime = new Date(givenDateTimeString);
+    // 获取当前日期时间
+    let now = new Date();
+    // 比较两个日期时间
+    if (givenDateTime > now) {
+        return true
+    } else if (givenDateTime < now) {
+        return false
+    } else {
+        return true
+    }
+  },
   pickerchange:function(){
       
   }

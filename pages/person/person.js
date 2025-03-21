@@ -13,10 +13,16 @@ Page({
       selected: 2
     })
   }
+  if(wx.getStorageSync('loginStatus')){
+    this.setData({
+      islogins:false
+    })
+  }
   },
      //跳转页面
   navigate: function (e) {
     wx.navigateTo({url: e.currentTarget.dataset.url});
+   this.hideview()
   },
   onHandleLogin(e) {
     const detail = e.detail;
@@ -60,6 +66,7 @@ Page({
                   this.setData({
                     islogins:false
                   })
+                  wx.setStorageSync('loginStatus', true)
                   wx.setStorageSync('v_token',res.data.data);
                 } else {
                   console.error('请求失败:', res);

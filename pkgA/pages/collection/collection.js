@@ -55,35 +55,50 @@ Page({
         if (res.statusCode === 200) {
           let op = res.data.data
           let tt = that.data.coitem
-          if(op)
-          op.forEach((item, k) => {
-            let t = {
-              id: item.id,
-              icon: item.companyLogo,
-              name: item.companyName,
-              time: item.deadline,
-              iszhao: true,
-              sum: item.pageview,
-              tags: [{
-                title: item.businessNature
-              }, {
-                title: item.internshipType
-              }, {
-                title: item.location
-              }]
-            }
-            if (item.internshipType == '远程') {
-              t.tags.pop()
-              console.log(t.tags)
-            }
-            if (!t.sum) t.sum = 0
-            tt.push(t)
-          })
+          if (op)
+            op.forEach((item, k) => {
+              let t = {
+                id: item.id,
+                icon: item.companyLogo,
+                name: item.companyName,
+                time: app.timeSub(item.deadline),
+                iszhao: app.cmpToday(item.deadline) ? true : false,
+                sum: item.pageview,
+                tags: [{
+                  title: item.businessNature
+                }, {
+                  title: item.internshipType
+                }, {
+                  title: item.location
+                }]
+              }
+              if (item.internshipType == '远程') {
+                t.tags.pop()
+                console.log(t.tags)
+              }
+              if (!t.sum) t.sum = 0
+              tt.push(t)
+            })
           that.setData({
             coitem: tt
           })
         } else {
           console.error('请求失败:', res);
+          wx.setStorageSync('loginStatus', false)
+          wx.showModal({
+            title: '未登录！',
+            content: '请先去个人页面进行登录',
+            complete: (res) => {
+              if (res.cancel) {
+
+              }
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/person/person',
+                })
+              }
+            }
+          })
         }
       },
       fail: (err) => {
@@ -225,7 +240,9 @@ Page({
               // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
               icon: item.companyLogo,
               name: item.companyName,
-              time: that.extractDate(item.applicationDeadLine),
+              time: app.timeSub(item.deadline),
+              iszhao: app.cmpToday(item.deadline) ? true : false,
+
               isdian: false,
               sum: item.salary,
               tags: [{
@@ -309,7 +326,7 @@ Page({
     wx.request({
       url: `${apiUrl}/internship/cancelCollectionByList`, // 拼接完整的 URL
       method: 'POST',
-      data:ids,
+      data: ids,
       header: {
         'content-type': 'application/json',
         token: wx.getStorageSync('v_token')

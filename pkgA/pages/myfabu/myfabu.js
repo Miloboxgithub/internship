@@ -6,24 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    coitem: [
-  ],
-  lolo:false,
+    coitem: [],
+    lolo: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+
   },
   //带参跳转
-  navigates: function(e){
+  navigates: function (e) {
     let ww = e.currentTarget.dataset.id
     let ans = this.data.coitem[ww].id
-    let url=`/pkgA/pages/fabudetail/fabudetail?id=${ans}`
+    let url = `/pkgA/pages/fabudetail/fabudetail?id=${ans}`
     console.log(url)
-    wx.navigateTo({url: url});
+    wx.navigateTo({
+      url: url
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -31,10 +32,10 @@ Page({
   onReady() {
 
   },
-  getItems(){
+  getItems() {
     let that = this
     this.setData({
-      lolo:true
+      lolo: true
     })
     wx.request({
       url: `${apiUrl}/internship/getMyPublish`, // 拼接完整的 URL
@@ -54,8 +55,9 @@ Page({
               id: item.id,
               icon: item.companyLogo,
               name: item.companyName,
-              time: item.deadline,
-              iszhao: true,
+              time: app.timeSub(item.deadline),
+              iszhao: app.cmpToday(item.deadline) ? true : false,
+
               sum: item.pageview,
               tags: [{
                 title: item.businessNature
@@ -65,10 +67,10 @@ Page({
                 title: item.location
               }]
             }
-            if(item.internshipType=='远程'){
+            if (item.internshipType == '远程') {
               t.tags.pop()
             }
-            if(!t.sum)t.sum = 0
+            if (!t.sum) t.sum = 0
             tt.push(t)
           })
           that.setData({
@@ -77,6 +79,21 @@ Page({
 
         } else {
           console.error('请求失败:', res);
+          wx.setStorageSync('loginStatus', false)
+          wx.showModal({
+            title: '未登录！',
+            content: '请先去个人页面进行登录',
+            complete: (res) => {
+              if (res.cancel) {
+
+              }
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/person/person',
+                })
+              }
+            }
+          })
         }
       },
       fail: (err) => {
@@ -85,7 +102,7 @@ Page({
       complete: () => {
         console.log('请求完成');
         this.setData({
-          lolo:false
+          lolo: false
         })
       }
     });

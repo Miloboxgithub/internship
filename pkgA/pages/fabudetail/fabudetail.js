@@ -88,7 +88,7 @@ Page({
             requirements:ans.requirement,
             acquisitions:ans.harvest,
             contactInfo:ans.deliveryMethod,
-            applicationDeadLine:ans.deadline,
+            applicationDeadLine:app.timeSub(ans.deadline),
             logoImageUrl:ans.companyLogo,
             zixunImageUrl:ans.consultPhoto,
             memo:ans.remark,
@@ -309,11 +309,11 @@ Page({
   },
   bindChange3: function (e) {
     let cc = e.detail.value
-    //console.log(cc,'cc')
+    //console.log(cc,'cc')time
     let y = this.data.years[cc[0]]
     let m = this.data.months[cc[1]]
     let d = this.data.days[cc[2]]
-    console.log(y + '-' + m + '-' + d, this.translateTime(y + '-' + m + '-' + d))
+    console.log(y + '-' + m + '-' + d)
     this.updateDaysOfMonth(y, m);
     this.setData({
       applicationDeadLine: y + '-' + m + '-' + d

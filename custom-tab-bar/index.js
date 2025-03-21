@@ -8,7 +8,7 @@ Component({
       "pagePath": "/pages/home/home",
       "iconPath": "/img/1.png",
       "selectedIconPath": "/img/11.png",
-      "text": "实习咨讯"
+      "text": "实习资讯"
     }, {
       "pagePath": "/pages/publish/publish",
       "iconPath": "/img/2.png",

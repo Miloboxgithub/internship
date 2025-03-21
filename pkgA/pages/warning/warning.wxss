@@ -103,6 +103,7 @@ position: relative;
 .photosimg{
     height: 100%;
     width: 100%;
+    position: relative;
 }
 .calls{
   margin-top: 30px;

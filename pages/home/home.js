@@ -37,15 +37,15 @@ Page({
       type: 'image',
       url: 'https://picsum.photos/700/305'
     }],
-    industry: [
-      {op:'全部',id:0},
-    ],
+    industry: [{
+      op: '全部',
+      id: 0
+    }, ],
     types1: false,
     types2: false,
     types3: false,
     toppx: 0,
-    coitem: [
-    ],
+    coitem: [],
     leixin: [{
       op: '全部',
       ch: true
@@ -59,41 +59,41 @@ Page({
     xinzhi: [{
       op: '全部',
       ch: true,
-      id:0,
+      id: 0,
     }],
     lolo: false,
-    page:1,
+    page: 1,
   },
   onLoad() {
     this.towerSwiper('swiperList');
     // 初始化towerSwiper 传已有的数组名即可
     this.getType()
-  wx.request({
-    url: `${apiUrl}/admin/login`, // 拼接完整的 URL
-    method: 'POST',
-    data:{
-      account: "123",
-    password: "123"
-    },
-    header: {
-      'content-type': 'application/json'
-    },
-    success: (res) => {
-     console.log(res.data)
-     if(res.statusCode==200){
-      wx.setStorageSync('v_token',res.data.data);
-     this.fetchData()
-     }
+    // wx.request({
+    //   url: `${apiUrl}/admin/login`, // 拼接完整的 URL
+    //   method: 'POST',
+    //   data:{
+    //     account: "123",
+    //   password: "123"
+    //   },
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success: (res) => {
+    //    console.log(res.data)
+    //    if(res.statusCode==200){
+    //     wx.setStorageSync('v_token',res.data.data);
+    //    this.fetchData()
+    //    }
 
-    },
-    fail: (err) => {
-      console.error('请求失败:', err);
-    },
-    complete: () => {
-      console.log('请求完成');
-    }
-  });
-  // this.fetchData()
+    //   },
+    //   fail: (err) => {
+    //     console.error('请求失败:', err);
+    //   },
+    //   complete: () => {
+    //     console.log('请求完成');
+    //   }
+    // });
+    this.fetchData()
   },
   fetchData: function () {
     let that = this
@@ -103,7 +103,7 @@ Page({
     wx.request({
       url: `${apiUrl}/internship/getByPage`, // 拼接完整的 URL
       method: 'POST',
-      data:{
+      data: {
         "page": this.data.page,
         "pageSize": 20
       },
@@ -121,9 +121,10 @@ Page({
               id: item.id,
               icon: item.companyLogo,
               name: item.companyName,
-              time: item.deadline,
-              iszhao: true,
+              time: app.timeSub(item.deadline),
+              iszhao: app.cmpToday(item.deadline) ? true : false,
               sum: item.pageview,
+              industryType: item.industryType,
               tags: [{
                 title: item.businessNature
               }, {
@@ -132,16 +133,27 @@ Page({
                 title: item.location
               }]
             }
-            if(item.internshipType=='远程'){
+            if (item.internshipType == '远程') {
               t.tags.pop()
               console.log(t.tags)
             }
-            if(!t.sum)t.sum = 0
+            if (!t.sum) t.sum = 0
             tt.push(t)
           })
+          console.log(tt, 't', this.data.hang, this.data.lei, this.data.xing)
+          if (this.data.hang != '行业' && this.data.hang != '全部') {
+            tt = tt.filter(item => item.industryType == this.data.hang);
+          }
+          if (this.data.lei != '类型' && this.data.lei != '全部') {
+            tt = tt.filter(item => item.tags[1].title == this.data.lei);
+          }
+          if (this.data.xing != '性质' && this.data.xing != '全部') {
+            tt = tt.filter(item => item.tags[0].title == this.data.xing);
+          }
           that.setData({
             coitem: tt
           })
+          console.log(this.data.coitem)
         } else {
           console.error('请求失败:', res);
         }
@@ -152,19 +164,19 @@ Page({
       complete: () => {
         console.log('请求完成');
         that.setData({
-          lolo:false
+          lolo: false
         })
       }
     });
   },
-  onReachBottom(){
-    if(this.data.lolo)return
+  onReachBottom() {
+    if (this.data.lolo) return
     this.setData({
-      page:this.data.page + 1
+      page: this.data.page + 1
     })
     this.fetchData()
   },
-  getType(){
+  getType() {
     wx.request({
       url: `${apiUrl}/businessNature/getBusinessNatureList`, // 拼接完整的 URL
       method: 'GET',
@@ -175,15 +187,15 @@ Page({
         if (res.statusCode === 200) {
           console.log(res.data.data)
           let ttt = this.data.xinzhi
-          res.data.data.forEach((i,k)=>{
+          res.data.data.forEach((i, k) => {
             ttt.push({
-              op:i.businessNature,
-              id:i.id,
-              ch:false
+              op: i.businessNature,
+              id: i.id,
+              ch: false
             })
           })
           this.setData({
-            xinzhi:ttt
+            xinzhi: ttt
           })
         } else {
           console.error('请求失败:', res);
@@ -206,14 +218,14 @@ Page({
         if (res.statusCode === 200) {
           console.log(res.data.data)
           let ttt = this.data.industry
-          res.data.data.forEach((i,k)=>{
+          res.data.data.forEach((i, k) => {
             ttt.push({
-              op:i.industryType,
-              id:i.id
+              op: i.industryType,
+              id: i.id
             })
           })
           this.setData({
-            industry:ttt
+            industry: ttt
           })
         } else {
           console.error('请求失败:', res);
@@ -306,53 +318,54 @@ Page({
       })
     }
     this.getweizhi()
-    if(app.globalData.sharecoitem.length==0){}
+    if (app.globalData.sharecoitem.length == 0) {}
     //this.fetchData()
-    else{
+    else {
       wx.showToast({
         title: '搜索成功',
-        icon:'success'
-      },1000)
-      let that =this
+        icon: 'success'
+      }, 1000)
+      let that = this
       that.setData({
-        coitem:[],
-        lolo:true,
+        coitem: [],
+        lolo: true,
       })
       let op = app.globalData.sharecoitem
-          let tt = []
-          op.forEach((item, k) => {
-            let t = {
-              id: item.id,
-              icon: item.companyLogo,
-              name: item.companyName,
-              time: item.deadline,
-              iszhao: true,
-              sum: item.pageview,
-              tags: [{
-                title: item.businessNature
-              }, {
-                title: item.internshipType
-              }, {
-                title: item.location
-              }]
-            }
-            if(item.internshipType=='远程'){
-              t.tags.pop()
-              console.log(t.tags)
-            }
-            if(!t.sum)t.sum = 0
-            tt.push(t)
-          })
-          that.setData({
-            coitem: tt,
-            lolo: false
-          })
-          app.globalData.sharecoitem=[]
+      let tt = []
+      op.forEach((item, k) => {
+        let t = {
+          id: item.id,
+          icon: item.companyLogo,
+          name: item.companyName,
+          time: app.timeSub(item.deadline),
+          iszhao: app.cmpToday(item.deadline) ? true : false,
+
+          sum: item.pageview,
+          tags: [{
+            title: item.businessNature
+          }, {
+            title: item.internshipType
+          }, {
+            title: item.location
+          }]
+        }
+        if (item.internshipType == '远程') {
+          t.tags.pop()
+          console.log(t.tags)
+        }
+        if (!t.sum) t.sum = 0
+        tt.push(t)
+      })
+      that.setData({
+        coitem: tt,
+        lolo: false
+      })
+      app.globalData.sharecoitem = []
     }
-    if(app.globalData.pub){
+    if (app.globalData.pub) {
       this.setData({
-        page:1,
-        coitem:[]
+        page: 1,
+        coitem: []
       })
       this.fetchData();
     }
@@ -375,7 +388,7 @@ Page({
     //   this.setData({
     //     hua:false
     //   })
-       //console.log(123)
+    //console.log(123)
     // }
   },
   // 关闭遮罩层
@@ -392,8 +405,8 @@ Page({
   },
   onPullDownRefresh() {
     this.setData({
-      page:1,
-      coitem:[]
+      page: 1,
+      coitem: []
     })
     this.fetchData();
     // 下拉刷新完成后，需要调用 wx.stopPullDownRefresh 停止刷新动画
@@ -413,12 +426,13 @@ Page({
   },
   //选择类型
   chooseop(e) {
+    let that = this
     let cc = e.currentTarget.id
     let leixin = this.data.leixin.slice()
     leixin.forEach(item => {
       item.ch = false;
     })
-    let aa = leixin[cc].op
+    let aa = leixin[cc].op.substring(0, 2);
     console.log(aa)
     if (cc >= 0 && cc < leixin.length) {
       leixin[cc].ch = true
@@ -427,59 +441,13 @@ Page({
       })
     }
     this.setData({
-      leixin: leixin
+      leixin: leixin,
+      page: 1,
+      coitem: []
     })
-    wx.request({
-      url: `${apiUrl}/internship/selectByContent`, // 拼接完整的 URL
-      method: 'GET',
-      data:{
-        companyName: "",
-        businessNature : ctype
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.statusCode === 200) {
-          console.log(res.data.data)
-          let op = res.data.data
-          let tt = []
-          op.forEach((item, k) => {
-            let t = {
-              // icon:item.companyLogo,
-              id: item.id,
-              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
-              icon: item.companyLogo,
-              name: item.companyName,
-              time: that.extractDate(item.applicationDeadLine),
-              iszhao: true,
-              sum: item.salary,
-              tags: [{
-                title: item.companyType
-              }, {
-                title: item.positionType
-              }, {
-                title: item.location
-              }]
-            }
-            tt.push(t)
-          })
-          that.setData({
-            coitem: tt,
-            lolo: false
-          })
 
-        } else {
-          console.error('请求失败:', res);
-        }
-      },
-      fail: (err) => {
-        console.error('请求失败:', err);
-      },
-      complete: () => {
-        console.log('请求完成');
-      }
-    });
+    this.fetchData()
+    that.hideview()
   },
   //选择性质
   chooseopp(e) {
@@ -489,6 +457,7 @@ Page({
       item.ch = false;
     })
     let aa = xinzhi[cc].op
+    console.log(aa)
     if (cc >= 0 && cc < xinzhi.length) {
       xinzhi[cc].ch = true
       this.setData({
@@ -496,134 +465,28 @@ Page({
       })
     }
     this.setData({
-      xinzhi: xinzhi
+      xinzhi: xinzhi,
+      page: 1,
+      coitem: []
     })
-    console.log(this.data.xinzhi[cc].op,'op')
-    let ctype = this.data.xinzhi[cc].op
-    
-    let that = this
-    this.setData({
-      coitem: [],
-      lolo: false
-    })
-    if(ctype!='全部')
-    wx.request({
-      url: `${apiUrl}/internship/selectByContent`, // 拼接完整的 URL
-      method: 'GET',
-      data:{
-        companyName: "",
-        businessNature : ctype
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.statusCode === 200) {
-          console.log(res.data.data)
-          let op = res.data.data
-          let tt = []
-          op.forEach((item, k) => {
-            let t = {
-              // icon:item.companyLogo,
-              id: item.id,
-              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
-              icon: item.companyLogo,
-              name: item.companyName,
-              time: that.extractDate(item.applicationDeadLine),
-              iszhao: true,
-              sum: item.salary,
-              tags: [{
-                title: item.companyType
-              }, {
-                title: item.positionType
-              }, {
-                title: item.location
-              }]
-            }
-            tt.push(t)
-          })
-          that.setData({
-            coitem: tt,
-            lolo: false
-          })
-
-        } else {
-          console.error('请求失败:', res);
-        }
-      },
-      fail: (err) => {
-        console.error('请求失败:', err);
-      },
-      complete: () => {
-        console.log('请求完成');
-      }
-    });
-    else that.fetchData()
-    that.hideview()
+    this.fetchData()
+    this.hideview()
   },
   //选择器变化
   bindChange: function (e) {
     let cc = e.detail.value
     console.log(cc)
     this.setData({
-      hangs: this.data.industry[cc[0]]
+      hangs: this.data.industry[cc[0]].op
     })
   },
   queren: function () {
     this.setData({
-      hang: this.data.hangs
+      hang: this.data.hangs,
+      page: 1,
+      coitem: []
     })
-    wx.request({
-      url: `${apiUrl}/internship/selectByContent`, // 拼接完整的 URL
-      method: 'GET',
-      data:{
-        companyName: "",
-        businessNature : ctype
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.statusCode === 200) {
-          console.log(res.data.data)
-          let op = res.data.data
-          let tt = []
-          op.forEach((item, k) => {
-            let t = {
-              // icon:item.companyLogo,
-              id: item.id,
-              // icon:`https://picsum.photos/30${Math.floor(Math.random() * 10)}/30${Math.floor(Math.random() * 10)}`,
-              icon: item.companyLogo,
-              name: item.companyName,
-              time: that.extractDate(item.applicationDeadLine),
-              iszhao: true,
-              sum: item.salary,
-              tags: [{
-                title: item.companyType
-              }, {
-                title: item.positionType
-              }, {
-                title: item.location
-              }]
-            }
-            tt.push(t)
-          })
-          that.setData({
-            coitem: tt,
-            lolo: false
-          })
-
-        } else {
-          console.error('请求失败:', res);
-        }
-      },
-      fail: (err) => {
-        console.error('请求失败:', err);
-      },
-      complete: () => {
-        console.log('请求完成');
-      }
-    });
+    this.fetchData()
     this.hideview()
   },
   //跳转页面

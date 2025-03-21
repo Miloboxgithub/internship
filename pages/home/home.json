@@ -2,7 +2,7 @@
   "usingComponents": {
     
   },
-  "navigationBarTitleText": "实习资讯",
+  "navigationBarTitleText": "实习大全",
   "enablePullDownRefresh": true,
   "backgroundColor": "#efefef",
   "backgroundTextStyle":"dark",

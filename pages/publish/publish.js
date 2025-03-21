@@ -8,6 +8,7 @@ Page({
     types1: false,
     types2: false,
     types3: false,
+    types4: false,
     industryes: [
       {
         op:'无',
@@ -20,7 +21,9 @@ Page({
     }
     ],
     hangs:'',
+    hangss:'',//待定
     xin:'',
+    xins:'',//待定
     value: [0, 0, 0], // 默认选择的年月日索引
     years: [],
     months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -34,12 +37,16 @@ Page({
     industry: '',
     position: '',
     location: '',
+    locations: '',//待定
     description: '',
     requirements: '',
     contactInfo: '',
     contactInfo: '',
     internshipType:'线下',
     applicationDeadLine:'',
+    applicationDeadLines:'',//待定
+    sheng:[],
+    shi:[],
   },
   PostMsg() {
     const {companyName, hangs, xin, position, internshipType, location, description, requirements, acquisitions, contactInfo, applicationDeadLine, logoImageUrl } = this.data;
@@ -184,6 +191,21 @@ Page({
         app.globalData.pub = true
         } else {
           console.error('请求失败:', res);
+          wx.setStorageSync('loginStatus', false)
+          wx.showModal({
+            title: '未登录！',
+            content: '请先去个人页面进行登录',
+            complete: (res) => {
+              if (res.cancel) {
+                
+              }
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/person/person',
+                })
+              }
+            }
+          })
         }
       },
       fail: (err) => {
@@ -195,8 +217,75 @@ Page({
     });
   },
   onLoad() {
-    this.getType()
-    this.initDatePicker();
+
+  },
+  getWeizhi(){
+    let that = this
+    wx.request({
+      url: `${apiUrl}/getProvinceList`, // 拼接完整的 URL
+      method: 'GET',
+      header: {
+        token:wx.getStorageSync('v_token')
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          that.setData({
+            sheng:res.data.data
+          })
+          wx.request({
+            url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+            method: 'POST',
+            data:{
+              province:this.data.sheng[0]
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+              token:wx.getStorageSync('v_token')
+            },
+            success: (res) => {
+              if (res.statusCode === 200) {
+                console.log(res.data)
+                that.setData({
+                  shi:res.data.data
+                })
+              } else {
+                console.error('请求失败:', res);
+              }
+            },
+            fail: (err) => {
+              console.error('请求失败:', err);
+            },
+            complete: () => {
+              console.log('请求完成');
+            }
+          });
+        } else {
+          console.error('请求失败:', res);
+          wx.setStorageSync('loginStatus', false)
+          wx.showModal({
+            title: '未登录！',
+            content: '请先去个人页面进行登录',
+            complete: (res) => {
+              if (res.cancel) {
+                
+              }
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/person/person',
+                })
+              }
+            }
+          })
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
   },
   getType(){
     wx.request({
@@ -288,6 +377,9 @@ Page({
         selected: 1
       })
     }
+    this.getType()
+    this.initDatePicker();
+    this.getWeizhi()
   },
 
 reset(){
@@ -380,7 +472,8 @@ reset(){
   },
   queren1: function () {
     this.setData({
-      types1: !this.data.types1
+      types1: !this.data.types1,
+      hangs:this.data.hangss
     })
     console.log(this.data.hangs)
     this.getTabBar().setData({
@@ -389,7 +482,8 @@ reset(){
   },
   queren2: function () {
     this.setData({
-      types2: !this.data.types2
+      types2: !this.data.types2,
+      xin:this.data.xins
     })
     console.log(this.data.xin)
     this.getTabBar().setData({
@@ -398,7 +492,17 @@ reset(){
   },
   queren3: function () {
     this.setData({
-      types3: !this.data.types3
+      types3: !this.data.types3,
+      applicationDeadLine:this.data.applicationDeadLines
+    })
+    this.getTabBar().setData({
+      chans: false
+    })
+  },
+  queren4: function () {
+    this.setData({
+      types4: !this.data.types4,
+      location:this.data.locations
     })
     this.getTabBar().setData({
       chans: false
@@ -408,7 +512,8 @@ reset(){
     this.setData({
       types1: false,
       types2: false,
-      types3: false
+      types3: false,
+      types4:false
     })
     //隐藏tabber
     this.getTabBar().setData({
@@ -422,7 +527,7 @@ reset(){
     this.setData({
       types1: true,
       types2: false,
-      types3: false
+      types3: false,types4:false,
     })
     if (ce)
       this.setData({
@@ -440,7 +545,7 @@ reset(){
     this.setData({
       types1: false,
       types2: true,
-      types3: false
+      types3: false,types4:false,
     })
     if (ce)
       this.setData({
@@ -458,7 +563,28 @@ reset(){
     this.setData({
       types1: false,
       types2: false,
-      types3: true
+      types3: true,
+      types4:false,
+    })
+    if (ce)
+      this.setData({
+        [e.currentTarget.id]: !this.data[e.currentTarget.id]
+      })
+    //隐藏tabber
+    this.getTabBar().setData({
+      chans: !this.getTabBar().data.chans
+    })
+    console.log(1234)
+  },
+  changetypest4(e) {
+    let ce = true
+    if (this.data[e.currentTarget.id]) ce = !ce
+    let ts = e.currentTarget.id
+    this.setData({
+      types1: false,
+      types2: false,
+      types3: false,
+      types4:true,
     })
     if (ce)
       this.setData({
@@ -474,14 +600,14 @@ reset(){
     let cc = e.detail.value
     // console.log(cc,e)
     this.setData({
-      hangs: this.data.industryes[cc[0]]
+      hangss: this.data.industryes[cc[0]]
     })
   },
   bindChange2: function (e) {
     let cc = e.detail.value
     console.log(cc)
     this.setData({
-      xin: this.data.xinzhi[cc[0]]
+      xins: this.data.xinzhi[cc[0]]
     })
   },
   bindChange3: function (e) {
@@ -489,12 +615,52 @@ reset(){
     let y = this.data.years[cc[0]]
     let m = this.data.months[cc[1]]
     let d = this.data.days[cc[2]]
-    console.log(y + '-' + m + '-' + d, this.translateTime(y + '-' + m + '-' + d))
+    console.log(y + '-' + m + '-' + d)
     this.updateDaysOfMonth(y, m);
     this.setData({
-      applicationDeadLine: y + '-' + m + '-' + d
+      applicationDeadLines: y + '-' + m + '-' + d
     })
   },
+  bindChange4: function (e) {
+    let that = this
+    let cc=e.detail.value
+    console.log(cc,this.data.sheng[cc[0]])
+    wx.request({
+      url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+      method: 'POST',
+      data:{
+        province:this.data.sheng[cc[0]]
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        token:wx.getStorageSync('v_token')
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          that.setData({
+            shi:res.data.data
+          })
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+    setTimeout(()=>{
+      this.setData({
+        locations:this.data.sheng[cc[0]]+this.data.shi[cc[1]]
+      })
+      console.log(this.data.locations)
+    },500)
+
+  },
+  
   chooseImagelogo: function (e) {
     let that = this
     wx.chooseImage({

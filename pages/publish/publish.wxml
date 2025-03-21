@@ -42,7 +42,8 @@
     <view wx:if="{{!types0}}" style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">实习地点<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <textarea class="tst" auto-height  bindinput="inputed" data-name="location" type="text" value="{{location}}" placeholder="请填写实习地点"/>
+        <!-- <textarea class="tst" auto-height  bindinput="inputed" data-name="location" type="text" value="{{location}}" placeholder="请填写实习地点"/> -->
+        <view class="you" bindtap="changetypest4">{{location}}<image src="/img/you.png" mode=""/></view>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -172,6 +173,26 @@
     </picker-view-column>
     <picker-view-column>
       <view wx:for="{{days}}" wx:key="*this" style="line-height: 50px; width: 33vw; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>
+<!-- 底部选择器 -->
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types4?'block':'none'}}; top:0px;"></view>
+<view class="bpickers" catchtouchmove="true" style="display: {{types4?'block':'none'}}; ">
+  <view class="boxse">
+    <view class="quxiao" bindtap='hideview'>
+      取消
+    </view>
+    <view class="queren" bind:tap="queren4">
+      确定
+    </view>
+  </view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange4">
+    <picker-view-column >
+      <view wx:for="{{sheng}}" style="line-height: 50px ;text-align: center;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{shi}}" style="line-height: 50px; text-align: center; font-size: 18px;font-weight: 500;">{{item}}</view>
     </picker-view-column>
   </picker-view>
 </view>

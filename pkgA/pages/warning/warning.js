@@ -13,32 +13,63 @@ Page({
       ImageUrl2:'',
       ImageUrl3:'',
       contactWay:'',
+      idd:0,
   },
   onLoad(options) {
-
+    console.log(options.op)
+    this.setData({
+      idd:options.op
+    })
   },
   submits(){
     console.log(this.data.contactWay)
     let reason = ''
+
     this.data.items.forEach((i,k)=>{
       if(i.isAc)reason = i.text
     })
-    console.log(reason)
+    if(reason==''||this.data.inputText==''){
+      wx.showToast({
+        title: '请填写举报原因与描述',
+        icon:'none'
+      })
+      return ;
+    }
+    if(this.data.contactWay == ''){
+      wx.showToast({
+        title: '请填写联系方式',
+        icon:'none'
+      })
+      return ;
+    }
+    console.log(reason,this.data.inputText,this.data.contactWay,this.data.idd,this.data.ImageUrl1)
     wx.request({
       url: `${apiUrl}/report/addReport`, // 拼接完整的 URL
       method: 'POST',
       data:{
-        "reason": reason,
-    "description": this.data.inputText,
-    "screenshot": this.data.ImageUrl1,
-    "contactWay": this.data.contactWay
+        reason: reason,
+        description:this.data.inputText,
+        screenshot: this.data.ImageUrl1,
+        contactWay: this.data.contactWay,
+        internshipId :this.data.idd
       },
       header: {
-        'content-type': 'application/json'
+        'token': wx.getStorageSync('v_token') // 传递 token
       },success: (res) => {
         console.log(res)
         if (res.statusCode === 200) {
-          console.log(res.data.data)
+          console.log(res.data)
+          wx.showToast({
+            title: '举报成功！',
+          })
+          setTimeout(()=>{
+            wx.navigateBack({
+              delta: 1,
+              success: (res) => {},
+              fail: (res) => {},
+              complete: (res) => {},
+            })
+          },1500)
         } else {
           console.error('请求失败:', res);
         }
