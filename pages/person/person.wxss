@@ -97,7 +97,7 @@
 }
 
 .heads image {
-
+  border-radius: 50%;
   width: 65px;
   height: 65px;
 }
@@ -106,7 +106,7 @@
   left: 31px;
   top: 114px;
   position: fixed;
-
+  width: 300px;
 }
 
 .ts1 {

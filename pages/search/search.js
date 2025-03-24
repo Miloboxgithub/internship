@@ -6,67 +6,104 @@ Page({
    * 页面的初始数据
    */
   data: {
-    contents:'超威电源集团有限公司',
-    items:[
+    contents: '',
+    items: [
       // '小红书','超威电源集团有限公司','慧眼数据分析有限公司','云端信息科技','星辰网络服务有限公司'
     ],
-    msg:'',
-
+    msg: '',
+    flag: true,
   },
-  inputed(e){
-    let msg=e.detail.value
+  inputed(e) {
+    let msg = e.detail.value
     console.log(msg)
-   this.setData({
-     msg
-   })
-  },
-  searchs(){
-    let msg = this.data.msg
-    let record = Array.isArray(this.data.items) ? this.data.items : []; // 确保 record 是数组
-    record.push(msg)
     this.setData({
-      items:record
+      msg
     })
-    wx.setStorageSync('srecord', record)
+  },
+  ggg() {
+    console.log(546)
+    this.setData({
+      msg: '',
+      flag:true
+    })
+  },
+  searchs() {
+    let msg = this.data.msg;
+    if (!msg) {
+      wx.showToast({
+        title: '请输入搜索内容',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    let record = Array.isArray(this.data.items) ? this.data.items : []; // 确保 record 是数组
+    
+    // 判重并保留最新的相同元素
+    if (!record.includes(msg)) {
+      record.unshift(msg); // 将 msg 添加到数组前面
+    } else {
+      // 如果 msg 已经存在，则移除旧的，然后将新的 msg 添加到数组前面
+      record = record.filter(item => item !== msg);
+      record.unshift(msg);
+    }
+    
+    // 确保数组长度不超过40
+    if (record.length > 40) {
+      record.pop(); // 删除数组最后一个元素（最旧的元素）
+    }
+    
+    this.setData({
+      items: record
+    });
+    
+    wx.setStorageSync('srecord', record);
     wx.request({
-      url: `${apiUrl}/internship/esSearch?content=${msg}`, // 拼接完整的 URL
+      url: `${apiUrl}/internship/esSearch`, // 拼接完整的 URL
       method: 'POST',
-      // data:{
-      //   content:msg
-      // },
+      data: {
+        "page": 1,
+        "pageSize": 1000,
+        content: msg
+      },
       header: {
         'content-type': 'application/json',
         'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data,'search')
-          app.globalData.sharecoitem = res.data.data
-          if(res.data.data.length!=0){
+          console.log(res.data, 'search')
+          app.globalData.sharecoitem = res.data.data.records
+          if (res.data.data.records.length != 0) {
             wx.switchTab({
               url: '/pages/home/home?op=1',
             })
-          }
-          else{
-            wx.showToast({
-              title: '没有这个数据',
-              icon:'error'
-            },1000)
+            this.setData({
+              flag:true
+            })
+          } else {
+            // wx.showToast({
+            //   title: '没有这个数据',
+            //   icon: 'error'
+            // }, 1000)
+            this.setData({
+              flag:false
+            })
           }
         } else {
           console.error('请求失败:', res);
           wx.showToast({
             title: '搜索失败',
-            icon:'error'
-          },1000)
+            icon: 'error'
+          }, 1000)
         }
       },
       fail: (err) => {
         console.error('请求失败:', err);
         wx.showToast({
           title: '搜索失败',
-          icon:'error'
-        },1000)
+          icon: 'error'
+        }, 1000)
       },
     });
   },
@@ -75,8 +112,13 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      items : wx.getStorageSync('srecord')
+      items: wx.getStorageSync('srecord')
     })
   },
-
+  shang(e) {
+    console.log(e.currentTarget.dataset.s)
+    this.setData({
+      msg: e.currentTarget.dataset.s
+    })
+  }
 })

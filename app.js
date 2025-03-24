@@ -19,7 +19,7 @@ App({
   globalData: {
     userInfo: null,
     oop:true,
-    apiUrl: 'http://119.29.119.100:8082' , // 你的 API 基础 URL
+    apiUrl: 'https://shixi.xydsh.cn' , // 你的 API 基础 URL
     sharecoitem:[],
     pub:false,
     

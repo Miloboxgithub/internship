@@ -4,9 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 .heads image{
-
+border-radius: 50%;
 width: 60px;
 height: 60px;
 opacity: 1;
@@ -172,4 +173,11 @@ height: 9.02px;
   vertical-align: top;
   border-radius: 15px;
   background: rgba(80, 177, 178, 1);
+}
+.avatar-wrapper{
+  width: 60px;
+  height: 60px;
+  position: absolute;
+top: 0;
+  opacity: 0;
 }

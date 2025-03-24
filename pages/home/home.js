@@ -12,31 +12,7 @@ Page({
       id: 0,
       type: 'image',
       url: 'https://img.js.design/assets/img/6690dfbf1af97b1f8ea999cc.jpg#295565f169a0eb19e9101bc83d69b509'
-    }, {
-      id: 1,
-      type: 'image',
-      url: 'https://picsum.photos/700/301',
-    }, {
-      id: 2,
-      type: 'image',
-      url: 'https://picsum.photos/700/300'
-    }, {
-      id: 3,
-      type: 'image',
-      url: 'https://picsum.photos/700/302'
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'https://picsum.photos/700/303'
-    }, {
-      id: 5,
-      type: 'image',
-      url: 'https://picsum.photos/700/304'
-    }, {
-      id: 6,
-      type: 'image',
-      url: 'https://picsum.photos/700/305'
-    }],
+    },],
     industry: [{
       op: '全部',
       id: 0
@@ -63,9 +39,12 @@ Page({
     }],
     lolo: false,
     page: 1,
+    gun: true, //是否下滑刷新
+    sharecoitem:[],
   },
   onLoad() {
-    this.towerSwiper('swiperList');
+    this.getSwiper()
+    
     // 初始化towerSwiper 传已有的数组名即可
     this.getType()
     // wx.request({
@@ -171,6 +150,7 @@ Page({
   },
   onReachBottom() {
     if (this.data.lolo) return
+    if (!this.data.gun) return
     this.setData({
       page: this.data.page + 1
     })
@@ -257,6 +237,40 @@ Page({
       cardCur: e.detail.current
     })
   },
+  getSwiper(){
+    let that = this
+    wx.request({
+      url: `${apiUrl}/carousel/getAllCarousel`, // 拼接完整的 URL
+      method: 'GET',
+      header: {
+      },
+      success: (res) => {
+       console.log(res,'getAllCarousel')
+       if(res.statusCode==200){
+        let op = []
+        res.data.data.forEach((i,k)=>{
+          op.push({
+            id:k,
+            type:'image',
+            url:i.image,
+            link:i.link
+          })
+        })
+        that.setData({
+          swiperList:op
+        })
+        this.towerSwiper('swiperList');
+       }
+
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+  },
   // towerSwiper
   // 初始化towerSwiper
   towerSwiper(name) {
@@ -329,6 +343,7 @@ Page({
       that.setData({
         coitem: [],
         lolo: true,
+        gun: false
       })
       let op = app.globalData.sharecoitem
       let tt = []
@@ -358,6 +373,7 @@ Page({
       })
       that.setData({
         coitem: tt,
+        sharecoitem:tt,
         lolo: false
       })
       app.globalData.sharecoitem = []
@@ -406,7 +422,8 @@ Page({
   onPullDownRefresh() {
     this.setData({
       page: 1,
-      coitem: []
+      coitem: [],
+      gun: true
     })
     this.fetchData();
     // 下拉刷新完成后，需要调用 wx.stopPullDownRefresh 停止刷新动画
@@ -445,8 +462,23 @@ Page({
       page: 1,
       coitem: []
     })
-
+    if(this.data.gun)
     this.fetchData()
+    else{
+      let tt = this.data.sharecoitem
+      if (this.data.hang != '行业' && this.data.hang != '全部') {
+        tt = tt.filter(item => item.industryType == this.data.hang);
+      }
+      if (this.data.lei != '类型' && this.data.lei != '全部') {
+        tt = tt.filter(item => item.tags[1].title == this.data.lei);
+      }
+      if (this.data.xing != '性质' && this.data.xing != '全部') {
+        tt = tt.filter(item => item.tags[0].title == this.data.xing);
+      }
+      this.setData({
+        coitem:tt
+      })
+    }
     that.hideview()
   },
   //选择性质
@@ -469,7 +501,23 @@ Page({
       page: 1,
       coitem: []
     })
+    if(this.data.gun)
     this.fetchData()
+    else{
+      let tt = this.data.sharecoitem
+      if (this.data.hang != '行业' && this.data.hang != '全部') {
+        tt = tt.filter(item => item.industryType == this.data.hang);
+      }
+      if (this.data.lei != '类型' && this.data.lei != '全部') {
+        tt = tt.filter(item => item.tags[1].title == this.data.lei);
+      }
+      if (this.data.xing != '性质' && this.data.xing != '全部') {
+        tt = tt.filter(item => item.tags[0].title == this.data.xing);
+      }
+      this.setData({
+        coitem:tt
+      })
+    }
     this.hideview()
   },
   //选择器变化
@@ -486,7 +534,23 @@ Page({
       page: 1,
       coitem: []
     })
+    if(this.data.gun)
     this.fetchData()
+    else{
+      let tt = this.data.sharecoitem
+      if (this.data.hang != '行业' && this.data.hang != '全部') {
+        tt = tt.filter(item => item.industryType == this.data.hang);
+      }
+      if (this.data.lei != '类型' && this.data.lei != '全部') {
+        tt = tt.filter(item => item.tags[1].title == this.data.lei);
+      }
+      if (this.data.xing != '性质' && this.data.xing != '全部') {
+        tt = tt.filter(item => item.tags[0].title == this.data.xing);
+      }
+      this.setData({
+        coitem:tt
+      })
+    }
     this.hideview()
   },
   //跳转页面

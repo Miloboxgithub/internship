@@ -9,26 +9,23 @@ Page({
     types2: false,
     types3: false,
     types4: false,
-    industryes: [
-      {
-        op:'无',
-        id:0
-      }
-    ],
+    industryes: [{
+      op: '无',
+      id: 0
+    }],
     xinzhi: [{
-      op:'无',
-      id:0
-    }
-    ],
-    hangs:'',
-    hangss:'',//待定
-    xin:'',
-    xins:'',//待定
+      op: '无',
+      id: 0
+    }],
+    hangs: '',
+    hangss: '', //待定
+    xin: '',
+    xins: '', //待定
     value: [0, 0, 0], // 默认选择的年月日索引
     years: [],
     months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     days: [],
-    currentDate:'', // 当前日期
+    currentDate: '', // 当前日期
     logoImageUrl: '',
     zixunImageUrl: '',
     //  postmsg
@@ -37,19 +34,32 @@ Page({
     industry: '',
     position: '',
     location: '',
-    locations: '',//待定
+    locations: '', //待定
     description: '',
     requirements: '',
     contactInfo: '',
     contactInfo: '',
-    internshipType:'线下',
-    applicationDeadLine:'',
-    applicationDeadLines:'',//待定
-    sheng:[],
-    shi:[],
+    internshipType: '线下',
+    applicationDeadLine: '',
+    applicationDeadLines: '', //待定
+    sheng: [],
+    shi: [],
   },
   PostMsg() {
-    const {companyName, hangs, xin, position, internshipType, location, description, requirements, acquisitions, contactInfo, applicationDeadLine, logoImageUrl } = this.data;
+    const {
+      companyName,
+      hangs,
+      xin,
+      position,
+      internshipType,
+      location,
+      description,
+      requirements,
+      acquisitions,
+      contactInfo,
+      applicationDeadLine,
+      logoImageUrl
+    } = this.data;
 
     // 检查每个字段是否为空
     if (!companyName) {
@@ -87,7 +97,7 @@ Page({
       });
       return;
     }
-    if (!this.data.types0&&!location) {
+    if (!this.data.types0 && !location) {
       wx.showToast({
         title: '请填写实习地点',
         icon: 'none'
@@ -140,10 +150,10 @@ Page({
     // 如果所有字段都已填写，提交表单
     console.log('提交表单', this.data);
     // 这里可以添加提交表单的代码，例如使用 wx.request 发送数据到服务器
-    if(!this.data.checks){
+    if (!this.data.checks) {
       wx.showToast({
         title: '请阅读并勾选隐私协议!',
-        icon:'none'
+        icon: 'none'
       })
       return;
     }
@@ -152,7 +162,7 @@ Page({
       industryType: this.data.hangs.op,
       businessNature: this.data.xin.op,
       jobPosition: this.data.position,
-      internshipType:this.data.internshipType,
+      internshipType: this.data.internshipType,
       location: this.data.location,
       responsibility: this.data.description,
       requirement: this.data.requirements,
@@ -161,19 +171,19 @@ Page({
       deadline: this.translateTime(this.data.applicationDeadLine),
       companyLogo: this.data.logoImageUrl,
       consultPhoto: this.data.zixunImageUrl,
-      pageview : 0,//浏览量
-      weights : 1,//权重
+      pageview: 0, //浏览量
+      weights: 1, //权重
       remark: this.data.memo,
-      industryTypeId:this.data.hangs.id ,
-      businessNatureId:this.data.xin.id,
+      industryTypeId: this.data.hangs.id,
+      businessNatureId: this.data.xin.id,
     }
-    console.log(pmsg,wx.getStorageSync('v_token'))
+    console.log(pmsg, wx.getStorageSync('v_token'))
     wx.request({
       url: `${apiUrl}/internship/addInternship`, // 拼接完整的 URL
       method: 'POST',
       data: pmsg,
       header: {
-        token:wx.getStorageSync('v_token')
+        token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
@@ -182,13 +192,13 @@ Page({
             title: '发布成功',
             icon: 'success',
             duration: 2000
-        });
-        setTimeout(()=>{
-          wx.switchTab({
-            url: '/pages/home/home',
-          })
-        },1500)
-        app.globalData.pub = true
+          });
+          setTimeout(() => {
+            wx.switchTab({
+              url: '/pages/home/home',
+            })
+          }, 1500)
+          app.globalData.pub = true
         } else {
           console.error('请求失败:', res);
           wx.setStorageSync('loginStatus', false)
@@ -197,7 +207,7 @@ Page({
             content: '请先去个人页面进行登录',
             complete: (res) => {
               if (res.cancel) {
-                
+
               }
               if (res.confirm) {
                 wx.switchTab({
@@ -219,35 +229,35 @@ Page({
   onLoad() {
 
   },
-  getWeizhi(){
+  getWeizhi() {
     let that = this
     wx.request({
       url: `${apiUrl}/getProvinceList`, // 拼接完整的 URL
       method: 'GET',
       header: {
-        token:wx.getStorageSync('v_token')
+        token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
           that.setData({
-            sheng:res.data.data
+            sheng: res.data.data
           })
           wx.request({
             url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
             method: 'POST',
-            data:{
-              province:this.data.sheng[0]
+            data: {
+              province: this.data.sheng[0]
             },
             header: {
               'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-              token:wx.getStorageSync('v_token')
+              token: wx.getStorageSync('v_token')
             },
             success: (res) => {
               if (res.statusCode === 200) {
                 console.log(res.data)
                 that.setData({
-                  shi:res.data.data
+                  shi: res.data.data
                 })
               } else {
                 console.error('请求失败:', res);
@@ -268,7 +278,7 @@ Page({
             content: '请先去个人页面进行登录',
             complete: (res) => {
               if (res.cancel) {
-                
+
               }
               if (res.confirm) {
                 wx.switchTab({
@@ -287,7 +297,7 @@ Page({
       }
     });
   },
-  getType(){
+  getType() {
     wx.request({
       url: `${apiUrl}/businessNature/getBusinessNatureList`, // 拼接完整的 URL
       method: 'GET',
@@ -297,14 +307,14 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
           let ttt = this.data.xinzhi
-          res.data.data.forEach((i,k)=>{
+          res.data.data.forEach((i, k) => {
             ttt.push({
-              op:i.businessNature,
-              id:i.id
+              op: i.businessNature,
+              id: i.id
             })
           })
           this.setData({
-            xinzhi:ttt
+            xinzhi: ttt
           })
         } else {
           console.error('请求失败:', res);
@@ -326,14 +336,14 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
           let ttt = this.data.industryes
-          res.data.data.forEach((i,k)=>{
+          res.data.data.forEach((i, k) => {
             ttt.push({
-              op:i.industryType,
-              id:i.id
+              op: i.industryType,
+              id: i.id
             })
           })
           this.setData({
-            industryes:ttt
+            industryes: ttt
           })
         } else {
           console.error('请求失败:', res);
@@ -350,7 +360,7 @@ Page({
   translateTime(dateString) {
     // 解析日期字符串
     const date = new Date(dateString);
-  
+
     // 提取年、月、日、时、分、秒
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1
@@ -358,10 +368,10 @@ Page({
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const seconds = String(date.getSeconds()).padStart(2, '0');
-  
+
     // 组合成目标格式
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  
+
     return formattedDate;
   },
   inputed(e) {
@@ -382,14 +392,14 @@ Page({
     this.getWeizhi()
   },
 
-reset(){
-  wx.reLaunch({
-    url: '/pages/publish/publish'
-  });
-  wx.showToast({
-    title: '重置成功',
-  })
-},
+  reset() {
+    wx.reLaunch({
+      url: '/pages/publish/publish'
+    });
+    wx.showToast({
+      title: '重置成功',
+    })
+  },
   initDatePicker() {
     const date = new Date();
     const year = date.getFullYear();
@@ -400,7 +410,9 @@ reset(){
     for (let i = 0; i < 3; i++) {
       years.push(year + i);
     }
-    this.setData({ years: years });
+    this.setData({
+      years: years
+    });
     // 获取日期数组
     this.updateDaysOfMonth(year, month + 1);
     // 设置picker-view的value
@@ -421,10 +433,12 @@ reset(){
     return daysInMonth;
   },
   updateDaysOfMonth(year, month) {
-    console.log(year,month)
+    console.log(year, month)
     const daysInMonth = this.getDaysOfMonth(year)[month - 1];
     this.setData({
-      days: Array.from({ length: daysInMonth }, (_, i) => i + 1)
+      days: Array.from({
+        length: daysInMonth
+      }, (_, i) => i + 1)
     });
   },
   onScrollToLower: function (e) {
@@ -449,14 +463,13 @@ reset(){
     this.setData({
       types0: !this.data.types0
     })
-    if(this.data.types0){
+    if (this.data.types0) {
       this.setData({
-        internshipType:'远程'
+        internshipType: '远程'
       })
-    }
-    else{
+    } else {
       this.setData({
-        internshipType:'线下'
+        internshipType: '线下'
       })
     }
   },
@@ -473,7 +486,7 @@ reset(){
   queren1: function () {
     this.setData({
       types1: !this.data.types1,
-      hangs:this.data.hangss
+      hangs: this.data.hangss
     })
     console.log(this.data.hangs)
     this.getTabBar().setData({
@@ -483,7 +496,7 @@ reset(){
   queren2: function () {
     this.setData({
       types2: !this.data.types2,
-      xin:this.data.xins
+      xin: this.data.xins
     })
     console.log(this.data.xin)
     this.getTabBar().setData({
@@ -493,7 +506,7 @@ reset(){
   queren3: function () {
     this.setData({
       types3: !this.data.types3,
-      applicationDeadLine:this.data.applicationDeadLines
+      applicationDeadLine: this.data.applicationDeadLines
     })
     this.getTabBar().setData({
       chans: false
@@ -502,7 +515,7 @@ reset(){
   queren4: function () {
     this.setData({
       types4: !this.data.types4,
-      location:this.data.locations
+      location: this.data.locations
     })
     this.getTabBar().setData({
       chans: false
@@ -513,7 +526,7 @@ reset(){
       types1: false,
       types2: false,
       types3: false,
-      types4:false
+      types4: false
     })
     //隐藏tabber
     this.getTabBar().setData({
@@ -527,7 +540,8 @@ reset(){
     this.setData({
       types1: true,
       types2: false,
-      types3: false,types4:false,
+      types3: false,
+      types4: false,
     })
     if (ce)
       this.setData({
@@ -545,7 +559,8 @@ reset(){
     this.setData({
       types1: false,
       types2: true,
-      types3: false,types4:false,
+      types3: false,
+      types4: false,
     })
     if (ce)
       this.setData({
@@ -564,7 +579,7 @@ reset(){
       types1: false,
       types2: false,
       types3: true,
-      types4:false,
+      types4: false,
     })
     if (ce)
       this.setData({
@@ -584,7 +599,7 @@ reset(){
       types1: false,
       types2: false,
       types3: false,
-      types4:true,
+      types4: true,
     })
     if (ce)
       this.setData({
@@ -623,23 +638,23 @@ reset(){
   },
   bindChange4: function (e) {
     let that = this
-    let cc=e.detail.value
-    console.log(cc,this.data.sheng[cc[0]])
+    let cc = e.detail.value
+    console.log(cc, this.data.sheng[cc[0]])
     wx.request({
       url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
       method: 'POST',
-      data:{
-        province:this.data.sheng[cc[0]]
+      data: {
+        province: this.data.sheng[cc[0]]
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        token:wx.getStorageSync('v_token')
+        token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
           that.setData({
-            shi:res.data.data
+            shi: res.data.data
           })
         } else {
           console.error('请求失败:', res);
@@ -652,27 +667,58 @@ reset(){
         console.log('请求完成');
       }
     });
-    setTimeout(()=>{
+    setTimeout(() => {
       this.setData({
-        locations:this.data.sheng[cc[0]]+this.data.shi[cc[1]]
+        locations: this.data.sheng[cc[0]] + this.data.shi[cc[1]]
       })
       console.log(this.data.locations)
-    },500)
+    }, 500)
 
   },
-  
+
   chooseImagelogo: function (e) {
     let that = this
-    wx.chooseImage({
+    console.log('hhh')
+    wx.chooseMedia({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths;
-        that.setData({
-          logoImageUrl: tempFilePaths[0]
+        console.log(res)
+        wx.uploadFile({
+          url: `${apiUrl}/internship/companyLogoUpload`, // 你的上传接口地址
+          filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
+          name: 'file', // 与后端约定的文件参数名
+          header: {
+            'Content-Type': 'multipart/form-data', // 设置请求头
+            'token': wx.getStorageSync('v_token') // 传递 token
+          },
+          success: (res) => {
+            if (res.statusCode == 200) {
+              that.setData({
+                logoImageUrl: JSON.parse(res.data).data
+              });
+              wx.showToast({
+                title: '上传成功',
+                icon: 'success'
+              });
+            } else {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'none'
+              });
+            }
+          },
+          fail: (err) => {
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
         });
+
       },
       fail: function (err) {
         console.error('选择图片失败：', err);
@@ -681,15 +727,43 @@ reset(){
   },
   chooseImagezixun: function (e) {
     let that = this
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths;
-        that.setData({
-          zixunImageUrl: tempFilePaths[0]
+        wx.uploadFile({
+          url: `${apiUrl}/internship/consultPhotoUpload`, // 你的上传接口地址
+          filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
+          name: 'file', // 与后端约定的文件参数名
+          header: {
+            'Content-Type': 'multipart/form-data', // 设置请求头
+            'token': wx.getStorageSync('v_token') // 传递 token
+          },
+          success: (res) => {
+            console.log(res)
+            if (res.statusCode == 200) {
+              that.setData({
+                zixunImageUrl: JSON.parse(res.data).data
+              });
+              wx.showToast({
+                title: '上传成功',
+                icon: 'success'
+              });
+            } else {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'none'
+              });
+            }
+          },
+          fail: (err) => {
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
         });
       },
       fail: function (err) {

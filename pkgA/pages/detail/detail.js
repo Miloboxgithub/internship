@@ -139,7 +139,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          console.log(res.data,'addview')
         } else {
           console.error('请求失败:', res);
         }

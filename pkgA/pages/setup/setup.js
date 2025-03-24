@@ -14,12 +14,26 @@ Page({
     industrys:[],
     sex:'未知',
     diqu:'未知',
-    ID:'未知'
+    ID:'未知',
+    avatar:'/img/头像.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  onShow(){
+    let info = wx.getStorageSync('userInfo')
+      if(info){
+        console.log(info)
+        this.setData({
+          inputValue:info.name?info.name:'微信用户',
+          avatar:info.avatar?info.avatar:'/img/头像.png',
+          ID:info.id,
+          sex:info.gender?info.gender:'未知',
+          diqu:info.location?info.location:'未知'
+        })
+      }
+  },
   onLoad(options) {
     const inputValue = wx.getStorageSync('inputValue') || '微信用户';
     this.setData({
@@ -27,11 +41,52 @@ Page({
     });
     this.getWeizhi()
   },
+  onChooseAvatar(e) {
+    let that = this
+    const { avatarUrl } = e.detail 
+    console.log(avatarUrl)
+    wx.uploadFile({
+      url: `${apiUrl}/user/avatarUpload`, // 你的上传接口地址
+      filePath: avatarUrl, // 选择的图片路径
+      name: 'file', // 与后端约定的文件参数名
+      header: {
+        'Content-Type': 'multipart/form-data', // 设置请求头
+        'token': wx.getStorageSync('v_token') // 传递 token
+      },
+      success: (res) => {
+        if (res.statusCode == 200) {
+          that.setData({
+            avatar:JSON.parse(res.data).data,
+          })
+          setTimeout(()=>{
+            this.putsInfo()
+          },500)
+          wx.showToast({
+            title: '上传成功',
+            icon: 'success'
+          });
+        } else {
+          wx.showToast({
+            title: '上传失败',
+            icon: 'none'
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('上传失败:', err);
+        wx.showToast({
+          title: '上传失败',
+          icon: 'none'
+        });
+      }
+    });
+  },
   inputChange: function(e) {
     this.setData({
       inputValue: e.detail.value // 更新inputValue为输入框的当前值
     });
     wx.setStorageSync('inputValue', e.detail.value); // 同步保存到本地存储
+    this.putsInfo()
   },
   changetypes1: function(){
     this.setData({
@@ -53,6 +108,7 @@ Page({
     this.setData({
       sex:this.data.sexs
     })
+    this.putsInfo()
     this.hideview()
   },
   bindChange1: function (e) {
@@ -67,6 +123,7 @@ Page({
     this.setData({
       diqu:this.data.diqus
     })
+    this.putsInfo()
     this.hideview()
   },
   bindChange2: function (e) {
@@ -162,17 +219,47 @@ Page({
       }
     });
   },
+  putsInfo(){
+    let op = {
+      avatar:this.data.avatar,
+        gender:this.data.sex,
+        location:this.data.diqu,
+        name:this.data.inputValue,
+    }
+    console.log(op)
+    wx.request({
+      url: `${apiUrl}/user/updateInfoById`, // 拼接完整的 URL
+      method: 'PUT',
+      data:{
+        avatar:this.data.avatar,
+        gender:this.data.sex,
+        location:this.data.diqu,
+        name:this.data.inputValue,
+      },
+      header: {
+        token:wx.getStorageSync('v_token')
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
 
   },
 

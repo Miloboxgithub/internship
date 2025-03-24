@@ -68,6 +68,28 @@ Page({
     });
 
   },
+
+  getUserInfo() {
+    wx.request({
+      url: `${apiUrl}/user/getInfoById`, // 拼接完整的 URL
+      method: 'GET',
+      header: {
+        'content-type': 'application/json',
+        'token': wx.getStorageSync('v_token') // 传递 token
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          wx.setStorageSync('userInfo', res.data.data);
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+    });
+  },
   // 启动倒计时
   startCountDown() {
     let count = this.data.countdown;
@@ -90,7 +112,7 @@ Page({
     }, 1000);
   },
   login: function () {
-
+let that = this
     console.log('登录', this.data.phone, '验证码', this.data.code);
     wx.request({
       url: `${apiUrl}/user/smsLogin`, // 拼接完整的 URL
@@ -110,6 +132,7 @@ Page({
           })
           wx.setStorageSync('loginStatus', true)
           wx.setStorageSync('v_token', res.data.data);
+          that.getUserInfo()
           setTimeout(() => {
             wx.switchTab({
               url: '/pages/person/person',

@@ -49,7 +49,7 @@ Page({
       data:{
         reason: reason,
         description:this.data.inputText,
-        screenshot: this.data.ImageUrl1,
+        screenshot: this.data.ImageUrl1+'|'+this.data.ImageUrl2+'|'+this.data.ImageUrl3,
         contactWay: this.data.contactWay,
         internshipId :this.data.idd
       },
@@ -109,16 +109,45 @@ Page({
   },
   chooseImage1(){
     let that=this
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths;
-        that.setData({
-          ImageUrl1: tempFilePaths[0]
+
+        wx.uploadFile({
+          url: `${apiUrl}/report/screenShotUpload`, // 你的上传接口地址
+          filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
+          name: 'file', // 与后端约定的文件参数名
+          header: {
+            'Content-Type': 'multipart/form-data', // 设置请求头
+            'token': wx.getStorageSync('v_token') // 传递 token
+          },
+          success: (res) => {
+            if (res.statusCode == 200) {
+              that.setData({
+                ImageUrl1: JSON.parse(res.data).data
+              });
+              wx.showToast({
+                title: '上传成功',
+                icon: 'success'
+              });
+            } else {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'none'
+              });
+            }
+          },
+          fail: (err) => {
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
         });
+
       },
       fail: function(err) {
         console.error('选择图片失败：', err);
@@ -127,16 +156,45 @@ Page({
   },
   chooseImage2(){
     let that=this
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths;
-        that.setData({
-          ImageUrl2: tempFilePaths[0]
+
+        wx.uploadFile({
+          url: `${apiUrl}/report/screenShotUpload`, // 你的上传接口地址
+          filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
+          name: 'file', // 与后端约定的文件参数名
+          header: {
+            'Content-Type': 'multipart/form-data', // 设置请求头
+            'token': wx.getStorageSync('v_token') // 传递 token
+          },
+          success: (res) => {
+            if (res.statusCode == 200) {
+              that.setData({
+                ImageUrl2: JSON.parse(res.data).data
+              });
+              wx.showToast({
+                title: '上传成功',
+                icon: 'success'
+              });
+            } else {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'none'
+              });
+            }
+          },
+          fail: (err) => {
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
         });
+
       },
       fail: function(err) {
         console.error('选择图片失败：', err);
@@ -145,16 +203,44 @@ Page({
   },
   chooseImage3(){
     let that=this
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths;
-        that.setData({
-          ImageUrl3: tempFilePaths[0]
+        wx.uploadFile({
+          url: `${apiUrl}/report/screenShotUpload`, // 你的上传接口地址
+          filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
+          name: 'file', // 与后端约定的文件参数名
+          header: {
+            'Content-Type': 'multipart/form-data', // 设置请求头
+            'token': wx.getStorageSync('v_token') // 传递 token
+          },
+          success: (res) => {
+            if (res.statusCode == 200) {
+              that.setData({
+                ImageUrl3: JSON.parse(res.data).data
+              });
+              wx.showToast({
+                title: '上传成功',
+                icon: 'success'
+              });
+            } else {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'none'
+              });
+            }
+          },
+          fail: (err) => {
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
         });
+
       },
       fail: function(err) {
         console.error('选择图片失败：', err);

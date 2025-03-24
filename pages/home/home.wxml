@@ -24,10 +24,10 @@
   <!-- 搜索选择栏 -->
   <view class="nav">
     <view class="nav1" id="types1" bindtap="changetypes" style="color: {{lei=='类型'?'rgba(25, 25, 25, 1)':'rgba(80, 177, 178, 1)'}};"><text>{{lei}}</text>
-      <image src="{{types1?'/img/shang.png':'/img/xia.png'}}" mode="" />
+      <image src="{{types1?'/img/shang.png':lei=='类型'?'/img/xia.png':'/img/xiab.png'}}" mode="" />
     </view>
     <view class="nav2" id="types2" bindtap="changetypest" style="color: {{hang=='行业'?'rgba(25, 25, 25, 1)':'rgba(80, 177, 178, 1)'}};"><text>{{hang}}</text>
-      <image src="{{types2?'/img/shang.png':'/img/xia.png'}}" mode="" />
+      <image src="{{types2?'/img/shang.png':hang=='行业'?'/img/xia.png':'/img/xiab.png'}}" mode="" />
     </view>
     <view class="nav3" id="types3" bindtap="changetypes" style="color: {{xing=='性质'?'rgba(25, 25, 25, 1)':'rgba(80, 177, 178, 1)'}};"><text>{{xing}}</text>
       <image src="{{types3?'/img/shang.png':xing=='性质'?'/img/xia.png':'/img/xiab.png'}}" mode="" />

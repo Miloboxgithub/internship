@@ -80,7 +80,7 @@
       <view class="sitesss">
         <view class="tou">公司Logo<text style="color: rgba(255, 0, 0, 1);">*</text></view>
         <view bind:tap="{{logoImageUrl?'':'chooseImagelogo'}}" class="photos">
-      <image class="photosimg" src="{{logoImageUrl || '/pkgA/img/相机.png'}}"  mode="aspectFill" />
+      <image class="photosimg" src="{{logoImageUrl || '/img/相机.png'}}"  mode="aspectFill" />
       <image src="/img/cha.png" wx:if="{{logoImageUrl}}" bindtap="removeLogo" class="delete-button"></image>
       <image src="/img/yess.png" wx:if="{{logoImageUrl}}" class="yes-button"></image>
       </view>
@@ -91,7 +91,7 @@
       <view class="sitesss">
         <view class="tou">资讯图片</view>
         <view bind:tap="{{zixunImageUrl?'':'chooseImagezixun'}}" class="photos">
-      <image class="photosimg" src="{{zixunImageUrl || '/pkgA/img/相机.png'}}"  mode="aspectFill" />
+      <image class="photosimg" src="{{zixunImageUrl || '/img/相机.png'}}"  mode="aspectFill" />
       <image src="/img/cha.png" wx:if="{{zixunImageUrl}}" bindtap="removeZixun" class="delete-button"></image>
       <image src="/img/yess.png" wx:if="{{zixunImageUrl}}" class="yes-button"></image>
     </view>

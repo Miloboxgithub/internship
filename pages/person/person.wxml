@@ -1,22 +1,24 @@
 <view class="containers">
   <view class="custom-nav-bar" id="navBar">
     <view class="nav-title">个人中心</view>
-    <view class="head-box">
-      <view class="heads" bind:tap="loginMode">
+    <view class="head-box" bind:tap="loginMode">
+   
+      <view class="heads">
         <!-- <button class="btnLogin" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button> -->
-        <image src="/img/头像.png" mode="" />
+        <image src="{{avatar}}" mode="" />
       </view>
       <view class="texts">
         <view class="ts1" wx:if="{{islogins}}">
           未登录/注册
         </view>
         <view class="ts1" wx:if="{{!islogins}}">
-          微信用户
+          {{username}}
         </view>
         <view class="ts2" wx:if="{{islogins}}">
           点击头像可登录/注册
         </view>
       </view>
+   
     </view>
   </view>
   <view class="pers">

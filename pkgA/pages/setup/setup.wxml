@@ -1,34 +1,43 @@
 <view class="containers">
-<view class="heads">
-<image src="/pkgA/img/头像.png" mode=""/>
-</view>
-<view class="details">
-  <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+  <view class="heads">
+    <image src="{{avatar}}" mode="">
+      <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      </button>
+    </image>
+  </view>
+  <view class="details">
+    <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">ID</view>
         <view class="you">{{ID}}</view>
       </view>
     </view>
-  <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+    <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">昵称</view>
-       <input class="you" placeholder="微信用户0237" bindinput="inputChange" type="text" value="{{inputValue}}"/>
+        <input class="you"  type="nickname" placeholder="微信用户0237" bindinput="inputChange" type="text" value="{{inputValue}}" />
         <!-- <view class="you">微信用户0237</view> -->
       </view>
     </view>
-  <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+    <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">性别</view>
-        <view class="you" bind:tap="changetypes1"><view style="margin-right: 10px;">{{sex}}</view><image src="/img/you.png" mode=""/></view>
+        <view class="you" bind:tap="changetypes1">
+          <view style="margin-right: 10px;">{{sex}}</view>
+          <image src="/img/you.png" mode="" />
+        </view>
       </view>
     </view>
-  <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
+    <view style="  width: 92vw; margin-left: 2vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">地区</view>
-        <view class="you" bind:tap="changetypes2"><view style="margin-right: 10px;">{{diqu}}</view><image src="/img/you.png" mode=""/></view>
+        <view class="you" bind:tap="changetypes2">
+          <view style="margin-right: 10px;">{{diqu}}</view>
+          <image src="/img/you.png" mode="" />
+        </view>
       </view>
     </view>
-</view>
+  </view>
 </view>
 
 <!-- 底部选择器 -->
@@ -72,7 +81,7 @@
     </view>
   </view>
   <picker-view indicator-style="height: 50px;" style="width: 100%; height: 200px; " value="{{value}}" bindchange="bindChange2">
-    <picker-view-column >
+    <picker-view-column>
       <view wx:for="{{ys}}" style="line-height: 50px ;text-align: center;">{{item}}</view>
     </picker-view-column>
     <picker-view-column>

@@ -30,12 +30,14 @@ Page({
       op: '招募中',
       ch: false
     }, {
-      op: '筹备中',
+      op: '已结束',
       ch: false
     }],
     toppx: 0,
     coitem: [],
+    oldcoitem: [],
     lolo: false,
+    inputValue:'',
   },
   fetchList() {
     let that = this
@@ -74,13 +76,14 @@ Page({
               }
               if (item.internshipType == '远程') {
                 t.tags.pop()
-                console.log(t.tags)
+                // console.log(t.tags)
               }
               if (!t.sum) t.sum = 0
               tt.push(t)
             })
           that.setData({
-            coitem: tt
+            coitem: tt,
+            oldcoitem: tt,
           })
         } else {
           console.error('请求失败:', res);
@@ -158,7 +161,7 @@ Page({
     leixin.forEach(item => {
       item.ch = false;
     })
-    let aa = leixin[cc].op
+    let aa = leixin[cc].op.substring(0, 2);
     if (cc >= 0 && cc < leixin.length) {
       leixin[cc].ch = true
       this.setData({
@@ -168,6 +171,18 @@ Page({
     this.setData({
       leixin: leixin
     })
+    let tt = this.data.oldcoitem
+    if (this.data.lei != '类型' && this.data.lei != '全部') {
+      tt = tt.filter(item => item.tags[1].title == this.data.lei);
+    }
+    if (this.data.zhuang == '招募中')
+      tt = tt.filter(item => item.iszhao == true);
+    if (this.data.zhuang == '已结束')
+      tt = tt.filter(item => item.iszhao == false);
+    this.setData({
+      coitem: tt
+    })
+    this.hideview()
   },
   choosetai(e) {
     let cc = e.currentTarget.id
@@ -185,6 +200,18 @@ Page({
     this.setData({
       zhuangtai: zhuangtai
     })
+    let tt = this.data.oldcoitem
+    if (this.data.lei != '类型' && this.data.lei != '全部') {
+      tt = tt.filter(item => item.tags[1].title == this.data.lei);
+    }
+    if (this.data.zhuang == '招募中')
+      tt = tt.filter(item => item.iszhao == true);
+    if (this.data.zhuang == '已结束')
+      tt = tt.filter(item => item.iszhao == false);
+    this.setData({
+      coitem: tt
+    })
+    this.hideview()
   },
   dianji(e) {
     let cc = e.currentTarget.dataset.id
@@ -386,6 +413,14 @@ Page({
       types1: false,
       types2: false,
     })
+  },
+  searchs() {
+    let tt = this.data.oldcoitem;
+    // 使用 filter 方法和 includes 函数实现模糊匹配
+    tt = tt.filter(item => item.name.includes(this.data.inputValue));
+    this.setData({
+      coitem: tt
+    });
   },
   /**
    * 生命周期函数--监听页面隐藏
