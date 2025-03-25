@@ -48,7 +48,7 @@
       <view bind:tap="quanxuans"><image src="/pkgA/img/圆形 1.png" mode=""/><image style="display: {{quanxuan?'':'none'}};"  class="imggg" src="/pkgA/img/圆形 2.png" mode=""/><view style="position: absolute;left: 13vw;">全选</view></view>
       </view>
       <view class="deletes" bind:tap="deletes">取消收藏</view>
-      <view class="copys">复制投递信息</view>
+      <view class="copys" bind:tap="copys">复制投递信息</view>
     </view>
   </view>
 </scroll-view>

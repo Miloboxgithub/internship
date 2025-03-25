@@ -47,42 +47,33 @@ Page({
     
     // 初始化towerSwiper 传已有的数组名即可
     this.getType()
-    // wx.request({
-    //   url: `${apiUrl}/admin/login`, // 拼接完整的 URL
-    //   method: 'POST',
-    //   data:{
-    //     account: "123",
-    //   password: "123"
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },
-    //   success: (res) => {
-    //    console.log(res.data)
-    //    if(res.statusCode==200){
-    //     wx.setStorageSync('v_token',res.data.data);
-    //    this.fetchData()
-    //    }
 
-    //   },
-    //   fail: (err) => {
-    //     console.error('请求失败:', err);
-    //   },
-    //   complete: () => {
-    //     console.log('请求完成');
-    //   }
-    // });
-    this.fetchData()
+   
   },
   fetchData: function () {
+    console.log('t', this.data.hang, this.data.lei, this.data.xing)
+    let r1 = this.data.lei
+    let r3 = this.data.xinzhi.find(item => item.op === this.data.xing);
+    let r2 = this.data.industry.find(item => item.op === this.data.hang)
+    if(r2){
+      r2 = r2.id
+    }
+    if(r3){
+      r3 = r3.id
+    }
+    if(r1=='类型'||r1=='全部')r1 = ''
+    console.log(r1,r2,r3)
     let that = this
     this.setData({
       lolo: true
     })
     wx.request({
-      url: `${apiUrl}/internship/getByPage`, // 拼接完整的 URL
+      url: `${apiUrl}/internship/selectByContent`, // 拼接完整的 URL
       method: 'POST',
       data: {
+        "businessNatureId" :r3,
+        "industryTypeId" : r2,
+        "internshipType": r1,
         "page": this.data.page,
         "pageSize": 20
       },
@@ -119,16 +110,16 @@ Page({
             if (!t.sum) t.sum = 0
             tt.push(t)
           })
-          console.log(tt, 't', this.data.hang, this.data.lei, this.data.xing)
-          if (this.data.hang != '行业' && this.data.hang != '全部') {
-            tt = tt.filter(item => item.industryType == this.data.hang);
-          }
-          if (this.data.lei != '类型' && this.data.lei != '全部') {
-            tt = tt.filter(item => item.tags[1].title == this.data.lei);
-          }
-          if (this.data.xing != '性质' && this.data.xing != '全部') {
-            tt = tt.filter(item => item.tags[0].title == this.data.xing);
-          }
+          
+          // if (this.data.hang != '行业' && this.data.hang != '全部') {
+          //   tt = tt.filter(item => item.industryType == this.data.hang);
+          // }
+          // if (this.data.lei != '类型' && this.data.lei != '全部') {
+          //   tt = tt.filter(item => item.tags[1].title == this.data.lei);
+          // }
+          // if (this.data.xing != '性质' && this.data.xing != '全部') {
+          //   tt = tt.filter(item => item.tags[0].title == this.data.xing);
+          // }
           that.setData({
             coitem: tt
           })
@@ -177,6 +168,37 @@ Page({
           this.setData({
             xinzhi: ttt
           })
+          wx.request({
+            url: `${apiUrl}/industryType/getIndustryTypeList`, // 拼接完整的 URL
+            method: 'GET',
+            header: {
+              'content-type': 'application/json',
+            },
+            success: (res) => {
+              if (res.statusCode === 200) {
+                console.log(res.data.data,'ty')
+                let ttt = this.data.industry
+                res.data.data.forEach((i, k) => {
+                  ttt.push({
+                    op: i.industryType,
+                    id: i.id
+                  })
+                })
+                this.setData({
+                  industry: ttt
+                })
+                this.fetchData()
+              } else {
+                console.error('请求失败:', res);
+              }
+            },
+            fail: (err) => {
+              console.error('请求失败:', err);
+            },
+            complete: () => {
+              console.log('请求完成');
+            }
+          });
         } else {
           console.error('请求失败:', res);
         }
@@ -188,36 +210,7 @@ Page({
         console.log('请求完成');
       }
     });
-    wx.request({
-      url: `${apiUrl}/industryType/getIndustryTypeList`, // 拼接完整的 URL
-      method: 'GET',
-      header: {
-        'content-type': 'application/json',
-      },
-      success: (res) => {
-        if (res.statusCode === 200) {
-          console.log(res.data.data)
-          let ttt = this.data.industry
-          res.data.data.forEach((i, k) => {
-            ttt.push({
-              op: i.industryType,
-              id: i.id
-            })
-          })
-          this.setData({
-            industry: ttt
-          })
-        } else {
-          console.error('请求失败:', res);
-        }
-      },
-      fail: (err) => {
-        console.error('请求失败:', err);
-      },
-      complete: () => {
-        console.log('请求完成');
-      }
-    });
+    
   },
   extractDate(dateTimeString) {
     // 使用字符串分割方法提取日期部分
@@ -354,7 +347,7 @@ Page({
           name: item.companyName,
           time: app.timeSub(item.deadline),
           iszhao: app.cmpToday(item.deadline) ? true : false,
-
+          industryType:item.industryType,
           sum: item.pageview,
           tags: [{
             title: item.businessNature
@@ -538,6 +531,7 @@ Page({
     this.fetchData()
     else{
       let tt = this.data.sharecoitem
+      console.log(tt)
       if (this.data.hang != '行业' && this.data.hang != '全部') {
         tt = tt.filter(item => item.industryType == this.data.hang);
       }

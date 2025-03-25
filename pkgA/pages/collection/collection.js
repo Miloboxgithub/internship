@@ -55,6 +55,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
+          
           let op = res.data.data
           let tt = that.data.coitem
           if (op)
@@ -66,6 +67,7 @@ Page({
                 time: app.timeSub(item.deadline),
                 iszhao: app.cmpToday(item.deadline) ? true : false,
                 sum: item.pageview,
+                deliveryMethod:item.deliveryMethod,
                 tags: [{
                   title: item.businessNature
                 }, {
@@ -380,6 +382,36 @@ Page({
       }
     })
   },
+  copys(){
+    let that = this
+    let textToCopy = ''
+    if (this.data.coitem.length > 0)
+      this.data.coitem.forEach((i, k) => {
+        if (i.isdian) {
+          console.log(i)
+          textToCopy+=i.name+'：'+i.deliveryMethod+'\n'
+        }
+      })
+      wx.setClipboardData({
+        data: textToCopy,
+        success: function (res) {
+          wx.showToast({
+            title: '复制成功',
+            icon: 'success',
+            duration: 2000
+          });
+        },
+        fail: function (err) {
+          console.error('复制失败', err);
+          wx.showToast({
+            title: '复制失败',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      });
+  },
+
   extractDate(dateTimeString) {
     // 使用字符串分割方法提取日期部分
     return dateTimeString.split('T')[0];

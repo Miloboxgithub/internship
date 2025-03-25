@@ -19,6 +19,7 @@ Page({
     this.setData({
       msg
     })
+    this.searchs()
   },
   ggg() {
     console.log(546)

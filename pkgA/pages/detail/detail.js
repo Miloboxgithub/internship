@@ -79,7 +79,10 @@ Page({
             req = [],
             gain = []
           if (Array.isArray(ans.location)) site = ans.location
-          else site.push(ans.location)
+          else {
+            if (!ans.location) site.push('远程')
+            else site.push(ans.location)
+          }
           ott.push(ans.responsibility)
           req.push(ans.requirement)
           gain.push(ans.harvest)
@@ -139,7 +142,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data,'addview')
+          console.log(res.data, 'addview')
         } else {
           console.error('请求失败:', res);
         }
