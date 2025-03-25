@@ -92,6 +92,7 @@ Page({
               icon: item.companyLogo,
               name: item.companyName,
               time: app.timeSub(item.deadline),
+              jobPosition:item.jobPosition,
               iszhao: app.cmpToday(item.deadline) ? true : false,
               sum: item.pageview,
               industryType: item.industryType,
@@ -100,7 +101,7 @@ Page({
               }, {
                 title: item.internshipType
               }, {
-                title: item.location
+                title: this.getSubstringAfterDash(item.location)
               }]
             }
             if (item.internshipType == '远程') {
@@ -346,6 +347,7 @@ Page({
           icon: item.companyLogo,
           name: item.companyName,
           time: app.timeSub(item.deadline),
+          jobPosition:item.jobPosition,
           iszhao: app.cmpToday(item.deadline) ? true : false,
           industryType:item.industryType,
           sum: item.pageview,
@@ -354,7 +356,7 @@ Page({
           }, {
             title: item.internshipType
           }, {
-            title: item.location
+            title: this.getSubstringAfterDash(item.location)
           }]
         }
         if (item.internshipType == '远程') {
@@ -378,6 +380,12 @@ Page({
       })
       this.fetchData();
     }
+  },
+  getSubstringAfterDash(str) {
+  // 使用 split 方法分割字符串
+  const parts = str.split('-');
+  // 如果有 '-'，返回 '-' 后面的部分；如果没有，返回原字符串
+  return parts.length > 1 ? parts[1] : str;
   },
   changetypes(e) {
     let ce = true

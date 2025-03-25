@@ -65,6 +65,7 @@ Page({
                 icon: item.companyLogo,
                 name: item.companyName,
                 time: app.timeSub(item.deadline),
+                jobPosition:item.jobPosition,
                 iszhao: app.cmpToday(item.deadline) ? true : false,
                 sum: item.pageview,
                 deliveryMethod:item.deliveryMethod,
@@ -270,6 +271,7 @@ Page({
               icon: item.companyLogo,
               name: item.companyName,
               time: app.timeSub(item.deadline),
+              jobPosition:item.jobPosition,
               iszhao: app.cmpToday(item.deadline) ? true : false,
 
               isdian: false,

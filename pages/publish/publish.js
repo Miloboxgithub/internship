@@ -46,6 +46,7 @@ Page({
     shi: [],
   },
   PostMsg() {
+    let that = this
     const {
       companyName,
       hangs,
@@ -157,6 +158,9 @@ Page({
       })
       return;
     }
+    if(!this.data.memo)this.setData({
+      memo:'无'
+    })
     let pmsg = {
       companyName: this.data.companyName,
       industryType: this.data.hangs.op,
@@ -193,11 +197,13 @@ Page({
             icon: 'success',
             duration: 2000
           });
+          
           setTimeout(() => {
             wx.switchTab({
               url: '/pages/home/home',
             })
           }, 1500)
+          that.reset()
           app.globalData.pub = true
         } else {
           console.error('请求失败:', res);
@@ -306,7 +312,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          let ttt = this.data.xinzhi
+          let ttt = []
           res.data.data.forEach((i, k) => {
             ttt.push({
               op: i.businessNature,
@@ -335,7 +341,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          let ttt = this.data.industryes
+          let ttt = []
           res.data.data.forEach((i, k) => {
             ttt.push({
               op: i.industryType,
@@ -360,18 +366,15 @@ Page({
   translateTime(dateString) {
     // 解析日期字符串
     const date = new Date(dateString);
-
-    // 提取年、月、日、时、分、秒
+  
+    // 提取年、月、日
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1
     const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-
+  
     // 组合成目标格式
-    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
+    const formattedDate = `${year}-${month}-${day} 23:59:59`;
+  
     return formattedDate;
   },
   inputed(e) {
@@ -620,7 +623,7 @@ Page({
   },
   bindChange2: function (e) {
     let cc = e.detail.value
-    console.log(cc)
+    console.log(cc,'xin')
     this.setData({
       xins: this.data.xinzhi[cc[0]]
     })
@@ -669,7 +672,7 @@ Page({
     });
     setTimeout(() => {
       this.setData({
-        locations: this.data.sheng[cc[0]] + this.data.shi[cc[1]]
+        locations: this.data.sheng[cc[0]] +'-'+ this.data.shi[cc[1]]
       })
       console.log(this.data.locations)
     }, 500)

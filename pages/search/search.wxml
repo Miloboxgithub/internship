@@ -6,7 +6,7 @@
         <image bind:tap="searchs" src="/img/搜索.png" mode="" />
       </view>
       <view class="fancy-bg"></view>
-      <input type="text" bindblur="inputed"  class="input" placeholder="{{contents}}" value="{{msg}}" id="search" />
+      <input type="text" bindblur="inputed"  class="input" placeholder="{{contents}}" auto-focus="true" value="{{msg}}" id="search" />
       <image class="guan" src="/pkgA/img/路径 1.png" bind:tap="ggg" mode=""/>
     </view>
 </view>

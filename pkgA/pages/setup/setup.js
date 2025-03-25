@@ -28,7 +28,7 @@ Page({
         this.setData({
           inputValue:info.name?info.name:'微信用户',
           avatar:info.avatar?info.avatar:'/img/头像.png',
-          ID:info.id,
+          ID:info.account,
           sex:info.gender?info.gender:'未知',
           diqu:info.location?info.location:'未知'
         })

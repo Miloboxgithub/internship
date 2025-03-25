@@ -78,10 +78,10 @@ Page({
             ott = [],
             req = [],
             gain = []
-          if (Array.isArray(ans.location)) site = ans.location
+          if (Array.isArray(ans.location)) site = this.getSubstringAfterDash(ans.location)
           else {
             if (!ans.location) site.push('远程')
-            else site.push(ans.location)
+            else site.push(this.getSubstringAfterDash(ans.location))
           }
           ott.push(ans.responsibility)
           req.push(ans.requirement)
@@ -91,7 +91,7 @@ Page({
           }, {
             title: ans.internshipType
           }, {
-            title: ans.location
+            title: this.getSubstringAfterDash(ans.location)
           }]
           if (ans.internshipType != '线下') {
             tags = [{
@@ -105,6 +105,7 @@ Page({
               icon: ans.companyLogo,
               name: ans.companyName,
               time: app.timeSub(ans.deadline),
+              jobPosition:ans.jobPosition,
               iszhao: app.cmpToday(ans.deadline) ? true : false,
               sum: ans.pageview,
               tags: tags
@@ -114,7 +115,7 @@ Page({
             req,
             gain,
             links: ans.deliveryMethod,
-            timee: ans.deadline,
+            timee:  app.timeSub(ans.deadline),
             picture: ans.consultPhoto,
             bei: ans.remark
           })
@@ -154,6 +155,12 @@ Page({
         console.log('请求完成');
       }
     });
+  },
+  getSubstringAfterDash(str) {
+  // 使用 split 方法分割字符串
+  const parts = str.split('-');
+  // 如果有 '-'，返回 '-' 后面的部分；如果没有，返回原字符串
+  return parts.length > 1 ? parts[1] : str;
   },
   extractDate(dateTimeString) {
     // 使用字符串分割方法提取日期部分

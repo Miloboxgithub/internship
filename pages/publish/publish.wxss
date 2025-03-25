@@ -473,11 +473,9 @@ textarea {
   position: absolute;
   top: 2px;
   right: 2px;
-  height: 10px;
-  width: 10px;
+  height: 12px;
+  width: 12px;
   color: white;
-  width: 8px;
-  height: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -491,11 +489,9 @@ textarea {
   position: absolute;
   bottom: 2px;
   right: 2px;
-  height: 10px;
-  width: 10px;
+  height: 12px;
+  width: 12px;
   color: white;
-  width: 8px;
-  height: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -503,4 +499,12 @@ textarea {
   border-radius: 50%;
   /* 可选，圆角效果 */
   cursor: pointer;
+}
+.tett {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  color: rgba(166, 166, 166, 1);
+  text-align: left;
+  vertical-align: top;
 }

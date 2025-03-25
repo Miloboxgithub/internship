@@ -192,7 +192,7 @@ textarea {
   font-weight: 400;
   letter-spacing: 0px;
   line-height: 20.27px;
-  color: rgba(166, 166, 166, 1);
+  color: rgb(0, 0, 0);
   text-align: left;
   vertical-align: top;
   margin-right: 5vw;
@@ -204,7 +204,7 @@ textarea {
   font-weight: 400;
   letter-spacing: 0px;
   line-height: 17.38px;
-  color: rgba(166, 166, 166, 1);
+  color: rgb(0, 0, 0);
   text-align: left;
   vertical-align: top;
   width: 78vw;
@@ -556,11 +556,9 @@ textarea {
   position: absolute;
   top: 2px;
   right: 2px;
-  height: 10px;
-  width: 10px;
+  height: 12px;
+  width: 12px;
   color: white;
-  width: 8px;
-  height: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -574,11 +572,9 @@ textarea {
   position: absolute;
   bottom: 2px;
   right: 2px;
-  height: 10px;
-  width: 10px;
+  height: 12px;
+  width: 12px;
   color: white;
-  width: 8px;
-  height: 8px;
   display: flex;
   align-items: center;
   justify-content: center;

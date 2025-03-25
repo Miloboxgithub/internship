@@ -36,7 +36,7 @@
   </view>
   <view class="calls">
     <view class="syl">联系方式：</view>
-    <view style="display: flex; justify-content: center;"><input class="inin" type="text" placeholder="请填写邮箱或手机号，以便您接受反馈结果" model:value="{{contactWay}}"/></view>
+    <view style="display: flex; justify-content: center;"><input class="inin" type="text" placeholder="请填写邮箱或手机号，以便您接收反馈结果" model:value="{{contactWay}}"/></view>
     <view style="display: flex; justify-content: center;">
       <view class="sends" bind:tap="submits">提交</view>
     </view>

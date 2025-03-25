@@ -1,6 +1,7 @@
-.containers{
+.containers {
   padding-bottom: 15px;
 }
+
 .kuai {
   margin-left: 5vw;
   display: flex;
@@ -29,10 +30,12 @@
   margin-left: 3px;
   margin-right: 3px;
 }
-.items.active{
+
+.items.active {
   background: rgba(80, 177, 178, 1);
   color: rgba(255, 255, 255, 1);
 }
+
 .syl {
   margin-top: 1vh;
   margin-left: 5vw;
@@ -48,29 +51,33 @@
 .reason {
   margin-top: 10px;
 }
-.des{
+
+.des {
   margin-top: 60px;
 }
-.ttt{
+
+.ttt {
   margin-top: 12px;
   margin-left: 5vw;
   font-size: 14px;
-font-weight: 400;
-letter-spacing: 0px;
-line-height: 20.27px;
-color: rgba(166, 166, 166, 1);
-text-align: left;
-vertical-align: top;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(166, 166, 166, 1);
+  text-align: left;
+  vertical-align: top;
 }
-.tett{
+
+.tett {
   font-size: 14px;
-font-weight: 400;
-letter-spacing: 0px;
-line-height: 23.17px;
-color: rgba(166, 166, 166, 1);
-text-align: left;
-vertical-align: top;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 23.17px;
+  color: rgba(166, 166, 166, 1);
+  text-align: left;
+  vertical-align: top;
 }
+
 .input-group {
   position: relative;
 
@@ -84,95 +91,101 @@ textarea {
 
 .char-counter {
   position: absolute;
- right: 7vw;
- bottom: 2vh;
+  right: 7vw;
+  bottom: 2vh;
 }
-.photos{
+
+.photos {
   width: 65px;
-height: 65px;
-opacity: 1;
-border-radius: 5px;
-background: rgba(242, 242, 242, 1);
-margin-left: 5vw;
-margin-top: 12px;
-display: flex;
-align-items: center;
-justify-content: center;
-position: relative;
+  height: 65px;
+  opacity: 1;
+  border-radius: 5px;
+  background: rgba(242, 242, 242, 1);
+  margin-left: 5vw;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-.photosimg{
-    height: 100%;
-    width: 100%;
-    position: relative;
+
+.photosimg {
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
-.calls{
+
+.calls {
   margin-top: 30px;
 }
-.inin{
+
+.inin {
   margin-top: 12px;
   width: 328px;
-height: 40px;
-opacity: 1;
-border-radius: 12px;
-background: rgba(245, 245, 245, 1);
-box-shadow: 0px 2px 5px  rgba(0, 0, 0, 0.05);
+  height: 40px;
+  opacity: 1;
+  border-radius: 12px;
+  background: rgba(245, 245, 245, 1);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
 
-font-size: 14px;
-font-weight: 400;
-letter-spacing: 0px;
-line-height: 20.27px;
-color: rgba(56, 56, 56, 0.4);
-text-align: center;
-vertical-align: top;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(56, 56, 56, 0.4);
+  text-align: center;
+  vertical-align: top;
 }
-.sends{
-  
+
+.sends {
+
   margin-top: 35px;
   width: 328px;
-height: 34px;
-opacity: 1;
-border-radius: 17px;
-background: linear-gradient(90deg, rgba(80, 177, 178, 1) 0%, rgba(80, 177, 178, 0.7) 100%);
-font-size: 14px;
-font-weight: 500;
-letter-spacing: 0px;
-line-height: 20.27px;
-color: rgba(255, 255, 255, 1);
-text-align: center;
-vertical-align: top;
-display: flex;
-align-items: center;
-justify-content: center;
+  height: 34px;
+  opacity: 1;
+  border-radius: 17px;
+  background: linear-gradient(90deg, rgba(80, 177, 178, 1) 0%, rgba(80, 177, 178, 0.7) 100%);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  vertical-align: top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .delete-button {
   position: absolute;
   top: 2px;
   right: 2px;
- height: 10px;
- width: 10px;
   color: white;
-  width: 8px;
-height: 8px;
+  width: 12px;
+  height: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 8px;
-  border-radius: 50%; /* 可选，圆角效果 */
+  border-radius: 50%;
+  /* 可选，圆角效果 */
   cursor: pointer;
 }
-.yes-button{
+
+.yes-button {
   position: absolute;
   bottom: 2px;
   right: 2px;
- height: 10px;
- width: 10px;
+  height: 12px;
+  width: 12px;
   color: white;
-  width: 8px;
-height: 8px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 8px;
-  border-radius: 50%; /* 可选，圆角效果 */
+  border-radius: 50%;
+  /* 可选，圆角效果 */
   cursor: pointer;
 }

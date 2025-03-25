@@ -112,6 +112,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // this.autofocusInput()
     this.setData({
       items: wx.getStorageSync('srecord')
     })
@@ -121,5 +122,15 @@ Page({
     this.setData({
       msg: e.currentTarget.dataset.s
     })
-  }
+  },
+  autofocusInput: function() {
+    // 使用 wx.createSelectorQuery 获取输入框的引用
+    const query = wx.createSelectorQuery();
+    query.select('.input').fields({ node: true, size: true }, (res) => {
+      if (res.node) {
+        // 调用输入框的 focus 方法
+        res.node.focus();
+      }
+    }).exec();
+  },
 })

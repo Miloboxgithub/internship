@@ -169,6 +169,7 @@ Page({
     });
   },
   loginMode() {
+    if (!wx.getStorageSync('loginStatus')) {
     this.setData({
       logins: true
     })
@@ -176,6 +177,7 @@ Page({
     this.getTabBar().setData({
       chans: true
     })
+  }
   },
   hideview() {
     this.setData({

@@ -8,6 +8,7 @@ Page({
     types1: false,
     types2: false,
     types3: false,
+    types4:false,
     industryes: [
       {
         op:'无',
@@ -19,6 +20,10 @@ Page({
       id:0
     }
     ],
+    hangs: '',
+    hangss: '', //待定
+    xin: '',
+    xins: '', //待定
     value: [0, 0, 0], // 默认选择的年月日索引
     years: [],
     months: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -31,7 +36,6 @@ Page({
     companyType: '',
     industry: '',
     position: '',
-    location: '',
     description: '',
     requirements: '',
     contactInfo: '',
@@ -39,9 +43,22 @@ Page({
     internshipType:'线下',
      idd:0,
      memo:'',
+     currentDate: '', // 当前日期
+     logoImageUrl: '',
+     zixunImageUrl: '',
+     //  postmsg
+
+     location: '',
+     locations: '', //待定
+
+     applicationDeadLine: '',
+     applicationDeadLines: '', //待定
+     sheng: [],
+     shi: [],
   },
   onLoad(options) {
     this.getType()
+    this.getWeizhi()
     if(options.id){
       console.log(options.id,'------------')
     }
@@ -121,7 +138,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          let ttt = this.data.xinzhi
+          let ttt = []
           res.data.data.forEach((i,k)=>{
             ttt.push({
               op:i.businessNature,
@@ -150,7 +167,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          let ttt = this.data.industryes
+          let ttt = []
           res.data.data.forEach((i,k)=>{
             ttt.push({
               op:i.industryType,
@@ -162,6 +179,74 @@ Page({
           })
         } else {
           console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+  },
+  getWeizhi() {
+    let that = this
+    wx.request({
+      url: `${apiUrl}/getProvinceList`, // 拼接完整的 URL
+      method: 'GET',
+      header: {
+        token: wx.getStorageSync('v_token')
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          that.setData({
+            sheng: res.data.data
+          })
+          wx.request({
+            url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+            method: 'POST',
+            data: {
+              province: this.data.sheng[0]
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+              token: wx.getStorageSync('v_token')
+            },
+            success: (res) => {
+              if (res.statusCode === 200) {
+                console.log(res.data)
+                that.setData({
+                  shi: res.data.data
+                })
+              } else {
+                console.error('请求失败:', res);
+              }
+            },
+            fail: (err) => {
+              console.error('请求失败:', err);
+            },
+            complete: () => {
+              console.log('请求完成');
+            }
+          });
+        } else {
+          console.error('请求失败:', res);
+          wx.setStorageSync('loginStatus', false)
+          wx.showModal({
+            title: '未登录！',
+            content: '请先去个人页面进行登录',
+            complete: (res) => {
+              if (res.cancel) {
+
+              }
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/person/person',
+                })
+              }
+            }
+          })
         }
       },
       fail: (err) => {
@@ -217,31 +302,43 @@ Page({
   },
   queren1: function () {
     this.setData({
-      types1: !this.data.types1
+      types1: !this.data.types1,
+      hangs: this.data.hangss
     })
     console.log(this.data.hangs)
-
+    
   },
   queren2: function () {
     this.setData({
-      types2: !this.data.types2
+      types2: !this.data.types2,
+      xin: this.data.xins
     })
     console.log(this.data.xin)
-
+    
   },
   queren3: function () {
     this.setData({
-      types3: !this.data.types3
+      types3: !this.data.types3,
+      applicationDeadLine: this.data.applicationDeadLines
     })
-
+    
+  },
+  queren4: function () {
+    this.setData({
+      types4: !this.data.types4,
+      location: this.data.locations
+    })
+    
   },
   hideview() {
     this.setData({
       types1: false,
       types2: false,
-      types3: false
+      types3: false,
+      types4: false
     })
-
+    //隐藏tabber
+    
   },
   changetypest1(e) {
     let ce = true
@@ -250,13 +347,15 @@ Page({
     this.setData({
       types1: true,
       types2: false,
-      types3: false
+      types3: false,
+      types4: false,
     })
     if (ce)
       this.setData({
         [e.currentTarget.id]: !this.data[e.currentTarget.id]
       })
-
+    //隐藏tabber
+    
   },
   changetypest2(e) {
     let ce = true
@@ -265,12 +364,15 @@ Page({
     this.setData({
       types1: false,
       types2: true,
-      types3: false
+      types3: false,
+      types4: false,
     })
     if (ce)
       this.setData({
         [e.currentTarget.id]: !this.data[e.currentTarget.id]
       })
+    //隐藏tabber
+    
   },
   changetypest3(e) {
     let ce = true
@@ -279,13 +381,98 @@ Page({
     this.setData({
       types1: false,
       types2: false,
-      types3: true
+      types3: true,
+      types4: false,
     })
     if (ce)
       this.setData({
         [e.currentTarget.id]: !this.data[e.currentTarget.id]
       })
+    //隐藏tabber
+    
     console.log(1234)
+  },
+  changetypest4(e) {
+    let ce = true
+    if (this.data[e.currentTarget.id]) ce = !ce
+    let ts = e.currentTarget.id
+    this.setData({
+      types1: false,
+      types2: false,
+      types3: false,
+      types4: true,
+    })
+    if (ce)
+      this.setData({
+        [e.currentTarget.id]: !this.data[e.currentTarget.id]
+      })
+    //隐藏tabber
+    
+    console.log(1234)
+  },
+  bindChange1: function (e) {
+    let cc = e.detail.value
+    // console.log(cc,e)
+    this.setData({
+      hangss: this.data.industryes[cc[0]]
+    })
+  },
+  bindChange2: function (e) {
+    let cc = e.detail.value
+    console.log(cc)
+    this.setData({
+      xins: this.data.xinzhi[cc[0]]
+    })
+  },
+  bindChange3: function (e) {
+    let cc = e.detail.value
+    let y = this.data.years[cc[0]]
+    let m = this.data.months[cc[1]]
+    let d = this.data.days[cc[2]]
+    console.log(y + '-' + m + '-' + d)
+    this.updateDaysOfMonth(y, m);
+    this.setData({
+      applicationDeadLines: y + '-' + m + '-' + d
+    })
+  },
+  bindChange4: function (e) {
+    let that = this
+    let cc = e.detail.value
+    console.log(cc, this.data.sheng[cc[0]])
+    wx.request({
+      url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+      method: 'POST',
+      data: {
+        province: this.data.sheng[cc[0]]
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        token: wx.getStorageSync('v_token')
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          that.setData({
+            shi: res.data.data
+          })
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    });
+    setTimeout(() => {
+      this.setData({
+        locations: this.data.sheng[cc[0]] +'-'+this.data.shi[cc[1]]
+      })
+      console.log(this.data.locations)
+    }, 500)
+
   },
   inputed(e) {
     console.log(e.detail.value)
@@ -293,32 +480,7 @@ Page({
       [e.currentTarget.dataset.name]: e.detail.value
     })
   },
-  bindChange1: function (e) {
-    let cc = e.detail.value
-    // console.log(cc,e)
-    this.setData({
-      hangs: this.data.industryes[cc[0]]
-    })
-  },
-  bindChange2: function (e) {
-    let cc = e.detail.value
-    console.log(cc)
-    this.setData({
-      xin: this.data.xinzhi[cc[0]]
-    })
-  },
-  bindChange3: function (e) {
-    let cc = e.detail.value
-    //console.log(cc,'cc')time
-    let y = this.data.years[cc[0]]
-    let m = this.data.months[cc[1]]
-    let d = this.data.days[cc[2]]
-    console.log(y + '-' + m + '-' + d)
-    this.updateDaysOfMonth(y, m);
-    this.setData({
-      applicationDeadLine: y + '-' + m + '-' + d
-    })
-  },
+
   shanchu: function(){
     var that = this;
     wx.showModal({
@@ -472,6 +634,9 @@ Page({
         location:''
       })
     }
+    if(!this.data.memo)this.setData({
+      memo:'无'
+    })
     let pmsg = {
       id:this.data.idd,
       companyName: this.data.companyName,
@@ -484,7 +649,7 @@ Page({
       requirement: this.data.requirements,
       harvest: this.data.acquisitions,
       deliveryMethod: this.data.contactInfo,
-      deadline: this.data.applicationDeadLine,
+      deadline: this.translateTime(this.data.applicationDeadLine),
       companyLogo: this.data.logoImageUrl,
       consultPhoto: this.data.zixunImageUrl,
       pageview : 0,//浏览量
@@ -616,5 +781,19 @@ Page({
     wx.navigateBack({
       delta: 1 // 返回的页面数，如果需要返回多级页面，可以调整 delta 的值
     });
+  },
+  translateTime(dateString) {
+    // 解析日期字符串
+    const date = new Date(dateString);
+  
+    // 提取年、月、日
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1
+    const day = String(date.getDate()).padStart(2, '0');
+  
+    // 组合成目标格式
+    const formattedDate = `${year}-${month}-${day} 23:59:59`;
+  
+    return formattedDate;
   },
 });

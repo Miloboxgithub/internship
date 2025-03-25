@@ -25,7 +25,7 @@
       </view>
  </view>
       <view class="info" bind:tap="navigates" data-url="/pkgA/pages/detail/detail"  data-id="{{index}}">
-        <text class="cotitle" selectable="false" space="false" decode="false">{{item.name}}</text>
+        <text class="cotitle" selectable="false" space="false" decode="false">{{item.jobPosition}} | {{item.name}}</text>
         <view class="tags">
           <view class="tt">
             <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>

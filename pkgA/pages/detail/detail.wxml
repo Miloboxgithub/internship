@@ -11,12 +11,12 @@
         <image src="{{coitem.icon}}" mode="aspectFit" lazy-load="false" mode="" />
       </view>
       <view class="info">
-        <text class="cotitle" selectable="false" space="false" decode="false">{{coitem.name}}</text>
+        <text class="cotitle" selectable="false" space="false" decode="false">{{coitem.jobPosition}} | {{coitem.name}}</text>
         <view class="tags">
           <view class="tt">
             <view class="tag" wx:for="{{coitem.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
           </view>
-          <view class="iszhao {{coitem.iszhao?'gg':'rr'}}">{{coitem.iszhao?'招募中':'筹备中'}}</view>
+          <view class="iszhao {{coitem.iszhao?'gg':'rr'}}">{{coitem.iszhao?'招募中':'已结束'}}</view>
         </view>
         <view class="fuji">
           <view class="times">截止时间：{{coitem.time}}</view>
@@ -49,7 +49,7 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="zhizhe">
       <view style="display: flex; justify-content: space-between;"><view class="tou jian">投递方式：</view><view class="site jian" bind:tap="fuzhi">复制</view></view>
-      <view class="ott oot" ><text style=" white-space: nowrap;">链接:    </text>{{links}}</view></view>
+      <view class="ott oot" ><text style=" white-space: nowrap;"></text>{{links}}</view></view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
     <view class="zhizhe">
