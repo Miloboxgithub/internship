@@ -97,6 +97,7 @@ textarea {
 }
 
 .sitesss {
+  
   width: 78vw;
   margin-left: 1vw;
   position: relative;
@@ -209,6 +210,7 @@ textarea {
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
 }
 
 .photosimg {

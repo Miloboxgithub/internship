@@ -9,4 +9,5 @@ letter-spacing: 0px;
 line-height: 23.17px;
 color: rgba(25, 25, 25, 1);
 padding-top: 30px;
+padding-bottom: 50px;
 }

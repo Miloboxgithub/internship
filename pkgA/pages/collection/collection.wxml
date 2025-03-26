@@ -13,7 +13,7 @@
         <image src="/img/搜索.png" mode="" />
       </view>
       <view class="fancy-bg"></view>
-      <input type="text" model:value="{{inputValue}}"  class="input" placeholder="请输入搜索内容"  id="search" />
+      <input type="text" bindconfirm="inputed" model:value="{{inputValue}}"  class="input" placeholder="请输入搜索内容"  id="search" />
     </view>
   </view>
   <view class="items">

@@ -65,7 +65,7 @@ Page({
               }, {
                 title: item.internshipType
               }, {
-                title: item.location
+                title: app.getSubstringAfterDash(item.location)
               }]
             }
             if (item.internshipType == '远程') {

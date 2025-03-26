@@ -30,7 +30,15 @@ Page({
     days: [],
     currentDate:'', // 当前日期
     logoImageUrl: '',
-    zixunImageUrl: '',
+    zixunImageUrl1: '',
+    zixunImageUrl2: '',
+    zixunImageUrl3: '',
+    zixunImageUrl4: '',
+    zixunImageUrl5: '',
+    zixunImageUrl6: '',
+    zixunImageUrl7: '',
+    zixunImageUrl8: '',
+    zixunImageUrl9: '',
     //  postmsg
     companyName: '',
     companyType: '',
@@ -107,9 +115,15 @@ Page({
             contactInfo:ans.deliveryMethod,
             applicationDeadLine:app.timeSub(ans.deadline),
             logoImageUrl:ans.companyLogo,
-            zixunImageUrl:ans.consultPhoto,
+            // zixunImageUrl:ans.consultPhoto,
             memo:ans.remark,
           })
+          let qq = app.splits(ans.consultPhoto)
+          for(let i=1;i<=qq.length;i++){
+            this.setData({
+              [`zixunImageUrl${i}`]: qq[i - 1]
+            });
+          }
           if(ans.internshipType != "线下")this.setData({
             types0:true
           })
@@ -747,35 +761,73 @@ Page({
       }
     });
   },
-  chooseImagezixun: function(e) {
-    let that=this
-    wx.chooseImage({
+  chooseImagezixun(e) {
+    console.log(e.currentTarget.dataset.index)
+    let op = e.currentTarget.dataset.index
+    let that = this
+    wx.chooseMedia({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function(res) {
-        // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths;
-        that.setData({
-          zixunImageUrl: tempFilePaths[0]
+      success: function (res) {
+        wx.uploadFile({
+          url: `${apiUrl}/internship/consultPhotoUpload`, // 你的上传接口地址
+          filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
+          name: 'file', // 与后端约定的文件参数名
+          header: {
+            'Content-Type': 'multipart/form-data', // 设置请求头
+            'token': wx.getStorageSync('v_token') // 传递 token
+          },
+          success: (res) => {
+            console.log(res)
+            if (res.statusCode == 200) {
+             
+                that.setData({
+                  [`zixunImageUrl${op}`]: JSON.parse(res.data).data
+                });
+              wx.showToast({
+                title: '上传成功',
+                icon: 'success'
+              });
+            } else {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'none'
+              });
+            }
+          },
+          fail: (err) => {
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
         });
       },
-      fail: function(err) {
+      fail: function (err) {
         console.error('选择图片失败：', err);
       }
     });
   },
-  removeLogo: function()
-  {
+
+  removeLogo: function () {
     this.setData({
       logoImageUrl: ''
     });
   },
-  removeZixun: function()
-  {
-    this.setData({
-      zixunImageUrl: ''
-    });
+  removeZixun(e) {
+      let op  = e.currentTarget.dataset.index
+      //console.log(op,this.data[`zixunImageUrl${op}`])
+      this.setData({
+        [`zixunImageUrl${op}`]: ''
+      });
+      for (let i = parseInt(op); i < 9; i++) {
+        //console.log(this.data[`zixunImageUrl${i + 1}`],`zixunImageUrl${i + 1}`)
+        this.setData({
+          [`zixunImageUrl${i}`]: this.data[`zixunImageUrl${i + 1}`]
+        });
+      }
   },
   back(){
     wx.navigateBack({

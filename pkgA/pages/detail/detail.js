@@ -35,10 +35,11 @@ Page({
     timee: '',
     bei: '',
     lolo: false,
-    picture: '',
+    picture: [],
     bei: '',
     idd: 0,
     cpp: {},
+    collected:false
   },
 
   /**
@@ -62,7 +63,6 @@ Page({
     wx.request({
       url: `${apiUrl}/internship/select/${id}`, // 拼接完整的 URL
       method: 'GET',
-
       header: {
         'content-type': 'application/json',
         'token': wx.getStorageSync('v_token') // 传递 token
@@ -78,10 +78,10 @@ Page({
             ott = [],
             req = [],
             gain = []
-          if (Array.isArray(ans.location)) site = this.getSubstringAfterDash(ans.location)
+          if (Array.isArray(ans.location)) site = that.getSubstringAfterDash(ans.location)
           else {
             if (!ans.location) site.push('远程')
-            else site.push(this.getSubstringAfterDash(ans.location))
+            else site.push(that.getSubstringAfterDash(ans.location))
           }
           ott.push(ans.responsibility)
           req.push(ans.requirement)
@@ -116,12 +116,14 @@ Page({
             gain,
             links: ans.deliveryMethod,
             timee:  app.timeSub(ans.deadline),
-            picture: ans.consultPhoto,
-            bei: ans.remark
+            picture: app.splits(ans.consultPhoto),
+            bei: ans.remark,
+            collected:ans.collected
           })
 
           that.setData({
-            lolo: false
+            lolo: false,
+            collected:ans.collected
           })
         } else {
           console.error('请求失败:', res);
@@ -221,6 +223,9 @@ Page({
             icon: 'success',
             duration: 2000
           });
+          this.setData({
+            collected:true
+          })
         } else {
           console.error('请求失败:', res);
           wx.setStorageSync('loginStatus', false)
@@ -253,6 +258,39 @@ Page({
       }
     });
 
+  },
+  deletes: function () {
+    let that = this
+    let ids = []
+    ids.push(this.data.idd)
+    wx.request({
+      url: `${apiUrl}/internship/cancelCollectionByList`, // 拼接完整的 URL
+      method: 'POST',
+      data: ids,
+      header: {
+        'content-type': 'application/json',
+        token: wx.getStorageSync('v_token')
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          this.setData({
+            collected:false
+          })
+          wx.showToast({
+            title: '取消成功',
+            icon: 'success'
+          })
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
+      }
+    })
   },
   copyText: function (event) {
     // 定义要复制的文本，包含换行符

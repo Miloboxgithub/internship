@@ -179,7 +179,10 @@
   color: rgba(56, 56, 56, 1);
   text-align: left;
   vertical-align: top;
-
+  white-space: nowrap; /* 不允许换行 */
+  overflow: hidden; /* 隐藏超出部分 */
+  text-overflow: ellipsis; /* 超出部分显示为省略号 */
+  width: 100%; /* 设置宽度，确保省略号效果生效 */
 }
 
 .kong {

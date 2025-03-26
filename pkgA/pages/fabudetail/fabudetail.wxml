@@ -56,25 +56,25 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">岗位职责<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <textarea auto-height class="tsts"  maxlength="1500"  bindinput="inputed" data-name="description" type="text" value="{{description}}" placeholder="请填写岗位职责"/>
+        <textarea auto-height class="tsts"  maxlength="650"  bindinput="inputed" data-name="description" type="text" value="{{description}}" placeholder="请填写岗位职责"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">岗位要求<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <textarea auto-height class="tsts"  maxlength="1500"  bindinput="inputed" data-name="requirements" type="text" value="{{requirements}}" placeholder="请填写岗位要求"/>
+        <textarea auto-height class="tsts"  maxlength="650"  bindinput="inputed" data-name="requirements" type="text" value="{{requirements}}" placeholder="请填写岗位要求"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">实习收获<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <textarea auto-height class="tsts" maxlength="1500"  type="text"  bindinput="inputed" data-name="acquisitions" value="{{acquisitions}}"  placeholder="请填写实习收获"/>
+        <textarea auto-height class="tsts" maxlength="350"  type="text"  bindinput="inputed" data-name="acquisitions" value="{{acquisitions}}"  placeholder="请填写实习收获"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">投递方式<text style="color: rgba(255, 0, 0, 1);">*</text></view>
-        <textarea auto-height class="tsts" maxlength="1500"  type="text" bindinput="inputed" data-name="contactInfo" value="{{contactInfo}}" placeholder="请填写投递方式"/>
+        <textarea auto-height class="tsts" maxlength="150"  type="text" bindinput="inputed" data-name="contactInfo" value="{{contactInfo}}" placeholder="请填写投递方式"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
@@ -97,17 +97,58 @@
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitesss">
         <view class="tou">资讯图片</view>
-        <view bind:tap="{{zixunImageUrl?'':'chooseImagezixun'}}" class="photos">
-      <image class="photosimg" src="{{zixunImageUrl || '/pkgA/img/相机.png'}}"  mode="aspectFill" />
-      <image src="/img/cha.png" wx:if="{{zixunImageUrl}}" bindtap="removeZixun" class="delete-button"></image>
-      <image src="/img/yess.png" wx:if="{{zixunImageUrl}}" class="yes-button"></image>
-    </view>
+        <view style="display: flex;   flex-wrap: wrap; gap: 10px;">
+          <view bind:tap="{{zixunImageUrl1?'':'chooseImagezixun'}}" class="photos" data-index='1'>
+            <image class="photosimg" src="{{zixunImageUrl1 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl1}}" bindtap="removeZixun" data-index='1' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl1}}" class="yes-button"></image>
+          </view>
+          <view class="photos" wx:if="{{zixunImageUrl1}}" bind:tap="{{zixunImageUrl2?'':'chooseImagezixun'}}" data-index='2'>
+            <image class="photosimg" src="{{zixunImageUrl2 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl2}}" bindtap="removeZixun" data-index='2' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl2}}" class="yes-button"></image>
+          </view>
+          <view class="photos" wx:if="{{zixunImageUrl2}}" bind:tap="{{zixunImageUrl3?'':'chooseImagezixun'}}" data-index='3'>
+            <image class="photosimg" src="{{zixunImageUrl3 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl3}}" bindtap="removeZixun" data-index='3' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl3}}" class="yes-button"></image>
+          </view>
+          <view class="photos" wx:if="{{zixunImageUrl3}}" bind:tap="{{zixunImageUrl4?'':'chooseImagezixun'}}" data-index='4'>
+            <image class="photosimg" src="{{zixunImageUrl4 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl4}}" bindtap="removeZixun" data-index='4' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl4}}" class="yes-button"></image>
+          </view>
+          <view class="photos" wx:if="{{zixunImageUrl4}}" bind:tap="{{zixunImageUrl5?'':'chooseImagezixun'}}" data-index='5'>
+            <image class="photosimg" src="{{zixunImageUrl5 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl5}}" bindtap="removeZixun" data-index='5' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl5}}" class="yes-button"></image>
+          </view>
+          <view class="photos" wx:if="{{zixunImageUrl5}}" bind:tap="{{zixunImageUrl6?'':'chooseImagezixun'}}" data-index='6'>
+            <image class="photosimg" src="{{zixunImageUrl6 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl6}}" bindtap="removeZixun" data-index='6' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl6}}" class="yes-button"></image>
+          </view>
+          <view class="photos" wx:if="{{zixunImageUrl6}}" bind:tap="{{zixunImageUrl7?'':'chooseImagezixun'}}" data-index='7'>
+            <image class="photosimg" src="{{zixunImageUrl7 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl7}}" bindtap="removeZixun" data-index='7' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl7}}" class="yes-button"></image>
+          </view>
+          <view class="photos" wx:if="{{zixunImageUrl7}}" bind:tap="{{zixunImageUrl8?'':'chooseImagezixun'}}" data-index='8'>
+            <image class="photosimg" src="{{zixunImageUrl8 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl8}}" bindtap="removeZixun" data-index='8' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl8}}" class="yes-button"></image>
+          </view>
+          <view class="photos" wx:if="{{zixunImageUrl8}}" bind:tap="{{zixunImageUrl9?'':'chooseImagezixun'}}" data-index='9'>
+            <image class="photosimg" src="{{zixunImageUrl9 || '/img/相机.png'}}" mode="aspectFill" />
+            <image src="/img/cha.png" wx:if="{{zixunImageUrl9}}" bindtap="removeZixun" data-index='9' class="delete-button"></image>
+            <image src="/img/yess.png" wx:if="{{zixunImageUrl9}}" class="yes-button"></image>
+          </view></view>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; border-bottom: 1px solid rgba(229, 229, 229, 1);">
       <view class="sitess">
         <view class="tou">备注</view>
-        <textarea auto-height class="tst" type="text" bindinput="inputed" data-name="memo" value="{{memo}}" placeholder="请填写备注信息"/>
+        <textarea auto-height class="tst"  maxlength="200"  type="text" bindinput="inputed" data-name="memo" value="{{memo}}" placeholder="请填写备注信息"/>
       </view>
     </view>
     <view style="  width: 80vw; margin-left: 5vw; ">

@@ -6,17 +6,17 @@
         <image bind:tap="searchs" src="/img/搜索.png" mode="" />
       </view>
       <view class="fancy-bg"></view>
-      <input type="text" bindblur="inputed"  class="input" placeholder="{{contents}}" auto-focus="true" value="{{msg}}" id="search" />
-      <image class="guan" src="/pkgA/img/路径 1.png" bind:tap="ggg" mode=""/>
+      <input type="text" bindconfirm="inputed" bindinput="iiin"  class="input" placeholder="{{contents}}" auto-focus="true" model:value="{{msg}}" id="search" />
+      <image class="guan" src="/img/cha1.png" catchtap="ggg" hover-stop-propagation="true" mode=""/>
     </view>
 </view>
-<view class="syl" wx:if="{{flag}}">搜索历史</view>
+<view class="syl" wx:if="{{flag}}">搜索历史 <image bind:tap="shanchu" class="shanchu" src="/img/shachu.png" mode=""/></view>
 <view class="kuai" wx:if="{{flag}}">
   <view class="items" wx:for="{{items}}" bind:tap="shang" data-s="{{item}}"><text>{{item}}</text></view>
 </view>
 </view>
 <view class="nono" wx:if="{{!flag}}">
-  <image src="/pkgA/img/搜索.png" mode=""/>
+  <image src="/img/搜索1.png" mode=""/>
   <text>
     当前未找到与关键词相关的内容，建议您调整搜索词或尝试其他关键词。
   </text>

@@ -27,7 +27,15 @@ Page({
     days: [],
     currentDate: '', // 当前日期
     logoImageUrl: '',
-    zixunImageUrl: '',
+    zixunImageUrl1: '',
+    zixunImageUrl2: '',
+    zixunImageUrl3: '',
+    zixunImageUrl4: '',
+    zixunImageUrl5: '',
+    zixunImageUrl6: '',
+    zixunImageUrl7: '',
+    zixunImageUrl8: '',
+    zixunImageUrl9: '',
     //  postmsg
     companyName: '',
     companyType: '',
@@ -158,8 +166,8 @@ Page({
       })
       return;
     }
-    if(!this.data.memo)this.setData({
-      memo:'无'
+    if (!this.data.memo) this.setData({
+      memo: '无'
     })
     let pmsg = {
       companyName: this.data.companyName,
@@ -174,7 +182,7 @@ Page({
       deliveryMethod: this.data.contactInfo,
       deadline: this.translateTime(this.data.applicationDeadLine),
       companyLogo: this.data.logoImageUrl,
-      consultPhoto: this.data.zixunImageUrl,
+      consultPhoto: this.getAllImageUrls(),
       pageview: 0, //浏览量
       weights: 1, //权重
       remark: this.data.memo,
@@ -197,13 +205,14 @@ Page({
             icon: 'success',
             duration: 2000
           });
-          
+
           setTimeout(() => {
             wx.switchTab({
               url: '/pages/home/home',
             })
+            that.clears()
           }, 1500)
-          that.reset()
+          
           app.globalData.pub = true
         } else {
           console.error('请求失败:', res);
@@ -235,6 +244,18 @@ Page({
   onLoad() {
 
   },
+      // 获取所有图片 URL 并用 | 分隔
+      getAllImageUrls: function () {
+        let urls = [];
+        for (let i = 1; i <= 9; i++) {
+          const url = this.data[`zixunImageUrl${i}`];
+          if (url) {
+            urls.push(url);
+          }
+        }
+        console.log(urls.join('|'))
+        return urls.join('|');
+      },
   getWeizhi() {
     let that = this
     wx.request({
@@ -366,15 +387,15 @@ Page({
   translateTime(dateString) {
     // 解析日期字符串
     const date = new Date(dateString);
-  
+
     // 提取年、月、日
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1
     const day = String(date.getDate()).padStart(2, '0');
-  
+
     // 组合成目标格式
     const formattedDate = `${year}-${month}-${day} 23:59:59`;
-  
+
     return formattedDate;
   },
   inputed(e) {
@@ -394,11 +415,47 @@ Page({
     this.initDatePicker();
     this.getWeizhi()
   },
-
+  clears(){
+    this.setData({
+      scrollTop: 0,
+      types0: false,
+      checks: false,
+      types1: false,
+      types2: false,
+      types3: false,
+      types4: false,
+      hangs: '',
+      hangss: '', //待定
+      xin: '',
+      xins: '', //待定
+      logoImageUrl: '',
+      zixunImageUrl1: '',
+      zixunImageUrl2: '',
+      zixunImageUrl3: '',
+      zixunImageUrl4: '',
+      zixunImageUrl5: '',
+      zixunImageUrl6: '',
+      zixunImageUrl7: '',
+      zixunImageUrl8: '',
+      zixunImageUrl9: '',
+      //  postmsg
+      companyName: '',
+      companyType: '',
+      industry: '',
+      position: '',
+      location: '',
+      locations: '', //待定
+      description: '',
+      requirements: '',
+      contactInfo: '',
+      contactInfo: '',
+      internshipType: '线下',
+      applicationDeadLine: '',
+      applicationDeadLines: '', //待定
+    })
+  },
   reset() {
-    wx.reLaunch({
-      url: '/pages/publish/publish'
-    });
+    this.clears()
     wx.showToast({
       title: '重置成功',
     })
@@ -623,7 +680,7 @@ Page({
   },
   bindChange2: function (e) {
     let cc = e.detail.value
-    console.log(cc,'xin')
+    console.log(cc, 'xin')
     this.setData({
       xins: this.data.xinzhi[cc[0]]
     })
@@ -672,7 +729,7 @@ Page({
     });
     setTimeout(() => {
       this.setData({
-        locations: this.data.sheng[cc[0]] +'-'+ this.data.shi[cc[1]]
+        locations: this.data.sheng[cc[0]] + '-' + this.data.shi[cc[1]]
       })
       console.log(this.data.locations)
     }, 500)
@@ -728,7 +785,9 @@ Page({
       }
     });
   },
-  chooseImagezixun: function (e) {
+  chooseImagezixun(e) {
+    console.log(e.currentTarget.dataset.index)
+    let op = e.currentTarget.dataset.index
     let that = this
     wx.chooseMedia({
       count: 1, // 默认9
@@ -746,9 +805,10 @@ Page({
           success: (res) => {
             console.log(res)
             if (res.statusCode == 200) {
-              that.setData({
-                zixunImageUrl: JSON.parse(res.data).data
-              });
+             
+                that.setData({
+                  [`zixunImageUrl${op}`]: JSON.parse(res.data).data
+                });
               wx.showToast({
                 title: '上传成功',
                 icon: 'success'
@@ -774,14 +834,23 @@ Page({
       }
     });
   },
+
   removeLogo: function () {
     this.setData({
       logoImageUrl: ''
     });
   },
-  removeZixun: function () {
-    this.setData({
-      zixunImageUrl: ''
-    });
+  removeZixun(e) {
+      let op  = e.currentTarget.dataset.index
+      //console.log(op,this.data[`zixunImageUrl${op}`])
+      this.setData({
+        [`zixunImageUrl${op}`]: ''
+      });
+      for (let i = parseInt(op); i < 9; i++) {
+        //console.log(this.data[`zixunImageUrl${i + 1}`],`zixunImageUrl${i + 1}`)
+        this.setData({
+          [`zixunImageUrl${i}`]: this.data[`zixunImageUrl${i + 1}`]
+        });
+      }
   },
 });

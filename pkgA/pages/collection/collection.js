@@ -74,7 +74,7 @@ Page({
                 }, {
                   title: item.internshipType
                 }, {
-                  title: item.location
+                  title: app.getSubstringAfterDash(item.location)
                 }]
               }
               if (item.internshipType == '远程') {
@@ -281,7 +281,7 @@ Page({
               }, {
                 title: item.positionType
               }, {
-                title: item.location
+                title: app.getSubstringAfterDash(item.location)
               }]
             }
             tt.push(t)
@@ -383,6 +383,9 @@ Page({
         console.log('请求完成');
       }
     })
+  },
+  inputed(){
+    this.searchs()
   },
   copys(){
     let that = this

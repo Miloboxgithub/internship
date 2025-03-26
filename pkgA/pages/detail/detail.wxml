@@ -67,12 +67,13 @@
     </view>
     </view>
   </view>
-  <!-- <view class="photoes"> -->
-    <image class="photoess"  bindlongpress="onLongPress" src="{{picture}}" data-url="{{picture}}" mode="widthFix"/>
-  <!-- </view> -->
+  <view class="photoes">
+    <image class="photoess" wx:for="{{picture}}"  bindlongpress="onLongPress" src="{{item}}" data-url="{{item}}" mode="widthFix"/>
+  </view>
   <view class="tabbers">
         <button open-type="share" class="btns"><image src="/pkgA/img/分享.png" mode=""/></button>
-        <view class="abc" bind:tap="shouchang">加入收藏</view>
+        <view class="abc" bind:tap="shouchang" wx:if="{{!collected}}">加入收藏</view>
+        <view class="abc" bind:tap="deletes" wx:else="">已收藏</view>
         <view class="bca" bind:tap="copyText">复制投递方式</view>
   </view>
 </scroll-view>

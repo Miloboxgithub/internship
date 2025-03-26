@@ -28,6 +28,16 @@ Page({
       flag:true
     })
   },
+  shanchu(){
+    this.setData({
+      items:[]
+    })
+    let record = []
+    wx.setStorageSync('srecord', record);
+    wx.showToast({
+      title: '删除成功',
+    })
+  },
   searchs() {
     let msg = this.data.msg;
     if (!msg) {
@@ -122,6 +132,7 @@ Page({
     this.setData({
       msg: e.currentTarget.dataset.s
     })
+    this.searchs()
   },
   autofocusInput: function() {
     // 使用 wx.createSelectorQuery 获取输入框的引用
