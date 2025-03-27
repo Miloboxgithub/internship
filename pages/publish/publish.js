@@ -52,6 +52,8 @@ Page({
     applicationDeadLines: '', //待定
     sheng: [],
     shi: [],
+    acquisitions:'',
+      contactInfo:'',
   },
   PostMsg() {
     let that = this
@@ -452,6 +454,8 @@ Page({
       internshipType: '线下',
       applicationDeadLine: '',
       applicationDeadLines: '', //待定
+      acquisitions:'',
+      contactInfo:'',
     })
   },
   reset() {

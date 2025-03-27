@@ -40,6 +40,7 @@ Page({
     inputValue:'',
   },
   fetchList() {
+    console.log('ssss')
     let that = this
     coco = []
     this.setData({
@@ -55,7 +56,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          
+          console.log(res)
           let op = res.data.data
           let tt = that.data.coitem
           if (op)
@@ -363,8 +364,9 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
+        console.log(res)
         if (res.statusCode === 200) {
-          console.log(res.data)
+          console.log(res.data,'kkkk')
           setTimeout(() => {
             that.fetchList()
           }, 1000)

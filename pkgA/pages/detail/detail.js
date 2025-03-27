@@ -263,6 +263,7 @@ Page({
     let that = this
     let ids = []
     ids.push(this.data.idd)
+    console.log(ids)
     wx.request({
       url: `${apiUrl}/internship/cancelCollectionByList`, // 拼接完整的 URL
       method: 'POST',
@@ -273,6 +274,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
+          console.log(res)
           this.setData({
             collected:false
           })

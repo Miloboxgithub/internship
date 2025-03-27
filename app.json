@@ -31,8 +31,7 @@
       },
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#FFFFFF",
-    "enablePullDownRefresh": true
+    "navigationBarBackgroundColor": "#FFFFFF"
   },
   "usingComponents": {
     "cu-custom": "/style/colorui/components/cu-custom",
