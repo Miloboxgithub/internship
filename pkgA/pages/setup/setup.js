@@ -6,33 +6,81 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputValue:'',
-    types1:false,
-    types2:false,
-    industry:['未知','男','女'],
-    ys:[],
-    industrys:[],
-    sex:'未知',
-    diqu:'未知',
-    ID:'未知',
-    avatar:'/img/头像.png'
+    inputValue: '',
+    types1: false,
+    types2: false,
+    industry: ['未知', '男', '女'],
+    ys: [],
+    industrys: [],
+    sex: '未知',
+    diqu: '未知',
+    ID: '未知',
+    avatar: '/img/头像.png',
+    islogin: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow(){
+  onShow() {
     let info = wx.getStorageSync('userInfo')
-      if(info){
-        console.log(info)
-        this.setData({
-          inputValue:info.name?info.name:'微信用户',
-          avatar:info.avatar?info.avatar:'/img/头像.png',
-          ID:info.account,
-          sex:info.gender?info.gender:'未知',
-          diqu:info.location?info.location:'未知'
-        })
+    if (info) {
+      console.log(info)
+      this.setData({
+        inputValue: info.name ? info.name : '微信用户',
+        avatar: info.avatar ? info.avatar : '/img/头像.png',
+        ID: info.account,
+        sex: info.gender ? info.gender : '未知',
+        diqu: info.location ? info.location : '未知'
+      })
+    }
+    let fl = wx.getStorageSync('loginStatus')
+    if (fl) {
+      this.setData({
+        islogin: true
+      })
+    }
+  },
+  tuichu() {
+    let that = this
+    wx.setStorageSync('loginStatus', false)
+    wx.request({
+      url: `${apiUrl}/user/logout`, // 拼接完整的 URL
+      method: 'POST',
+      header: {
+        token: wx.getStorageSync('v_token')
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          let abc = []
+          wx.showToast({
+            title: '退出成功！',
+          })
+          that.setData({
+            islogin: false
+          })
+          wx.removeStorageSync('userInfo')
+      wx.removeStorageSync('v_token')
+          that.setData({
+            inputValue: '微信用户',
+            avatar: '/img/头像.png',
+            ID: '未知',
+            sex: '未知',
+            diqu: '未知'
+          })
+
+        } else {
+          console.error('请求失败:', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        console.log('请求完成');
       }
+    });
   },
   onLoad(options) {
     const inputValue = wx.getStorageSync('inputValue') || '微信用户';
@@ -43,7 +91,9 @@ Page({
   },
   onChooseAvatar(e) {
     let that = this
-    const { avatarUrl } = e.detail 
+    const {
+      avatarUrl
+    } = e.detail
     console.log(avatarUrl)
     wx.uploadFile({
       url: `${apiUrl}/user/avatarUpload`, // 你的上传接口地址
@@ -56,11 +106,11 @@ Page({
       success: (res) => {
         if (res.statusCode == 200) {
           that.setData({
-            avatar:JSON.parse(res.data).data,
+            avatar: JSON.parse(res.data).data,
           })
-          setTimeout(()=>{
+          setTimeout(() => {
             this.putsInfo()
-          },500)
+          }, 500)
           wx.showToast({
             title: '上传成功',
             icon: 'success'
@@ -81,70 +131,71 @@ Page({
       }
     });
   },
-  inputChange: function(e) {
+  inputChange: function (e) {
     this.setData({
       inputValue: e.detail.value // 更新inputValue为输入框的当前值
     });
     wx.setStorageSync('inputValue', e.detail.value); // 同步保存到本地存储
     this.putsInfo()
   },
-  changetypes1: function(){
+  changetypes1: function () {
     this.setData({
-      types1:true
+      types1: true
     })
   },
-  changetypes2: function(){
+  changetypes2: function () {
     this.setData({
-      types2:true
+      types2: true
     })
   },
-  hideview: function(){
+  hideview: function () {
     this.setData({
-      types1:false,
-      types2:false
+      types1: false,
+      types2: false
     })
   },
-  queren1:function(){
+  queren1: function () {
     this.setData({
-      sex:this.data.sexs
+      sex: this.data.sexs
     })
     this.putsInfo()
     this.hideview()
   },
   bindChange1: function (e) {
-    let cc=e.detail.value
+    let cc = e.detail.value
     console.log(cc[0])
     this.setData({
-      sexs:this.data.industry[cc[0]]
+      sexs: this.data.industry[cc[0]]
     })
   },
-  queren2:function(){
+  queren2: function () {
     console.log(this.data.diqus)
     this.setData({
-      diqu:this.data.diqus
+      diqu: this.data.diqus
     })
     this.putsInfo()
     this.hideview()
   },
   bindChange2: function (e) {
     let that = this
-    let cc=e.detail.value
-    console.log(cc,this.data.ys[cc[0]])
+    let cc = e.detail.value
+    console.log(cc, this.data.yid[cc[0]])
     wx.request({
-      url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+      url: `${apiUrl}/getCityByProvinceId/${this.data.yid[cc[0]]}`, // 拼接完整的 URL
       method: 'POST',
-      data:{
-        province:this.data.ys[cc[0]]
-      },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        token:wx.getStorageSync('v_token')
+        token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
+          let abc = []
+          res.data.data.forEach((i, k) => {
+            abc.push(i.name)
+          })
           that.setData({
-            industrys:res.data.data
+            industrys: abc
           })
         } else {
           console.error('请求失败:', res);
@@ -157,44 +208,55 @@ Page({
         console.log('请求完成');
       }
     });
-    setTimeout(()=>{
+    setTimeout(() => {
 
       this.setData({
-        diqus:this.data.ys[cc[0]]+this.data.industrys[cc[1]]
+        diqus: this.data.industrys[cc[1]]
       })
 
-    },500)
+    }, 500)
 
   },
-  getWeizhi(){
+  getWeizhi() {
     let that = this
     wx.request({
       url: `${apiUrl}/getProvinceList`, // 拼接完整的 URL
       method: 'GET',
       header: {
-        token:wx.getStorageSync('v_token')
+        token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
+          let abc = [],
+            cba = []
+          res.data.data.forEach((i, k) => {
+            abc.push(i.province)
+            cba.push(i.id)
+          })
           that.setData({
-            ys:res.data.data
+            ys: abc,
+            yid: cba
           })
           wx.request({
-            url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+            url: `${apiUrl}/getCityByProvinceId/${this.data.yid[0]}`, // 拼接完整的 URL
             method: 'POST',
-            data:{
-              province:this.data.ys[0]
-            },
             header: {
               'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-              token:wx.getStorageSync('v_token')
+              token: wx.getStorageSync('v_token')
             },
             success: (res) => {
               if (res.statusCode === 200) {
                 console.log(res.data)
+                let abc = []
+                res.data.data.forEach((i, k) => {
+                  abc.push(i.name)
+                })
                 that.setData({
-                  industrys:res.data.data
+                  industrys: abc
+                })
+                that.setData({
+                  diqus: this.data.industrys[0]
                 })
               } else {
                 console.error('请求失败:', res);
@@ -219,30 +281,30 @@ Page({
       }
     });
   },
-  putsInfo(){
+  putsInfo() {
     let op = {
-      avatar:this.data.avatar,
-        gender:this.data.sex,
-        location:this.data.diqu,
-        name:this.data.inputValue,
+      avatar: this.data.avatar,
+      gender: this.data.sex,
+      location: this.data.diqu,
+      name: this.data.inputValue,
     }
     console.log(op)
     wx.request({
       url: `${apiUrl}/user/updateInfoById`, // 拼接完整的 URL
       method: 'PUT',
-      data:{
-        avatar:this.data.avatar,
-        gender:this.data.sex,
-        location:this.data.diqu,
-        name:this.data.inputValue,
+      data: {
+        avatar: this.data.avatar,
+        gender: this.data.sex,
+        location: this.data.diqu,
+        name: this.data.inputValue,
       },
       header: {
-        token:wx.getStorageSync('v_token')
+        token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
-          
+
         } else {
           console.error('请求失败:', res);
         }

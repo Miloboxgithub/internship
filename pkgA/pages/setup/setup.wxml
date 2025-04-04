@@ -37,6 +37,7 @@
         </view>
       </view>
     </view>
+    <view class="btns" wx:if="{{islogin}}" bind:tap="tuichu">退出登录</view>
   </view>
 </view>
 

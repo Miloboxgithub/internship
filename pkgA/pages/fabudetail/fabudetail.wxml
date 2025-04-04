@@ -155,7 +155,7 @@
     <view class="bottoms">
         <view class="yingsi">
           <view class="checks" bind:tap="changecheck" style="background: {{checks?'rgba(80, 177, 178, 1)':''}}"><image src="{{checks?'/img/gou.png':''}}" mode=""/></view>
-          <view bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy">隐私协议</view>
+          <view bind:tap="navigate" data-url="/pkgA/pages/service/service">服务协议</view>
         </view>
         <view class="btns">
         <view class="chexiao" bind:tap="shanchu">删除</view>

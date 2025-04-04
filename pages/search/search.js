@@ -103,10 +103,21 @@ Page({
           }
         } else {
           console.error('请求失败:', res);
-          wx.showToast({
-            title: '搜索失败',
-            icon: 'error'
-          }, 1000)
+          wx.setStorageSync('loginStatus', false)
+          wx.showModal({
+            title: '未登录！',
+            content: '请先去个人页面进行登录',
+            complete: (res) => {
+              if (res.cancel) {
+
+              }
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/person/person',
+                })
+              }
+            }
+          })
         }
       },
       fail: (err) => {

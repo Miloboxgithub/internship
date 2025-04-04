@@ -51,9 +51,10 @@ Page({
     applicationDeadLine: '',
     applicationDeadLines: '', //待定
     sheng: [],
+    sid: [],
     shi: [],
-    acquisitions:'',
-      contactInfo:'',
+    acquisitions: '',
+    contactInfo: '',
   },
   PostMsg() {
     let that = this
@@ -163,7 +164,7 @@ Page({
     // 这里可以添加提交表单的代码，例如使用 wx.request 发送数据到服务器
     if (!this.data.checks) {
       wx.showToast({
-        title: '请阅读并勾选隐私协议!',
+        title: '请阅读并勾选服务协议!',
         icon: 'none'
       })
       return;
@@ -184,7 +185,7 @@ Page({
       deliveryMethod: this.data.contactInfo,
       deadline: this.translateTime(this.data.applicationDeadLine),
       companyLogo: this.data.logoImageUrl,
-      consultPhoto: this.getAllImageUrls(),
+      consultPhoto: this.getAllImageUrls()?this.getAllImageUrls():null,
       pageview: 0, //浏览量
       weights: 1, //权重
       remark: this.data.memo,
@@ -202,19 +203,36 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res)
+          if(res.data.code==0){
+            wx.showToast({
+              title: '发布失败',
+              icon: 'error',
+              duration: 2000
+            });
+            return ;
+          }
+          if(res.data.msg=="发布内容违规！"){
+            wx.showToast({
+              title: '发布内容违规！',
+              icon: 'error',
+              duration: 2000
+            });
+            return ; 
+          }
           wx.showToast({
             title: '发布成功',
             icon: 'success',
             duration: 2000
           });
-
           setTimeout(() => {
-            wx.switchTab({
-              url: '/pages/home/home',
+            // wx.switchTab({
+            //   url: '/pages/home/home',
+            // })
+            wx.navigateTo({
+              url: '/pkgA/pages/myfabu/myfabu',
             })
             that.clears()
           }, 1500)
-          
           app.globalData.pub = true
         } else {
           console.error('请求失败:', res);
@@ -224,7 +242,6 @@ Page({
             content: '请先去个人页面进行登录',
             complete: (res) => {
               if (res.cancel) {
-
               }
               if (res.confirm) {
                 wx.switchTab({
@@ -246,18 +263,18 @@ Page({
   onLoad() {
 
   },
-      // 获取所有图片 URL 并用 | 分隔
-      getAllImageUrls: function () {
-        let urls = [];
-        for (let i = 1; i <= 9; i++) {
-          const url = this.data[`zixunImageUrl${i}`];
-          if (url) {
-            urls.push(url);
-          }
-        }
-        console.log(urls.join('|'))
-        return urls.join('|');
-      },
+  // 获取所有图片 URL 并用 | 分隔
+  getAllImageUrls: function () {
+    let urls = [];
+    for (let i = 1; i <= 9; i++) {
+      const url = this.data[`zixunImageUrl${i}`];
+      if (url) {
+        urls.push(url);
+      }
+    }
+    console.log(urls.join('|'))
+    return urls.join('|');
+  },
   getWeizhi() {
     let that = this
     wx.request({
@@ -269,24 +286,36 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
+          let abc = [],
+            cba = []
+          res.data.data.forEach((i, k) => {
+            abc.push(i.province)
+            cba.push(i.id)
+          })
           that.setData({
-            sheng: res.data.data
+            sheng: abc,
+            sid: cba
           })
           wx.request({
-            url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+            url: `${apiUrl}/getCityByProvinceId/${this.data.sid[0]}`, // 拼接完整的 URL
             method: 'POST',
-            data: {
-              province: this.data.sheng[0]
-            },
             header: {
-              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+              'Accept': '*/*',
+              'Cache-Control': 'no-cache',
               token: wx.getStorageSync('v_token')
             },
             success: (res) => {
               if (res.statusCode === 200) {
                 console.log(res.data)
+                let abc = []
+                res.data.data.forEach((i, k) => {
+                  abc.push(i.name)
+                })
                 that.setData({
-                  shi: res.data.data
+                  shi: abc,
+                })
+                that.setData({
+                  locations: this.data.sheng[0] + '-' + this.data.shi[0]
                 })
               } else {
                 console.error('请求失败:', res);
@@ -302,6 +331,8 @@ Page({
         } else {
           console.error('请求失败:', res);
           wx.setStorageSync('loginStatus', false)
+          wx.removeStorageSync('userInfo')
+          wx.removeStorageSync('v_token')
           wx.showModal({
             title: '未登录！',
             content: '请先去个人页面进行登录',
@@ -345,6 +376,9 @@ Page({
           this.setData({
             xinzhi: ttt
           })
+          this.setData({
+            xins: this.data.xinzhi[0]
+          })
         } else {
           console.error('请求失败:', res);
         }
@@ -373,6 +407,9 @@ Page({
           })
           this.setData({
             industryes: ttt
+          })
+          this.setData({
+            hangss: this.data.industryes[0]
           })
         } else {
           console.error('请求失败:', res);
@@ -417,7 +454,7 @@ Page({
     this.initDatePicker();
     this.getWeizhi()
   },
-  clears(){
+  clears() {
     this.setData({
       scrollTop: 0,
       types0: false,
@@ -427,9 +464,9 @@ Page({
       types3: false,
       types4: false,
       hangs: '',
-      hangss: '', //待定
+      hangss: this.data.industryes[0],
       xin: '',
-      xins: '', //待定
+      xins: this.data.xinzhi[0],
       logoImageUrl: '',
       zixunImageUrl1: '',
       zixunImageUrl2: '',
@@ -444,9 +481,10 @@ Page({
       companyName: '',
       companyType: '',
       industry: '',
+   
       position: '',
       location: '',
-      locations: '', //待定
+      locations: this.data.sheng[0] + '-' + this.data.shi[0],
       description: '',
       requirements: '',
       contactInfo: '',
@@ -454,9 +492,10 @@ Page({
       internshipType: '线下',
       applicationDeadLine: '',
       applicationDeadLines: '', //待定
-      acquisitions:'',
-      contactInfo:'',
+      acquisitions: '',
+      contactInfo: '',
     })
+    this.initDatePicker()
   },
   reset() {
     this.clears()
@@ -490,6 +529,9 @@ Page({
     this.setData({
       currentDate: `${year}-${month + 1}-${day}`
     });
+    this.setData({
+      applicationDeadLines: `${year}-${month + 1}-${day}`
+    })
   },
   getDaysOfMonth(year) {
     const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -703,22 +745,24 @@ Page({
   bindChange4: function (e) {
     let that = this
     let cc = e.detail.value
-    console.log(cc, this.data.sheng[cc[0]])
+    console.log(cc, this.data.sid[cc[0]])
     wx.request({
-      url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+      url: `${apiUrl}/getCityByProvinceId/${this.data.sid[cc[0]]}`, // 拼接完整的 URL
       method: 'POST',
-      data: {
-        province: this.data.sheng[cc[0]]
-      },
       header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Accept': '*/*',
+        'Cache-Control': 'no-cache',
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
+          let abc = []
+          res.data.data.forEach((i, k) => {
+            abc.push(i.name)
+          })
           that.setData({
-            shi: res.data.data
+            shi: abc
           })
         } else {
           console.error('请求失败:', res);
@@ -809,10 +853,10 @@ Page({
           success: (res) => {
             console.log(res)
             if (res.statusCode == 200) {
-             
-                that.setData({
-                  [`zixunImageUrl${op}`]: JSON.parse(res.data).data
-                });
+
+              that.setData({
+                [`zixunImageUrl${op}`]: JSON.parse(res.data).data
+              });
               wx.showToast({
                 title: '上传成功',
                 icon: 'success'
@@ -845,16 +889,16 @@ Page({
     });
   },
   removeZixun(e) {
-      let op  = e.currentTarget.dataset.index
-      //console.log(op,this.data[`zixunImageUrl${op}`])
+    let op = e.currentTarget.dataset.index
+    //console.log(op,this.data[`zixunImageUrl${op}`])
+    this.setData({
+      [`zixunImageUrl${op}`]: ''
+    });
+    for (let i = parseInt(op); i < 9; i++) {
+      //console.log(this.data[`zixunImageUrl${i + 1}`],`zixunImageUrl${i + 1}`)
       this.setData({
-        [`zixunImageUrl${op}`]: ''
+        [`zixunImageUrl${i}`]: this.data[`zixunImageUrl${i + 1}`]
       });
-      for (let i = parseInt(op); i < 9; i++) {
-        //console.log(this.data[`zixunImageUrl${i + 1}`],`zixunImageUrl${i + 1}`)
-        this.setData({
-          [`zixunImageUrl${i}`]: this.data[`zixunImageUrl${i + 1}`]
-        });
-      }
+    }
   },
 });

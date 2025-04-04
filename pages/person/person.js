@@ -19,8 +19,16 @@ Page({
       this.setData({
         islogins: false
       })
+      this.getUserInfo()
     }
-    this.getUserInfo()
+    else{
+      this.setData({
+        islogins: true,
+        username:'微信用户',
+        avatar:'/img/头像.png'
+      })
+    }
+    
     setTimeout(()=>{
       let info = wx.getStorageSync('userInfo')
       if(info){
@@ -152,6 +160,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
+
           console.log(res.data)
           wx.setStorageSync('userInfo', res.data.data);
           let info = wx.getStorageSync('userInfo')

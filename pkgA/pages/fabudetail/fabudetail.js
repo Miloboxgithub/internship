@@ -71,6 +71,7 @@ Page({
       console.log(options.id,'------------')
     }
     this.GetData(options.id)
+    console.log(options.id,'------------')
     this.setData({
       idd:options.id
     })
@@ -93,12 +94,11 @@ Page({
     wx.request({
       url: `${apiUrl}/internship/select/${id}`, // 拼接完整的 URL
       method: 'GET',
-      
       header: {
-        'content-type': 'application/json',
         'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
+        console.log(res,'get')
         if (res.statusCode === 200) {
           let ans= res.data.data
           console.log(ans,'ans')
@@ -162,6 +162,9 @@ Page({
           this.setData({
             xinzhi:ttt
           })
+          this.setData({
+            xins: this.data.xinzhi[0]
+          })
         } else {
           console.error('请求失败:', res);
         }
@@ -191,6 +194,9 @@ Page({
           this.setData({
             industryes:ttt
           })
+          this.setData({
+            hangss: this.data.industryes[0]
+          })
         } else {
           console.error('请求失败:', res);
         }
@@ -214,24 +220,36 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
+          let abc = [],
+            cba = []
+          res.data.data.forEach((i, k) => {
+            abc.push(i.province)
+            cba.push(i.id)
+          })
           that.setData({
-            sheng: res.data.data
+            sheng: abc,
+            sid: cba
           })
           wx.request({
-            url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+            url: `${apiUrl}/getCityByProvinceId/${this.data.sid[0]}`, // 拼接完整的 URL
             method: 'POST',
-            data: {
-              province: this.data.sheng[0]
-            },
             header: {
-              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+              'Accept': '*/*',
+              'Cache-Control': 'no-cache',
               token: wx.getStorageSync('v_token')
             },
             success: (res) => {
               if (res.statusCode === 200) {
                 console.log(res.data)
+                let abc = []
+                res.data.data.forEach((i, k) => {
+                  abc.push(i.name)
+                })
                 that.setData({
-                  shi: res.data.data
+                  shi: abc,
+                })
+                that.setData({
+                  locations: this.data.sheng[0] + '-' + this.data.shi[0]
                 })
               } else {
                 console.error('请求失败:', res);
@@ -452,22 +470,24 @@ Page({
   bindChange4: function (e) {
     let that = this
     let cc = e.detail.value
-    console.log(cc, this.data.sheng[cc[0]])
+    console.log(cc, this.data.sid[cc[0]])
     wx.request({
-      url: `${apiUrl}/getCityByProvinceName`, // 拼接完整的 URL
+      url: `${apiUrl}/getCityByProvinceId/${this.data.sid[cc[0]]}`, // 拼接完整的 URL
       method: 'POST',
-      data: {
-        province: this.data.sheng[cc[0]]
-      },
       header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Accept': '*/*',
+        'Cache-Control': 'no-cache',
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
         if (res.statusCode === 200) {
           console.log(res.data)
+          let abc = []
+          res.data.data.forEach((i, k) => {
+            abc.push(i.name)
+          })
           that.setData({
-            shi: res.data.data
+            shi: abc
           })
         } else {
           console.error('请求失败:', res);
@@ -482,7 +502,7 @@ Page({
     });
     setTimeout(() => {
       this.setData({
-        locations: this.data.sheng[cc[0]] +'-'+this.data.shi[cc[1]]
+        locations: this.data.sheng[cc[0]] + '-' + this.data.shi[cc[1]]
       })
       console.log(this.data.locations)
     }, 500)
@@ -637,7 +657,7 @@ Page({
     // 这里可以添加提交表单的代码，例如使用 wx.request 发送数据到服务器
     if(!this.data.checks){
       wx.showToast({
-        title: '请阅读并勾选隐私协议!',
+        title: '请阅读并勾选服务协议!',
         icon:'none'
       })
       return;
@@ -683,6 +703,14 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
+          if(res.data.msg=="发布内容违规！"){
+            wx.showToast({
+              title: '发布内容违规！',
+              icon: 'error',
+              duration: 2000
+            });
+            return ; 
+          }
           console.log(res)
           wx.showToast({
             title: '修改成功！',
@@ -730,6 +758,9 @@ Page({
     this.setData({
       currentDate: `${year}-${month + 1}-${day}`
     });
+    this.setData({
+      applicationDeadLines: `${year}-${month + 1}-${day}`
+    })
   },
   getDaysOfMonth(year) {
     const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;

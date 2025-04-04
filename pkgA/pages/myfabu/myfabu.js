@@ -32,6 +32,14 @@ Page({
   onReady() {
 
   },
+  onPullDownRefresh() {
+    this.setData({
+      coitem: []
+    })
+    this.getItems();
+    // 下拉刷新完成后，需要调用 wx.stopPullDownRefresh 停止刷新动画
+    wx.stopPullDownRefresh();
+  },
   getItems() {
     let that = this
     this.setData({
@@ -41,8 +49,7 @@ Page({
       url: `${apiUrl}/internship/getMyPublish`, // 拼接完整的 URL
       method: 'GET',
       header: {
-        'content-type': 'application/json',
-        'token': wx.getStorageSync('v_token') // 传递 token
+        token: wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
         console.log(res)
@@ -57,8 +64,7 @@ Page({
               name: item.companyName,
               time: app.timeSub(item.deadline),
               jobPosition:item.jobPosition,
-              iszhao: app.cmpToday(item.deadline) ? true : false,
-
+              
               sum: item.pageview,
               tags: [{
                 title: item.businessNature
@@ -67,6 +73,22 @@ Page({
               }, {
                 title: app.getSubstringAfterDash(item.location)
               }]
+            }
+            if(item.overTime==0){
+              t.iszhao = 'gg'
+              t.st = '招募中'
+            }
+            else if(item.overTime==1){
+              t.iszhao = 'rr'
+              t.st = '已结束'
+            }
+            else if(item.overTime==2){
+              t.iszhao = 'yy'
+              t.st = '审核中'
+            }
+            else if(item.overTime==3){
+              t.iszhao = 'bb'
+              t.st = '未通过'
             }
             if (item.internshipType == '远程') {
               t.tags.pop()

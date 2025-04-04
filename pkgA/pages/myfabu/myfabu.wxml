@@ -16,7 +16,7 @@
           <view class="tt">
             <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
           </view>
-          <view class="iszhao {{item.iszhao?'gg':'rr'}}">{{item.iszhao?'招募中':'已结束'}}</view>
+          <view class="iszhao {{item.iszhao}}">{{item.st}}</view>
         </view>
         <view class="fuji">
           <view class="times">截止时间：{{item.time}}</view>

@@ -53,6 +53,26 @@ Page({
     this.setData({
       idd: options.id
     })
+    wx.showShareMenu({
+      menus: ['shareAppMessage', 'shareTimeline'],// 需要显示的转发按钮名称列表.合法值包含 "shareAppMessage"、"shareTimeline"
+      success(res) {
+        console.log(res);
+      },
+      fail(e) {
+        console.log(e);
+      }
+    });
+      // "shareAppMessage"表示“发送给朋友”按钮，"shareTimeline"表示“分享到朋友圈”按钮
+      wx.showShareMenu({
+        menus: ['shareAppMessage', 'shareTimeline'],// 需要显示的转发按钮名称列表.合法值包含 "shareAppMessage"、"shareTimeline"
+        success(res) {
+          console.log(res);
+        },
+        fail(e) {
+          console.log(e);
+        }
+      });
+    
   },
   GetData(id) {
     let that = this
@@ -180,9 +200,24 @@ Page({
     return dateParts[0] + "年" + month + "月" + day + "日";
   },
   goBack: function () {
+    const pages = getCurrentPages();
+
+    const currentPage = pages[pages.length - 1]; // 当前页面
+    const prevPage = pages[pages.length - 2]; // 上一级页面
+    console.log(prevPage,prevPage)
+  // 检查是否有上一级页面
+  if (prevPage) {
+    // 有上一级页面，返回上一级
     wx.navigateBack({
       delta: 1 // 返回上一级页面
     });
+  } else {
+    // 没有上一级页面，重定向到指定页面
+    console.log(123)
+    wx.switchTab({
+      url: '/pages/home/home',
+    })
+  }
   },
   fuzhi: function () {
     wx.setClipboardData({
@@ -284,6 +319,21 @@ Page({
           })
         } else {
           console.error('请求失败:', res);
+          wx.setStorageSync('loginStatus', false)
+          wx.showModal({
+            title: '未登录！',
+            content: '请先去个人页面进行登录',
+            complete: (res) => {
+              if (res.cancel) {
+
+              }
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/person/person',
+                })
+              }
+            }
+          })
         }
       },
       fail: (err) => {
@@ -344,26 +394,26 @@ Page({
       }
     });
   },
-  onShareAppMessage: function (res) {
+  onShareAppMessage(res) {
     //  if (res.from === 'button') {
     //    // 来自页面内 share-button
     //  }
+    console.log(encodeURI(this.data.coitem.icon))
     return {
       title: this.data.coitem.name,
-      path: `/pkgA/pages/detail/detail${this.data.idd}`, // 分享的页面路径
-      imageUrl: this.data.coitem.icon, // 分享图片的 URL
-      query: '' // 分享链接的查询参数
+      path: `/pkgA/pages/detail/detail?id=${this.data.idd}`, // 分享的页面路径
+      // imageUrl: 'https://shixi.xydsh.cn:80/images/companyLogo/f0cc8795-b8d7-42a7-b44d-3dd8ded9b7f6.jpg', // 分享图片的 URL
     };
   },
-  sharee: function () {
-    wx.showShareMenu({
-      withShareTicket: true,
-      menus: ['shareAppMessage']
-    });
+  // sharee: function () {
+  //   wx.showShareMenu({
+  //     withShareTicket: true,
+  //     menus: ['shareAppMessage']
+  //   });
 
-    // 触发分享
-    this.onShareAppMessage();
-  },
+  //   // 触发分享
+  //   this.onShareAppMessage();
+  // },
   navigate: function (e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url

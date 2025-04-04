@@ -93,7 +93,7 @@ Page({
               name: item.companyName,
               time: app.timeSub(item.deadline),
               jobPosition:item.jobPosition,
-              iszhao: app.cmpToday(item.deadline) ? true : false,
+              iszhao: item.overTime ? false : true,
               sum: item.pageview,
               industryType: item.industryType,
               tags: [{
@@ -187,6 +187,9 @@ Page({
                 })
                 this.setData({
                   industry: ttt
+                })
+                this.setData({
+                  hangs: '全部'
                 })
                 this.fetchData()
               } else {
@@ -348,7 +351,7 @@ Page({
           name: item.companyName,
           time: app.timeSub(item.deadline),
           jobPosition:item.jobPosition,
-          iszhao: app.cmpToday(item.deadline) ? true : false,
+          iszhao: item.overTime ? false : true,
           industryType:item.industryType,
           sum: item.pageview,
           tags: [{

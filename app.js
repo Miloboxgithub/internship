@@ -25,8 +25,8 @@ App({
 
   },
   timeSub(timestamp) {
-    let date = new Date(timestamp);
-    let formattedDate = date.toISOString().split('T')[0]; // 将日期时间字符串转换为 ISO 格式，然后分割并取日期部分
+    //let date = new Date(timestamp);
+    let formattedDate = timestamp.split(' ')[0]; // 将日期时间字符串转换为 ISO 格式，然后分割并取日期部分
     return formattedDate; // 输出: 2052-03-17
   },
   getSubstringAfterDash(str) {

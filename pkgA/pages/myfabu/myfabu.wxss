@@ -264,7 +264,12 @@ max-width: 210px;
 .rr {
   background: rgb(214, 30, 30);
 }
-
+.yy {
+  background: rgb(255, 217, 0);
+}
+.bb {
+  background: rgb(0, 0, 0);
+}
 .tag {
   border-radius: 3px;
   background: rgba(245, 245, 245, 1);
