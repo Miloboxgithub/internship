@@ -63,7 +63,7 @@
     <view class="warning">
     <view style="width: 78vw; margin-left: 1vw; ">
       <view style="height:20px; width:20px;"><image src="/pkgA/img/警告.png" style="height: 100%; width: 100%;" mode=""/></view>
-      <view class="ott" style="margin-top: 7px;">如您发现用人单位或招聘人员存在违规行为，包括但不限于扣押求职者证件、收取求职者财务、强迫求职者集资或入股、诱导求职者异地入职、发布虚假招聘信息、其它损害求职者权益行为，请<text style="color: rgba(212, 48, 48, 1);font-weight: 500;" bind:tap="navigate" data-url="/pkgA/pages/warning/warning?op={{idd}}">立即举报</text>。</view>
+      <view class="ott" style="margin-top: 7px;">如您发现用人单位或招聘人员存在违规行为，包括但不限于扣押求职者证件、收取求职者财务、强迫求职者集资或入股、诱导求职者异地入职、发布虚假招聘信息、其它损害求职者权益行为，请<text style="color: rgba(212, 48, 48, 1);font-weight: 500;" bind:tap="navigate" data-url="/pkgA/pages/warning/warning?op={{idd}}&pid={{pid}}">立即举报</text>。</view>
     </view>
     </view>
   </view>

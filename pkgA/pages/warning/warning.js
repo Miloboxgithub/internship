@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      items:[{text:'扣押求职者证件',isAc:false},{text:'收取求职者财务',isAc:false},{text:'强迫求职者集资或入股',isAc:false},{text:'诱导求职者异地入职',isAc:false},{text:'发布虚假招聘信息',isAc:false},{text:'其他损害求职者权益行文',isAc:false}],
+      items:[{text:'扣押求职者证件',isAc:false},{text:'收取求职者财务',isAc:false},{text:'强迫求职者集资或入股',isAc:false},{text:'诱导求职者异地入职',isAc:false},{text:'发布虚假招聘信息',isAc:false},{text:'其他损害求职者权益行为',isAc:false}],
       charCount:0,
       inputText: '',
       ImageUrl1:'',
@@ -14,11 +14,13 @@ Page({
       ImageUrl3:'',
       contactWay:'',
       idd:0,
+      pid:0,
   },
   onLoad(options) {
-    console.log(options.op)
+    console.log(options.op,options.pid)
     this.setData({
-      idd:options.op
+      idd:options.op,
+      pid:options.pid
     })
   },
   submits(){
@@ -26,7 +28,7 @@ Page({
     let reason = ''
 
     this.data.items.forEach((i,k)=>{
-      if(i.isAc)reason = i.text
+      if(i.isAc)reason += i.text+'|'
     })
     if(reason==''||this.data.inputText==''){
       wx.showToast({
@@ -51,13 +53,14 @@ Page({
         description:this.data.inputText,
         screenshot: this.data.ImageUrl1+'|'+this.data.ImageUrl2+'|'+this.data.ImageUrl3,
         contactWay: this.data.contactWay,
-        internshipId :this.data.idd
+        internshipId :this.data.idd,
+        positionId:this.data.pid
       },
       header: {
         'token': wx.getStorageSync('v_token') // 传递 token
       },success: (res) => {
         console.log(res)
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200 && res.data.code == 1) {
           console.log(res.data)
           wx.showToast({
             title: '举报成功！',

@@ -201,16 +201,9 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
+        console.log(res)
         if (res.statusCode === 200) {
-          console.log(res)
-          if(res.data.code==0){
-            wx.showToast({
-              title: '发布失败',
-              icon: 'error',
-              duration: 2000
-            });
-            return ;
-          }
+          
           if(res.data.msg=="发布内容违规！"){
             wx.showToast({
               title: '发布内容违规！',
@@ -218,6 +211,28 @@ Page({
               duration: 2000
             });
             return ; 
+          }
+          if(res.data.msg=="当前账号发布功能不可用，请联系管理员获取帮助，感谢您的理解和配合！"){
+            wx.showModal({
+              title: "警告！",
+              content: "当前账号发布功能不可用，请联系管理员获取帮助，感谢您的理解和配合！",
+              showCancel: false, // 不显示取消按钮
+              confirmText: "我知道了", // 确认按钮文字
+              success(res) {
+                if (res.confirm) {
+                  console.log("用户点击了确认");
+                }
+              }
+            });
+            return ; 
+          }
+          if(res.data.code==0){
+            wx.showToast({
+              title: '发布失败',
+              icon: 'error',
+              duration: 2000
+            });
+            return ;
           }
           wx.showToast({
             title: '发布成功',

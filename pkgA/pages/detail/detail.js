@@ -38,6 +38,7 @@ Page({
     picture: [],
     bei: '',
     idd: 0,
+    pid:0,
     cpp: {},
     collected:false
   },
@@ -91,7 +92,8 @@ Page({
         if (res.statusCode === 200) {
           let ans = res.data.data
           this.setData({
-            cpp: ans
+            cpp: ans,
+            pid:ans.positionId
           })
           console.log(ans, 'ans')
           let site = [],
