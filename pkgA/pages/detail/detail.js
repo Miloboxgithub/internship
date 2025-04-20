@@ -57,23 +57,12 @@ Page({
     wx.showShareMenu({
       menus: ['shareAppMessage', 'shareTimeline'],// 需要显示的转发按钮名称列表.合法值包含 "shareAppMessage"、"shareTimeline"
       success(res) {
-        console.log(res);
+        console.log(res,321);
       },
       fail(e) {
         console.log(e);
       }
     });
-      // "shareAppMessage"表示“发送给朋友”按钮，"shareTimeline"表示“分享到朋友圈”按钮
-      wx.showShareMenu({
-        menus: ['shareAppMessage', 'shareTimeline'],// 需要显示的转发按钮名称列表.合法值包含 "shareAppMessage"、"shareTimeline"
-        success(res) {
-          console.log(res);
-        },
-        fail(e) {
-          console.log(e);
-        }
-      });
-    
   },
   GetData(id) {
     let that = this
@@ -396,22 +385,32 @@ Page({
       }
     });
   },
-  onShareAppMessage(res) {
-    //  if (res.from === 'button') {
-    //    // 来自页面内 share-button
-    //  }
-    console.log(encodeURI(this.data.coitem.icon))
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+    }
+    console.log(666,this.data.coitem.icon)
     return {
       title: this.data.coitem.name,
-      path: `/pkgA/pages/detail/detail?id=${this.data.idd}`, // 分享的页面路径
-      // imageUrl: 'https://shixi.xydsh.cn:80/images/companyLogo/f0cc8795-b8d7-42a7-b44d-3dd8ded9b7f6.jpg', // 分享图片的 URL
+      path: `/pkgA/pages/detail/detail?id=${this.data.idd}` // 设置分享的页面路径
     };
   },
+  // onShareAppMessage(res) {
+  //   //  if (res.from === 'button') {
+  //   //    // 来自页面内 share-button
+  //   //  }
+  //   console.log(encodeURI(this.data.coitem.icon),123456789)
+  //   return {
+  //     title: this.data.coitem.name,
+  //     path: `/pkgA/pages/detail/detail?id=${this.data.idd}`, // 分享的页面路径
+  //     // imageUrl: 'https://shixi.xydsh.cn:80/images/companyLogo/f0cc8795-b8d7-42a7-b44d-3dd8ded9b7f6.jpg', // 分享图片的 URL
+  //   };
+  // },
   // sharee: function () {
   //   wx.showShareMenu({
   //     withShareTicket: true,
-  //     menus: ['shareAppMessage']
-  //   });
+  //     menus: ['shareAppMessage', 'shareTimeline']
+  //   })
 
   //   // 触发分享
   //   this.onShareAppMessage();

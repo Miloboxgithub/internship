@@ -47,7 +47,13 @@ Page({
     
     // 初始化towerSwiper 传已有的数组名即可
     this.getType()
-
+    wx.showShareMenu({
+ 
+      withShareTicket:true,
+       
+      menus:['shareAppMessage','shareTimeline']
+       
+      })
    
   },
   fetchData: function () {
@@ -593,4 +599,18 @@ Page({
     })
     console.log(1234)
   },
+  onShareAppMessage: function () {
+
+    return {
+      title: '更多机会，更优选择！',
+      path: '/pages/home/home',
+    }
+  },
+  onShareTimeline: function(){
+
+    return {
+      title: '更多机会，更优选择！',
+
+    }
+  }
 })

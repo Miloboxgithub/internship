@@ -41,6 +41,8 @@ Page({
     zixunImageUrl9: '',
     //  postmsg
     companyName: '',
+    consultPhoto:'',
+    companyLogo:'',
     companyType: '',
     industry: '',
     position: '',
@@ -115,6 +117,8 @@ Page({
             contactInfo:ans.deliveryMethod,
             applicationDeadLine:app.timeSub(ans.deadline),
             logoImageUrl:ans.companyLogo,
+            companyLogo:ans.companyLogo,
+            consultPhoto:ans.consultPhoto,
             // zixunImageUrl:ans.consultPhoto,
             memo:ans.remark,
           })
@@ -524,9 +528,16 @@ Page({
         if (res.confirm) {
           console.log('用户点击了确定');
           let id = that.data.idd
+          let consultPhoto = that.data.consultPhoto
+          let companyLogo = that.data.companyLogo
           wx.request({
-            url: `${apiUrl}/internship/deleteById/${id}`, // 拼接完整的 URL
+            url: `${apiUrl}/internship/deleteById`, // 拼接完整的 URL
             method: 'DELETE',
+            data:{
+              id:id,
+              consultPhoto:consultPhoto,
+              companyLogo:companyLogo
+            },
             header: {
               'content-type': 'application/json',
               token: wx.getStorageSync('v_token')

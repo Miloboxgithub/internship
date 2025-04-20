@@ -55,8 +55,11 @@ Page({
     shi: [],
     acquisitions: '',
     contactInfo: '',
+    fstatus:true,
   },
   PostMsg() {
+    if(!this.data.fstatus)return
+    
     let that = this
     const {
       companyName,
@@ -192,7 +195,10 @@ Page({
       industryTypeId: this.data.hangs.id,
       businessNatureId: this.data.xin.id,
     }
-    console.log(pmsg, wx.getStorageSync('v_token'))
+    //console.log(pmsg, wx.getStorageSync('v_token'))
+    this.setData({
+      fstatus:false
+    })
     wx.request({
       url: `${apiUrl}/internship/addInternship`, // 拼接完整的 URL
       method: 'POST',
@@ -247,6 +253,9 @@ Page({
               url: '/pkgA/pages/myfabu/myfabu',
             })
             that.clears()
+            this.setData({
+              fstatus:true
+            })
           }, 1500)
           app.globalData.pub = true
         } else {
@@ -269,9 +278,13 @@ Page({
       },
       fail: (err) => {
         console.error('请求失败:', err);
+        this.setData({
+          fstatus:true
+        })
       },
       complete: () => {
         console.log('请求完成');
+        
       }
     });
   },
