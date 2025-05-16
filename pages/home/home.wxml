@@ -47,15 +47,16 @@
         <image src="{{item.icon}}" mode="aspectFit" lazy-load="false" mode="" />
       </view>
       <view class="info">
-        <text class="cotitle" selectable="false" space="false" decode="false">{{item.jobPosition}} | {{item.name}}</text>
+        <text class="cotitle" selectable="false" space="false" decode="false">{{item.jobPosition}}</text>
+        <text class="comName">{{item.name}}</text>
         <view class="tags">
           <view class="tt">
             <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
           </view>
-          <view class="iszhao {{item.iszhao?'gg':'rr'}}">{{item.iszhao?'招募中':'已结束'}}</view>
         </view>
+        <view class="iszhao {{item.iszhao?'gg':'rr'}}">{{item.iszhao?'招募中':'已结束'}}</view>
         <view class="fuji">
-          <view class="times">截止时间：{{item.time}}</view>
+          <!-- <view class="times">截止时间：{{item.time}}</view> -->
           <view class="sums">
             <image src="/img/浏览.png" mode="" />
             <text>{{item.sum}}</text>

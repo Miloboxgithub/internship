@@ -37,7 +37,7 @@ Page({
     coitem: [],
     oldcoitem: [],
     lolo: false,
-    inputValue:'',
+    inputValue: '',
   },
   fetchList() {
     console.log('ssss')
@@ -66,10 +66,10 @@ Page({
                 icon: item.companyLogo,
                 name: item.companyName,
                 time: app.timeSub(item.deadline),
-                jobPosition:item.jobPosition,
+                jobPosition: item.jobPosition,
                 iszhao: app.cmpToday(item.deadline) ? true : false,
                 sum: item.pageview,
-                deliveryMethod:item.deliveryMethod,
+                deliveryMethod: item.deliveryMethod,
                 tags: [{
                   title: item.businessNature
                 }, {
@@ -272,7 +272,7 @@ Page({
               icon: item.companyLogo,
               name: item.companyName,
               time: app.timeSub(item.deadline),
-              jobPosition:item.jobPosition,
+              jobPosition: item.jobPosition,
               iszhao: app.cmpToday(item.deadline) ? true : false,
 
               isdian: false,
@@ -366,7 +366,7 @@ Page({
       success: (res) => {
         console.log(res)
         if (res.statusCode === 200) {
-          console.log(res.data,'kkkk')
+          console.log(res.data, 'kkkk')
           setTimeout(() => {
             that.fetchList()
           }, 1000)
@@ -386,37 +386,37 @@ Page({
       }
     })
   },
-  inputed(){
+  inputed() {
     this.searchs()
   },
-  copys(){
+  copys() {
     let that = this
     let textToCopy = ''
     if (this.data.coitem.length > 0)
       this.data.coitem.forEach((i, k) => {
         if (i.isdian) {
           console.log(i)
-          textToCopy+=i.name+'：'+i.deliveryMethod+'\n'
+          textToCopy += i.name + '：' + i.deliveryMethod + '\n'
         }
       })
-      wx.setClipboardData({
-        data: textToCopy,
-        success: function (res) {
-          wx.showToast({
-            title: '复制成功',
-            icon: 'success',
-            duration: 2000
-          });
-        },
-        fail: function (err) {
-          console.error('复制失败', err);
-          wx.showToast({
-            title: '复制失败',
-            icon: 'none',
-            duration: 2000
-          });
-        }
-      });
+    wx.setClipboardData({
+      data: textToCopy,
+      success: function (res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success',
+          duration: 2000
+        });
+      },
+      fail: function (err) {
+        console.error('复制失败', err);
+        wx.showToast({
+          title: '复制失败',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
   },
 
   extractDate(dateTimeString) {
@@ -455,8 +455,20 @@ Page({
   },
   searchs() {
     let tt = this.data.oldcoitem;
-    // 使用 filter 方法和 includes 函数实现模糊匹配
-    tt = tt.filter(item => item.name.includes(this.data.inputValue));
+    const searchTerm = this.data.inputValue.toLowerCase(); // 统一转为小写
+    
+    // 模糊匹配 name（不区分大小写）
+    tt = tt.filter(item => 
+      item.name.toLowerCase().includes(searchTerm)
+    );
+    
+    // 如果没有匹配到 name，再尝试匹配 jobPosition
+    if (tt.length === 0) {
+      tt = this.data.oldcoitem.filter(item => 
+        item.jobPosition.toLowerCase().includes(searchTerm)
+      );
+    }
+    
     this.setData({
       coitem: tt
     });
