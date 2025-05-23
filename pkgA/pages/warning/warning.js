@@ -17,14 +17,14 @@ Page({
       pid:0,
   },
   onLoad(options) {
-    console.log(options.op,options.pid)
+    //console.log(options.op,options.pid)
     this.setData({
       idd:options.op,
       pid:options.pid
     })
   },
   submits(){
-    console.log(this.data.contactWay)
+    //console.log(this.data.contactWay)
     let reason = ''
 
     this.data.items.forEach((i,k)=>{
@@ -44,7 +44,7 @@ Page({
       })
       return ;
     }
-    console.log(reason,this.data.inputText,this.data.contactWay,this.data.idd,this.data.ImageUrl1)
+    //console.log(reason,this.data.inputText,this.data.contactWay,this.data.idd,this.data.ImageUrl1)
     wx.request({
       url: `${apiUrl}/report/addReport`, // 拼接完整的 URL
       method: 'POST',
@@ -59,9 +59,9 @@ Page({
       header: {
         'token': wx.getStorageSync('v_token') // 传递 token
       },success: (res) => {
-        console.log(res)
+        //console.log(res)
         if (res.statusCode === 200 && res.data.code == 1) {
-          console.log(res.data)
+          //console.log(res.data)
           wx.showToast({
             title: '举报成功！',
           })
@@ -81,7 +81,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     })
   },
@@ -89,7 +89,7 @@ Page({
         // 获取被点击按钮的索引
         const index = event.currentTarget.dataset.index;
         const buttons = this.data.items;
-    // console.log(buttons,event)
+    // //console.log(buttons,event)
         // 切换按钮的状态
         buttons[index].isAc = !buttons[index].isAc;
     

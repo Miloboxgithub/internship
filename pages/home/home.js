@@ -44,7 +44,7 @@ Page({
   },
   onLoad() {
     this.getSwiper()
-    
+    this.getweizhi()
     // 初始化towerSwiper 传已有的数组名即可
     this.getType()
     wx.showShareMenu({
@@ -57,7 +57,7 @@ Page({
    
   },
   fetchData: function () {
-    console.log('t', this.data.hang, this.data.lei, this.data.xing)
+    //console.log('t', this.data.hang, this.data.lei, this.data.xing)
     let r1 = this.data.lei
     let r3 = this.data.xinzhi.find(item => item.op === this.data.xing);
     let r2 = this.data.industry.find(item => item.op === this.data.hang)
@@ -68,7 +68,7 @@ Page({
       r3 = r3.id
     }
     if(r1=='类型'||r1=='全部')r1 = ''
-    console.log(r1,r2,r3)
+    //console.log(r1,r2,r3)
     let that = this
     this.setData({
       lolo: true
@@ -89,7 +89,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res)
+          //console.log(res)
           let op = res.data.data.records
           let tt = that.data.coitem
           op.forEach((item, k) => {
@@ -112,7 +112,7 @@ Page({
             }
             if (item.internshipType == '远程') {
               t.tags.pop()
-              console.log(t.tags)
+              //console.log(t.tags)
             }
             if (!t.sum) t.sum = 0
             tt.push(t)
@@ -130,7 +130,7 @@ Page({
           that.setData({
             coitem: tt
           })
-          console.log(this.data.coitem)
+          //console.log(this.data.coitem)
         } else {
           console.error('请求失败:', res);
         }
@@ -139,7 +139,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
         that.setData({
           lolo: false
         })
@@ -163,7 +163,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           let ttt = this.data.xinzhi
           res.data.data.forEach((i, k) => {
             ttt.push({
@@ -183,7 +183,7 @@ Page({
             },
             success: (res) => {
               if (res.statusCode === 200) {
-                console.log(res.data.data,'ty')
+                //console.log(res.data.data,'ty')
                 let ttt = this.data.industry
                 res.data.data.forEach((i, k) => {
                   ttt.push({
@@ -206,7 +206,7 @@ Page({
               console.error('请求失败:', err);
             },
             complete: () => {
-              console.log('请求完成');
+              //console.log('请求完成');
             }
           });
         } else {
@@ -217,7 +217,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
     
@@ -248,7 +248,7 @@ Page({
       header: {
       },
       success: (res) => {
-       console.log(res,'getAllCarousel')
+       //console.log(res,'getAllCarousel')
        if(res.statusCode==200){
         let op = []
         res.data.data.forEach((i,k)=>{
@@ -270,7 +270,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -334,7 +334,7 @@ Page({
         selected: 0
       })
     }
-    this.getweizhi()
+    
     if (app.globalData.sharecoitem.length == 0) {}
     //this.fetchData()
     else {
@@ -370,7 +370,7 @@ Page({
         }
         if (item.internshipType == '远程') {
           t.tags.pop()
-          console.log(t.tags)
+          //console.log(t.tags)
         }
         if (!t.sum) t.sum = 0
         tt.push(t)
@@ -460,7 +460,7 @@ Page({
       item.ch = false;
     })
     let aa = leixin[cc].op.substring(0, 2);
-    console.log(aa)
+    //console.log(aa)
     if (cc >= 0 && cc < leixin.length) {
       leixin[cc].ch = true
       this.setData({
@@ -499,7 +499,7 @@ Page({
       item.ch = false;
     })
     let aa = xinzhi[cc].op
-    console.log(aa)
+    //console.log(aa)
     if (cc >= 0 && cc < xinzhi.length) {
       xinzhi[cc].ch = true
       this.setData({
@@ -533,7 +533,7 @@ Page({
   //选择器变化
   bindChange: function (e) {
     let cc = e.detail.value
-    console.log(cc)
+    //console.log(cc)
     this.setData({
       hangs: this.data.industry[cc[0]].op
     })
@@ -548,7 +548,7 @@ Page({
     this.fetchData()
     else{
       let tt = this.data.sharecoitem
-      console.log(tt)
+      //console.log(tt)
       if (this.data.hang != '行业' && this.data.hang != '全部') {
         tt = tt.filter(item => item.industryType == this.data.hang);
       }
@@ -575,7 +575,7 @@ Page({
     let ww = e.currentTarget.dataset.id
     let ans = this.data.coitem[ww].id
     let url = `/pkgA/pages/detail/detail?id=${ans}`
-    console.log(url)
+    //console.log(url)
     wx.navigateTo({
       url: url
     });
@@ -597,7 +597,7 @@ Page({
     this.getTabBar().setData({
       chans: !this.getTabBar().data.chans
     })
-    console.log(1234)
+    //console.log(1234)
   },
   onShareAppMessage: function () {
 

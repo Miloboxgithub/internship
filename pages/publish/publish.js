@@ -207,7 +207,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        console.log(res)
+        //console.log(res)
         if (res.statusCode === 200) {
           
           if(res.data.msg=="发布内容违规！"){
@@ -226,7 +226,7 @@ Page({
               confirmText: "我知道了", // 确认按钮文字
               success(res) {
                 if (res.confirm) {
-                  console.log("用户点击了确认");
+                  //console.log("用户点击了确认");
                 }
               }
             });
@@ -283,7 +283,7 @@ Page({
         })
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
         
       }
     });
@@ -300,7 +300,7 @@ Page({
         urls.push(url);
       }
     }
-    console.log(urls.join('|'))
+    //console.log(urls.join('|'))
     return urls.join('|');
   },
   getWeizhi() {
@@ -313,7 +313,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           let abc = [],
             cba = []
           res.data.data.forEach((i, k) => {
@@ -334,7 +334,7 @@ Page({
             },
             success: (res) => {
               if (res.statusCode === 200) {
-                console.log(res.data)
+                //console.log(res.data)
                 let abc = []
                 res.data.data.forEach((i, k) => {
                   abc.push(i.name)
@@ -353,7 +353,7 @@ Page({
               console.error('请求失败:', err);
             },
             complete: () => {
-              console.log('请求完成');
+              //console.log('请求完成');
             }
           });
         } else {
@@ -381,7 +381,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -415,7 +415,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
     wx.request({
@@ -447,7 +447,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -466,7 +466,7 @@ Page({
     return formattedDate;
   },
   inputed(e) {
-    console.log(e.detail.value)
+    //console.log(e.detail.value)
     this.setData({
       [e.currentTarget.dataset.name]: e.detail.value
     })
@@ -567,7 +567,7 @@ Page({
     return daysInMonth;
   },
   updateDaysOfMonth(year, month) {
-    console.log(year, month)
+    //console.log(year, month)
     const daysInMonth = this.getDaysOfMonth(year)[month - 1];
     this.setData({
       days: Array.from({
@@ -622,7 +622,7 @@ Page({
       types1: !this.data.types1,
       hangs: this.data.hangss
     })
-    console.log(this.data.hangs)
+    //console.log(this.data.hangs)
     this.getTabBar().setData({
       chans: false
     })
@@ -632,7 +632,7 @@ Page({
       types2: !this.data.types2,
       xin: this.data.xins
     })
-    console.log(this.data.xin)
+    //console.log(this.data.xin)
     this.getTabBar().setData({
       chans: false
     })
@@ -723,7 +723,7 @@ Page({
     this.getTabBar().setData({
       chans: !this.getTabBar().data.chans
     })
-    console.log(1234)
+    //console.log(1234)
   },
   changetypest4(e) {
     let ce = true
@@ -743,18 +743,18 @@ Page({
     this.getTabBar().setData({
       chans: !this.getTabBar().data.chans
     })
-    console.log(1234)
+    //console.log(1234)
   },
   bindChange1: function (e) {
     let cc = e.detail.value
-    // console.log(cc,e)
+    // //console.log(cc,e)
     this.setData({
       hangss: this.data.industryes[cc[0]]
     })
   },
   bindChange2: function (e) {
     let cc = e.detail.value
-    console.log(cc, 'xin')
+    //console.log(cc, 'xin')
     this.setData({
       xins: this.data.xinzhi[cc[0]]
     })
@@ -764,7 +764,7 @@ Page({
     let y = this.data.years[cc[0]]
     let m = this.data.months[cc[1]]
     let d = this.data.days[cc[2]]
-    console.log(y + '-' + m + '-' + d)
+    //console.log(y + '-' + m + '-' + d)
     this.updateDaysOfMonth(y, m);
     this.setData({
       applicationDeadLines: y + '-' + m + '-' + d
@@ -773,7 +773,7 @@ Page({
   bindChange4: function (e) {
     let that = this
     let cc = e.detail.value
-    console.log(cc, this.data.sid[cc[0]])
+    //console.log(cc, this.data.sid[cc[0]])
     wx.request({
       url: `${apiUrl}/getCityByProvinceId/${this.data.sid[cc[0]]}`, // 拼接完整的 URL
       method: 'POST',
@@ -784,7 +784,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           let abc = []
           res.data.data.forEach((i, k) => {
             abc.push(i.name)
@@ -800,28 +800,28 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
     setTimeout(() => {
       this.setData({
         locations: this.data.sheng[cc[0]] + '-' + this.data.shi[cc[1]]
       })
-      console.log(this.data.locations)
+      //console.log(this.data.locations)
     }, 500)
 
   },
 
   chooseImagelogo: function (e) {
     let that = this
-    console.log('hhh')
+    //console.log('hhh')
     wx.chooseMedia({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // tempFilePath可以作为img标签的src属性显示图片
-        console.log(res)
+        //console.log(res)
         wx.uploadFile({
           url: `${apiUrl}/internship/companyLogoUpload`, // 你的上传接口地址
           filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
@@ -862,7 +862,7 @@ Page({
     });
   },
   chooseImagezixun(e) {
-    console.log(e.currentTarget.dataset.index)
+    //console.log(e.currentTarget.dataset.index)
     let op = e.currentTarget.dataset.index
     let that = this
     wx.chooseMedia({
@@ -879,7 +879,7 @@ Page({
             'token': wx.getStorageSync('v_token') // 传递 token
           },
           success: (res) => {
-            console.log(res)
+            //console.log(res)
             if (res.statusCode == 200) {
 
               that.setData({

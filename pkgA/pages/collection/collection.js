@@ -40,7 +40,7 @@ Page({
     inputValue: '',
   },
   fetchList() {
-    console.log('ssss')
+    //console.log('ssss')
     let that = this
     coco = []
     this.setData({
@@ -56,7 +56,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res)
+          //console.log(res)
           let op = res.data.data
           let tt = that.data.coitem
           if (op)
@@ -80,7 +80,7 @@ Page({
               }
               if (item.internshipType == '远程') {
                 t.tags.pop()
-                // console.log(t.tags)
+                // //console.log(t.tags)
               }
               if (!t.sum) t.sum = 0
               tt.push(t)
@@ -112,7 +112,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
         this.setData({
           lolo: false
         })
@@ -246,7 +246,7 @@ Page({
     let ww = e.currentTarget.dataset.id
     let ans = this.data.coitem[ww].id
     let url = `/pkgA/pages/detail/detail?id=${ans}`
-    console.log(url)
+    //console.log(url)
     wx.navigateTo({
       url: url
     });
@@ -260,9 +260,9 @@ Page({
         'content-type': 'application/json'
       },
       success: (res) => {
-        console.log(res)
+        //console.log(res)
         if (res.statusCode === 200) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           let op = res.data.data
           let tt = []
           op.forEach((item, k) => {
@@ -300,7 +300,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
     //   return new Promise((resolve, reject) => {
@@ -364,9 +364,9 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        console.log(res)
+        //console.log(res)
         if (res.statusCode === 200) {
-          console.log(res.data, 'kkkk')
+          //console.log(res.data, 'kkkk')
           setTimeout(() => {
             that.fetchList()
           }, 1000)
@@ -382,7 +382,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     })
   },
@@ -395,7 +395,7 @@ Page({
     if (this.data.coitem.length > 0)
       this.data.coitem.forEach((i, k) => {
         if (i.isdian) {
-          console.log(i)
+          //console.log(i)
           textToCopy += i.name + '：' + i.deliveryMethod + '\n'
         }
       })
@@ -441,7 +441,7 @@ Page({
     const qq = wx.createSelectorQuery();
     qq.select('.nav').boundingClientRect();
     qq.exec((res) => {
-      //console.log(res[0],'hhh')
+      ////console.log(res[0],'hhh')
       this.setData({
         toppx: res[0].bottom
       })

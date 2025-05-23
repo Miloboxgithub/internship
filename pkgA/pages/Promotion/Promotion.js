@@ -20,7 +20,7 @@ Page({
       current: imageUrl, // 当前要显示的图片url
       urls: [imageUrl], // 需要预览的图片url列表数组
       success: function(res) {
-        console.log('图片预览成功', res);
+        //console.log('图片预览成功', res);
       },
       fail: function(err) {
         console.error('图片预览失败', err);

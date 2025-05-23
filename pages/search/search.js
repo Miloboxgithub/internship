@@ -15,14 +15,14 @@ Page({
   },
   inputed(e) {
     let msg = e.detail.value
-    console.log(msg)
+    ////console.log(msg)
     this.setData({
       msg
     })
     this.searchs()
   },
   ggg() {
-    console.log(546)
+    //console.log(546)
     this.setData({
       msg: '',
       flag:true
@@ -83,7 +83,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data, 'search')
+          //console.log(res.data, 'search')
           app.globalData.sharecoitem = res.data.data.records
           if (res.data.data.records.length != 0) {
             wx.switchTab({
@@ -139,7 +139,7 @@ Page({
     })
   },
   shang(e) {
-    console.log(e.currentTarget.dataset.s)
+    //console.log(e.currentTarget.dataset.s)
     this.setData({
       msg: e.currentTarget.dataset.s
     })

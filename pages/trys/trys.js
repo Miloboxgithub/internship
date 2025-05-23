@@ -30,7 +30,7 @@ Page({
         that.setData({ userEntity: res.data });
       },
       fail: function (res) {
-        console.log("fail1");
+        //console.log("fail1");
       }
     });
     wx.getStorage({
@@ -38,7 +38,7 @@ Page({
       success: function (res) {
         that.setData({ loginstate: res.data });
       }, fail: function (res) {
-        console.log("fail2");
+        //console.log("fail2");
       }
     });
   },
@@ -113,7 +113,7 @@ Page({
         }
       },
       fail(res) {
-        console.log(res);
+        //console.log(res);
       }
     })
   },
@@ -160,11 +160,11 @@ Page({
                     success: function (res) {
                       if (res.data.r == "T") {
                         that.onshow(that.data.openid, that.data.userInfo, res.data.d.phoneNumber);//调用onshow方法，并传递三个参数
-                        console.log("登录成功")
-                        console.log(res.data.d.phoneNumber)//成功后打印微信手机号
+                        //console.log("登录成功")
+                        //console.log(res.data.d.phoneNumber)//成功后打印微信手机号
                       }
                       else {
-                        console.log(res);
+                        //console.log(res);
                       }
                     }
                   })

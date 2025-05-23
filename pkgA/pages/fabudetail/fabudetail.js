@@ -70,10 +70,10 @@ Page({
     this.getType()
     this.getWeizhi()
     if(options.id){
-      console.log(options.id,'------------')
+      //console.log(options.id,'------------')
     }
     this.GetData(options.id)
-    console.log(options.id,'------------')
+    //console.log(options.id,'------------')
     this.setData({
       idd:options.id
     })
@@ -100,10 +100,10 @@ Page({
         'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
-        console.log(res,'get')
+        //console.log(res,'get')
         if (res.statusCode === 200) {
           let ans= res.data.data
-          console.log(ans,'ans')
+          //console.log(ans,'ans')
           that.setData({
             companyName : ans.companyName,
             hangs:{op:ans.industryType,id:ans.industryTypeId},
@@ -131,7 +131,7 @@ Page({
           if(ans.internshipType != "线下")this.setData({
             types0:true
           })
-          console.log(this.data.memo,'---------')
+          //console.log(this.data.memo,'---------')
           that.setData({
             lolo:false
           })
@@ -143,7 +143,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -177,7 +177,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
     wx.request({
@@ -209,7 +209,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -223,7 +223,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           let abc = [],
             cba = []
           res.data.data.forEach((i, k) => {
@@ -244,7 +244,7 @@ Page({
             },
             success: (res) => {
               if (res.statusCode === 200) {
-                console.log(res.data)
+                //console.log(res.data)
                 let abc = []
                 res.data.data.forEach((i, k) => {
                   abc.push(i.name)
@@ -263,7 +263,7 @@ Page({
               console.error('请求失败:', err);
             },
             complete: () => {
-              console.log('请求完成');
+              //console.log('请求完成');
             }
           });
         } else {
@@ -289,7 +289,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -341,7 +341,7 @@ Page({
       types1: !this.data.types1,
       hangs: this.data.hangss
     })
-    console.log(this.data.hangs)
+    //console.log(this.data.hangs)
     
   },
   queren2: function () {
@@ -349,7 +349,7 @@ Page({
       types2: !this.data.types2,
       xin: this.data.xins
     })
-    console.log(this.data.xin)
+    //console.log(this.data.xin)
     
   },
   queren3: function () {
@@ -426,7 +426,7 @@ Page({
       })
     //隐藏tabber
     
-    console.log(1234)
+    //console.log(1234)
   },
   changetypest4(e) {
     let ce = true
@@ -444,7 +444,7 @@ Page({
       })
     //隐藏tabber
     
-    console.log(1234)
+    //console.log(1234)
   },
   bindChange1: function (e) {
     let cc = e.detail.value
@@ -455,7 +455,7 @@ Page({
   },
   bindChange2: function (e) {
     let cc = e.detail.value
-    console.log(cc)
+    //console.log(cc)
     this.setData({
       xins: this.data.xinzhi[cc[0]]
     })
@@ -465,7 +465,7 @@ Page({
     let y = this.data.years[cc[0]]
     let m = this.data.months[cc[1]]
     let d = this.data.days[cc[2]]
-    console.log(y + '-' + m + '-' + d)
+    //console.log(y + '-' + m + '-' + d)
     this.updateDaysOfMonth(y, m);
     this.setData({
       applicationDeadLines: y + '-' + m + '-' + d
@@ -474,7 +474,7 @@ Page({
   bindChange4: function (e) {
     let that = this
     let cc = e.detail.value
-    console.log(cc, this.data.sid[cc[0]])
+    //console.log(cc, this.data.sid[cc[0]])
     wx.request({
       url: `${apiUrl}/getCityByProvinceId/${this.data.sid[cc[0]]}`, // 拼接完整的 URL
       method: 'POST',
@@ -485,7 +485,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           let abc = []
           res.data.data.forEach((i, k) => {
             abc.push(i.name)
@@ -501,19 +501,19 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
     setTimeout(() => {
       this.setData({
         locations: this.data.sheng[cc[0]] + '-' + this.data.shi[cc[1]]
       })
-      console.log(this.data.locations)
+      //console.log(this.data.locations)
     }, 500)
 
   },
   inputed(e) {
-    console.log(e.detail.value)
+    //console.log(e.detail.value)
     this.setData({
       [e.currentTarget.dataset.name]: e.detail.value
     })
@@ -526,7 +526,7 @@ Page({
       // content: '删除后无法恢复！',
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击了确定');
+          //console.log('用户点击了确定');
           let id = that.data.idd
           let consultPhoto = that.data.consultPhoto
           let companyLogo = that.data.companyLogo
@@ -544,7 +544,7 @@ Page({
             },
             success: (res) => {
               if (res.statusCode === 200) {
-                console.log(res.data)
+                //console.log(res.data)
                 wx.showToast({
                   title: '删除成功！',
                 })
@@ -560,12 +560,12 @@ Page({
               console.error('请求失败:', err);
             },
             complete: () => {
-              console.log('请求完成');
+              //console.log('请求完成');
 
             }
           });
         } else if (res.cancel) {
-          console.log('用户点击了取消');
+          //console.log('用户点击了取消');
           // 用户点击了取消，不需要做任何事情
         }
       },
@@ -664,7 +664,7 @@ Page({
     }
 
     // 如果所有字段都已填写，提交表单
-    console.log('提交表单', this.data);
+    //console.log('提交表单', this.data);
     // 这里可以添加提交表单的代码，例如使用 wx.request 发送数据到服务器
     if(!this.data.checks){
       wx.showToast({
@@ -704,7 +704,7 @@ Page({
       businessNatureId:this.data.xin.id,
       overTime: 1,
     }
-    console.log(pmsg,'xiugai')
+    //console.log(pmsg,'xiugai')
     wx.request({
       url: `${apiUrl}/internship/modifyById`, // 拼接完整的 URL
       method: 'PUT',
@@ -722,7 +722,7 @@ Page({
             });
             return ; 
           }
-          console.log(res)
+          //console.log(res)
           wx.showToast({
             title: '修改成功！',
             icon: 'success',
@@ -740,7 +740,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
 
@@ -779,7 +779,7 @@ Page({
     return daysInMonth;
   },
   updateDaysOfMonth(year, month) {
-    console.log(year,month)
+    //console.log(year,month)
     const daysInMonth = this.getDaysOfMonth(year)[month - 1];
     this.setData({
       days: Array.from({ length: daysInMonth }, (_, i) => i + 1)
@@ -804,7 +804,7 @@ Page({
     });
   },
   chooseImagezixun(e) {
-    console.log(e.currentTarget.dataset.index)
+    //console.log(e.currentTarget.dataset.index)
     let op = e.currentTarget.dataset.index
     let that = this
     wx.chooseMedia({
@@ -821,7 +821,7 @@ Page({
             'token': wx.getStorageSync('v_token') // 传递 token
           },
           success: (res) => {
-            console.log(res)
+            //console.log(res)
             if (res.statusCode == 200) {
              
                 that.setData({

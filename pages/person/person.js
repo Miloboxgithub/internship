@@ -32,7 +32,7 @@ Page({
     setTimeout(()=>{
       let info = wx.getStorageSync('userInfo')
       if(info){
-        console.log(342)
+        //console.log(342)
         this.setData({
           username:info.name?info.name:'微信用户',
           avatar:info.avatar?info.avatar:'/img/头像.png'
@@ -50,7 +50,7 @@ Page({
   },
   onHandleLogin(e) {
     const detail = e.detail;
-    console.log('phoneOneClickLogin errCode', detail.errCode)
+    //console.log('phoneOneClickLogin errCode', detail.errCode)
   },
   meng() {
     wx.showToast({
@@ -70,8 +70,8 @@ Page({
       wx.login({
         success: (res) => {
           if (res.code) {
-            console.log('loginCode：', res.code)
-            console.log('phoneCode：', e.detail.code)
+            //console.log('loginCode：', res.code)
+            //console.log('phoneCode：', e.detail.code)
             wx.request({
               url: `${apiUrl}/user/phoneLogin`, // 拼接完整的 URL
               method: 'POST',
@@ -86,7 +86,7 @@ Page({
               },
               success: (res) => {
                 if (res.statusCode === 200) {
-                  console.log(res, 'login')
+                  //console.log(res, 'login')
                   wx.showToast({
                     title: '登录成功！',
                   })
@@ -128,7 +128,7 @@ Page({
     }
   },
   handlePhoneNumber(encryptedData, iv) {
-    console.log(encryptedData, iv)
+    //console.log(encryptedData, iv)
     wx.request({
       url: `${apiUrl}/user/phoneLogin`, // 拼接完整的 URL
       method: 'POST',
@@ -140,7 +140,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res, 'login')
+          //console.log(res, 'login')
         } else {
           console.error('请求失败:', res);
         }
@@ -161,7 +161,7 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
 
-          console.log(res.data)
+          //console.log(res.data)
           wx.setStorageSync('userInfo', res.data.data);
           let info = wx.getStorageSync('userInfo')
             this.setData({
@@ -201,6 +201,6 @@ Page({
     this.setData({
       gous: !this.data.gous
     })
-    console.log(this.data.gous)
+    //console.log(this.data.gous)
   },
 })

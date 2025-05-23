@@ -21,7 +21,7 @@ Page({
     let ww = e.currentTarget.dataset.id
     let ans = this.data.coitem[ww].id
     let url = `/pkgA/pages/fabudetail/fabudetail?id=${ans}`
-    console.log(url)
+    //console.log(url)
     wx.navigateTo({
       url: url
     });
@@ -52,9 +52,9 @@ Page({
         token: wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
-        console.log(res)
+        //console.log(res)
         if (res.statusCode === 200) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           let op = res.data.data
           let tt = []
           op.forEach((item, k) => {
@@ -123,7 +123,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
         this.setData({
           lolo: false
         })

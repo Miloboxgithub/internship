@@ -25,7 +25,7 @@ Page({
   onShow() {
     let info = wx.getStorageSync('userInfo')
     if (info) {
-      console.log(info)
+      //console.log(info)
       this.setData({
         inputValue: info.name ? info.name : '微信用户',
         avatar: info.avatar ? info.avatar : '/img/头像.png',
@@ -52,7 +52,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           let abc = []
           wx.showToast({
             title: '退出成功！',
@@ -78,7 +78,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -94,7 +94,7 @@ Page({
     const {
       avatarUrl
     } = e.detail
-    console.log(avatarUrl)
+    //console.log(avatarUrl)
     wx.uploadFile({
       url: `${apiUrl}/user/avatarUpload`, // 你的上传接口地址
       filePath: avatarUrl, // 选择的图片路径
@@ -163,13 +163,13 @@ Page({
   },
   bindChange1: function (e) {
     let cc = e.detail.value
-    console.log(cc[0])
+    //console.log(cc[0])
     this.setData({
       sexs: this.data.industry[cc[0]]
     })
   },
   queren2: function () {
-    console.log(this.data.diqus)
+    //console.log(this.data.diqus)
     this.setData({
       diqu: this.data.diqus
     })
@@ -179,7 +179,7 @@ Page({
   bindChange2: function (e) {
     let that = this
     let cc = e.detail.value
-    console.log(cc, this.data.yid[cc[0]])
+    //console.log(cc, this.data.yid[cc[0]])
     wx.request({
       url: `${apiUrl}/getCityByProvinceId/${this.data.yid[cc[0]]}`, // 拼接完整的 URL
       method: 'POST',
@@ -189,7 +189,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           let abc = []
           res.data.data.forEach((i, k) => {
             abc.push(i.name)
@@ -205,7 +205,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
     setTimeout(() => {
@@ -227,7 +227,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           let abc = [],
             cba = []
           res.data.data.forEach((i, k) => {
@@ -247,7 +247,7 @@ Page({
             },
             success: (res) => {
               if (res.statusCode === 200) {
-                console.log(res.data)
+                //console.log(res.data)
                 let abc = []
                 res.data.data.forEach((i, k) => {
                   abc.push(i.name)
@@ -266,7 +266,7 @@ Page({
               console.error('请求失败:', err);
             },
             complete: () => {
-              console.log('请求完成');
+              //console.log('请求完成');
             }
           });
         } else {
@@ -277,7 +277,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -288,7 +288,7 @@ Page({
       location: this.data.diqu,
       name: this.data.inputValue,
     }
-    console.log(op)
+    //console.log(op)
     wx.request({
       url: `${apiUrl}/user/updateInfoById`, // 拼接完整的 URL
       method: 'PUT',
@@ -303,7 +303,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
 
         } else {
           console.error('请求失败:', res);
@@ -313,7 +313,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },

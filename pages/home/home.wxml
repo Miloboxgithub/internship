@@ -71,9 +71,9 @@
   </view>
 </scroll-view>
 <!-- 弹出选择框 -->
-<view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 200030; position: fixed; top: 0;"></view>
-<view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 200030; position: fixed; top: 0;"></view>
-<view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types3?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 200030; position: fixed; top: 0;"></view>
+<view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 2000; position: fixed; top: 0;"></view>
+<view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 2000; position: fixed; top: 0;"></view>
+<view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types3?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 2000; position: fixed; top: 0;"></view>
 <view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; top: {{toppx}}px;"></view>
 <view catchtouchmove="true" style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
   <view class="zhezhao" wx:for="{{leixin}}" wx:key="index" style="display: {{types1?'block':'none'}};">

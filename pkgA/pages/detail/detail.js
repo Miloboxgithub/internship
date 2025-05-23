@@ -48,7 +48,7 @@ Page({
    */
   onLoad(options) {
     if (options.id) {
-      console.log(options.id, '------------')
+      //console.log(options.id, '------------')
     }
     this.GetData(options.id)
     this.setData({
@@ -57,10 +57,10 @@ Page({
     wx.showShareMenu({
       menus: ['shareAppMessage', 'shareTimeline'],// 需要显示的转发按钮名称列表.合法值包含 "shareAppMessage"、"shareTimeline"
       success(res) {
-        console.log(res,321);
+        //console.log(res,321);
       },
       fail(e) {
-        console.log(e);
+        //console.log(e);
       }
     });
   },
@@ -84,7 +84,7 @@ Page({
             cpp: ans,
             pid:ans.positionId
           })
-          console.log(ans, 'ans')
+          //console.log(ans, 'ans')
           let site = [],
             ott = [],
             req = [],
@@ -144,7 +144,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
     wx.request({
@@ -156,7 +156,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data, 'addview')
+          //console.log(res.data, 'addview')
         } else {
           console.error('请求失败:', res);
         }
@@ -165,7 +165,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
   },
@@ -195,7 +195,7 @@ Page({
 
     const currentPage = pages[pages.length - 1]; // 当前页面
     const prevPage = pages[pages.length - 2]; // 上一级页面
-    console.log(prevPage,prevPage)
+    //console.log(prevPage,prevPage)
   // 检查是否有上一级页面
   if (prevPage) {
     // 有上一级页面，返回上一级
@@ -204,7 +204,7 @@ Page({
     });
   } else {
     // 没有上一级页面，重定向到指定页面
-    console.log(123)
+    //console.log(123)
     wx.switchTab({
       url: '/pages/home/home',
     })
@@ -242,7 +242,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res)
+          //console.log(res)
           // 成功复制后的回调
           wx.showToast({
             title: '收藏成功',
@@ -280,7 +280,7 @@ Page({
         });
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     });
 
@@ -289,7 +289,7 @@ Page({
     let that = this
     let ids = []
     ids.push(this.data.idd)
-    console.log(ids)
+    //console.log(ids)
     wx.request({
       url: `${apiUrl}/internship/cancelCollectionByList`, // 拼接完整的 URL
       method: 'POST',
@@ -300,7 +300,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res)
+          //console.log(res)
           this.setData({
             collected:false
           })
@@ -331,14 +331,14 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
       }
     })
   },
   copyText: function (event) {
     // 定义要复制的文本，包含换行符
     let c = this.data.cpp
-    console.log(c)
+    //console.log(c)
     // const textToCopy = `
     // 公司名称：${c.companyName}
     // 公司类型：${c.businessNature}
@@ -378,7 +378,7 @@ Page({
       current: imageUrl, // 当前要显示的图片url
       urls: [imageUrl], // 需要预览的图片url列表数组
       success: function (res) {
-        console.log('图片预览成功', res);
+        //console.log('图片预览成功', res);
       },
       fail: function (err) {
         console.error('图片预览失败', err);
@@ -389,7 +389,7 @@ Page({
     if (res.from === 'button') {
       // 来自页面内转发按钮
     }
-    console.log(666,this.data.coitem.icon)
+    //console.log(666,this.data.coitem.icon)
     return {
       title: this.data.coitem.name,
       path: `/pkgA/pages/detail/detail?id=${this.data.idd}` // 设置分享的页面路径

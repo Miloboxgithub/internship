@@ -33,7 +33,7 @@ Page({
       });
       return;
     }
-    console.log('发送验证码到', this.data.phone);
+    //console.log('发送验证码到', this.data.phone);
 
     wx.request({
       url: `${apiUrl}/user/sendSms?phoneNumber=${this.data.phone}`, // 拼接完整的 URL
@@ -43,7 +43,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           if (res.data.code == 0) {
             wx.showToast({
               title: res.data.msg,
@@ -59,7 +59,7 @@ Page({
         console.error('请求失败:', err);
       },
       complete: () => {
-        console.log('请求完成');
+        //console.log('请求完成');
         this.setData({
           lolo: false
         })
@@ -78,7 +78,7 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          //console.log(res.data)
           wx.removeStorageSync('userInfo')
           setTimeout(()=>{
             wx.setStorageSync('userInfo', res.data.data);
@@ -116,11 +116,11 @@ Page({
   },
   login: function () {
     let that = this
-    console.log('登录', this.data.phone, '验证码', this.data.code);
+    //console.log('登录', this.data.phone, '验证码', this.data.code);
     wx.login({
       success: (res) => {
         if (res.code) {
-          console.log('loginCode：', res.code)
+          //console.log('loginCode：', res.code)
           wx.request({
             url: `${apiUrl}/user/smsLogin`, // 拼接完整的 URL
             method: 'POST',
@@ -136,7 +136,7 @@ Page({
               if (res.statusCode === 200) {
                 // wx.removeStorageSync('userInfo')
                 // wx.removeStorageSync('v_token')
-                console.log(res.data)
+                //console.log(res.data)
                 wx.showToast({
                   title: '登录成功！',
                 })
@@ -156,7 +156,7 @@ Page({
               console.error('请求失败:', err);
             },
             complete: () => {
-              console.log('请求完成');
+              //console.log('请求完成');
               this.setData({
                 lolo: false
               })
