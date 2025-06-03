@@ -350,6 +350,7 @@ Page({
       })
       let op = app.globalData.sharecoitem
       let tt = []
+      console.log(op)
       op.forEach((item, k) => {
         let t = {
           id: item.id,

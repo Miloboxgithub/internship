@@ -137,6 +137,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 500px;
+  
 }
 
 .item {
@@ -239,9 +241,10 @@
   height: 140px;
   text-align: center;
   font-size: 12px;
-  margin-top: 5px;
+  padding-top: 15px;
   font-weight: 400;
   color: rgb(143, 141, 141);
+  background: rgba(245, 245, 245, 1);
 }
 
 .tags {
