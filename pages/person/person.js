@@ -85,7 +85,7 @@ Page({
                 'content-type': 'application/json'
               },
               success: (res) => {
-                if (res.statusCode === 200) {
+                if (res.statusCode === 200&&res.data.code==1) {
                   //console.log(res, 'login')
                   wx.showToast({
                     title: '登录成功！',
@@ -98,6 +98,11 @@ Page({
                   wx.setStorageSync('v_token', res.data.data);
                   that.getUserInfo()
                 } else {
+                  wx.showToast({
+                    title: '登录失败',
+                    icon:"error"
+                  })
+                  that.hideview()
                   console.error('请求失败:', res);
                 }
               },
@@ -139,7 +144,7 @@ Page({
         'content-type': 'application/json'
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res, 'login')
         } else {
           console.error('请求失败:', res);
@@ -159,7 +164,7 @@ Page({
         'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
 
           //console.log(res.data)
           wx.setStorageSync('userInfo', res.data.data);

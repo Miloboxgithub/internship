@@ -55,7 +55,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res)
           let op = res.data.data
           let tt = that.data.coitem
@@ -261,7 +261,7 @@ Page({
       },
       success: (res) => {
         //console.log(res)
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data.data)
           let op = res.data.data
           let tt = []
@@ -365,7 +365,7 @@ Page({
       },
       success: (res) => {
         //console.log(res)
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data, 'kkkk')
           setTimeout(() => {
             that.fetchList()

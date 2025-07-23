@@ -78,7 +78,7 @@ Page({
         'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           let ans = res.data.data
           this.setData({
             cpp: ans,
@@ -155,7 +155,7 @@ Page({
         'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data, 'addview')
         } else {
           console.error('请求失败:', res);
@@ -241,7 +241,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res)
           // 成功复制后的回调
           wx.showToast({
@@ -299,7 +299,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res)
           this.setData({
             collected:false

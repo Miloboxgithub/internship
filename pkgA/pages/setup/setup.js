@@ -51,7 +51,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data)
           let abc = []
           wx.showToast({
@@ -188,7 +188,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data)
           let abc = []
           res.data.data.forEach((i, k) => {
@@ -226,7 +226,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data)
           let abc = [],
             cba = []
@@ -246,7 +246,7 @@ Page({
               token: wx.getStorageSync('v_token')
             },
             success: (res) => {
-              if (res.statusCode === 200) {
+              if (res.statusCode === 200&&res.data.code==1) {
                 //console.log(res.data)
                 let abc = []
                 res.data.data.forEach((i, k) => {
@@ -302,7 +302,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data)
 
         } else {

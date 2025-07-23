@@ -78,7 +78,13 @@ Page({
       },
       success: (res) => {
         if (res.statusCode === 200) {
-          //console.log(res.data)
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none'
+            })
+            return ;
+          }
           wx.removeStorageSync('userInfo')
           setTimeout(()=>{
             wx.setStorageSync('userInfo', res.data.data);
@@ -137,6 +143,13 @@ Page({
                 // wx.removeStorageSync('userInfo')
                 // wx.removeStorageSync('v_token')
                 //console.log(res.data)
+                if (res.data.code == 0) {
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
+                  })
+                  return ;
+                }
                 wx.showToast({
                   title: '登录成功！',
                 })

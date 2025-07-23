@@ -82,7 +82,7 @@ Page({
         'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data, 'search')
           app.globalData.sharecoitem = res.data.data.records
           if (res.data.data.records.length != 0) {

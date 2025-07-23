@@ -52,7 +52,7 @@ App({
   splits(allUrls) {
     // 使用 split 方法分割字符串
     const urlsArray = allUrls.split('|');
-    console.log(urlsArray)
+    //console.log(urlsArray)
     return urlsArray
   },
   pickerchange: function () {

@@ -208,7 +208,7 @@ Page({
       },
       success: (res) => {
         //console.log(res)
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           
           if(res.data.msg=="发布内容违规！"){
             wx.showToast({
@@ -312,7 +312,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data)
           let abc = [],
             cba = []
@@ -333,7 +333,7 @@ Page({
               token: wx.getStorageSync('v_token')
             },
             success: (res) => {
-              if (res.statusCode === 200) {
+              if (res.statusCode === 200&&res.data.code==1) {
                 //console.log(res.data)
                 let abc = []
                 res.data.data.forEach((i, k) => {
@@ -393,7 +393,7 @@ Page({
         'content-type': 'application/json',
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           let ttt = []
           res.data.data.forEach((i, k) => {
             ttt.push({
@@ -425,7 +425,7 @@ Page({
         'content-type': 'application/json',
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           let ttt = []
           res.data.data.forEach((i, k) => {
             ttt.push({
@@ -783,7 +783,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data)
           let abc = []
           res.data.data.forEach((i, k) => {

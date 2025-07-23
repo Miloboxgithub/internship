@@ -88,7 +88,7 @@ Page({
         //'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res)
           let op = res.data.data.records
           let tt = that.data.coitem
@@ -162,7 +162,7 @@ Page({
         'content-type': 'application/json',
       },
       success: (res) => {
-        if (res.statusCode === 200) {
+        if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data.data)
           let ttt = this.data.xinzhi
           res.data.data.forEach((i, k) => {
@@ -182,7 +182,7 @@ Page({
               'content-type': 'application/json',
             },
             success: (res) => {
-              if (res.statusCode === 200) {
+              if (res.statusCode === 200&&res.data.code==1) {
                 //console.log(res.data.data,'ty')
                 let ttt = this.data.industry
                 res.data.data.forEach((i, k) => {
