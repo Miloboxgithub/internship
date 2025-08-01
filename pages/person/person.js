@@ -86,7 +86,7 @@ Page({
               },
               success: (res) => {
                 if (res.statusCode === 200&&res.data.code==1) {
-                  //console.log(res, 'login')
+                  console.log(res, 'login')
                   wx.showToast({
                     title: '登录成功！',
                   })

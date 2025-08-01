@@ -1,5 +1,6 @@
 <view class="containers">
-<text class="no">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;深圳市垂直招聘科技有限公司是一家深耕于人力资源领域的互联网科技企业，旗下拥有『校园大使汇』、『实习大全』、『内推码』等一系列新生代求职品牌，全面覆盖“校园大使——实习——校招”三大关键求职环节。公司产品影响力辐射全国33个省级行政区、269个城市，覆盖海内外千余所高校，并在海外多所知名高校享有盛誉。</text>
+<text class="no">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;垂直招聘是一家深耕于人力资源领域的互联网科技企业，旗下拥有『校园大使汇』、『实习大全』、『内推码Pro』等一系列新生代求职品牌，全面覆盖“校园大使——实习——校招”三大关键求职环节。公司产品影响力辐射全国33个省级行政区、269个城市，覆盖海内外千余所高校，并在海外多所知名高校享有盛誉。
+</text>
   <view class="tst">联系方式：<text style="font-weight: 400;" bindtap="copyText" data-text="18718513415">18718513415</text></view>
   <view class="tst">电子邮箱：<text style="font-weight: 400;" bindtap="copyText" data-text="bd@xydsh.cn">bd@xydsh.cn</text></view>
   <view class="tst">官网：<text style="font-weight: 400;" bindtap="copyText" data-text="www.xydsh.cn">www.xydsh.cn</text></view>
@@ -7,4 +8,5 @@
   <image src="/pkgA/img/校园大使汇公众号二维码.jpg.png"  bindlongpress="onLongPress" mode=""/>
   </view>
 <text class="last">公众号：实习大全</text>
+<text class="lasto">（长按识别二维码关注）</text>
 </view>

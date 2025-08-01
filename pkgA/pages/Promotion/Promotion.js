@@ -14,8 +14,21 @@ Page({
   onLoad(options) {
 
   },
-  onLongPress(event) {
-    const imageUrl = '/img/校园大使汇公众号二维码.jpg.png'; // 获取图片的路径
+  onLongPress1(event) {
+    const imageUrl = '/img/20250731160028.png'; // 获取图片的路径
+    wx.previewImage({
+      current: imageUrl, // 当前要显示的图片url
+      urls: [imageUrl], // 需要预览的图片url列表数组
+      success: function(res) {
+        //console.log('图片预览成功', res);
+      },
+      fail: function(err) {
+        console.error('图片预览失败', err);
+      }
+    });
+  },
+  onLongPress2(event) {
+    const imageUrl = '/img/20250731160046.png'; // 获取图片的路径
     wx.previewImage({
       current: imageUrl, // 当前要显示的图片url
       urls: [imageUrl], // 需要预览的图片url列表数组

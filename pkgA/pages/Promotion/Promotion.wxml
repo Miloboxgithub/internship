@@ -1,3 +1,11 @@
-<image class="img" bindlongpress="onLongPress" src="/img/校园大使汇公众号二维码.jpg.png" mode=""/>
-<text class="ttt">扫码添加官方客服企业微信联系置顶</text>
-<text class="tst">（添加时请备注：企业名称+实习置顶）</text>
+<view class="img-container">
+<image class="img" bindlongpress="onLongPress1" src="/img/20250731160028.png" mode="widthFix"/>
+</view>
+<text class="sts">洽谈合作</text>
+<text class="ttt">欢迎垂询，请长按识别二维码添加</text>
+<text class="tst">（添加时请备注：实习大全合作）</text>
+<view class="img-container">
+<image class="img" bindlongpress="onLongPress2" src="/img/20250731160046.png" mode="widthFix"/>
+</view>
+<text class="sts">联系客服</text>
+<text class="ttt">随时为您服务，请长按识别二维码添加</text>

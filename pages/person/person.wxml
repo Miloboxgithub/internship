@@ -34,8 +34,8 @@
           <view style="margin-top: 5px;">发布</view>
         </view>
         <view class="s1" bind:tap="navigate" data-url="/pkgA/pages/Promotion/Promotion">
-          <image src="/img/商城1.png" mode="" />
-          <view style="margin-top: 5px;">置顶推广</view>
+          <image src="/img/contact.svg" mode="" />
+          <view style="margin-top: 5px;">联系我们</view>
         </view>
         <view class="s1" bind:tap="navigate" data-url="/pkgA/pages/setup/setup">
           <image src="/img/设置.png" mode="" />
@@ -67,8 +67,8 @@
   </view>
 </view>
 
-<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{logins?'block':'none'}}; top:25vw;"></view>
-<view class="loginMode"style="display:{{logins?'block':'none'}};">
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{logins?'block':'none'}}; top:0;"></view>
+<view class="loginMode"style="display:{{logins?'block':'none'}};" catchtouchmove="true">
     <view class="temt">欢迎来到实习大全</view>
     <view class="ser">更多机会，更优选择！</view>
     <view class="meng" wx:if="{{!gous}}" bind:tap="meng"></view>
@@ -77,7 +77,7 @@
   <view class="msglogin" bind:tap="navigate" data-url="/pkgA/pages/msg/msg"><image src="/img/msg.png"/>短信验证码登录</view>
   <view class="ist">
   <view class="gous" bind:tap="gous" style="background: {{gous?'rgba(80, 177, 178, 1)':''}};"><image src="{{gous?'/img/gou.png':''}}" mode=""/></view>
-  我已阅读并同意用户<text style="color: rgb(80, 177, 178);" bind:tap="navigate" data-url="/pkgA/pages/service/service">服务协议</text>和<text bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy" style="color: rgb(80, 177, 178);">隐私政策</text>
+  我已阅读并同意<text style="color: rgb(80, 177, 178);" bind:tap="navigate" data-url="/pkgA/pages/service/service">《用户服务协议》</text>和<text bind:tap="navigate" data-url="/pkgA/pages/privacy/privacy" style="color: rgb(80, 177, 178);">《隐私政策》</text>
   </view>
   <image class="chas" bind:tap="hideview" src="/img/cha1.png" mode=""/>
 </view>

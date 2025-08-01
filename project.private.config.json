@@ -11,6 +11,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pkgA/pages/Promotion/Promotion",
+          "pathName": "pkgA/pages/Promotion/Promotion",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "pages/publish/publish",
           "pathName": "pages/publish/publish",
           "query": "",

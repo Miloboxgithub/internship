@@ -52,6 +52,16 @@ font-weight: 400;
 letter-spacing: 0px;
 line-height: 23.17px;
 color: rgba(25, 25, 25, 1);
-
-
+}
+.lasto{
+  display: block;
+width: 100%;
+text-align: center;
+opacity: 1;
+/** 文本1 */
+font-size: 16px;
+font-weight: 400;
+letter-spacing: 0px;
+line-height: 23.17px;
+color: rgba(42, 130, 228, 1);
 }
