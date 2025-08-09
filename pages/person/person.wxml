@@ -11,7 +11,7 @@
         <view class="ts1" wx:if="{{islogins}}">
           未登录/注册
         </view>
-        <view class="ts1" wx:if="{{!islogins}}">
+        <view class="ts0" wx:if="{{!islogins}}">
           {{username}}
         </view>
         <view class="ts2" wx:if="{{islogins}}">

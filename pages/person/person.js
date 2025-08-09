@@ -192,6 +192,11 @@ Page({
       chans: true
     })
   }
+  else{
+    wx.navigateTo({
+      url: '/pkgA/pages/setup/setup'
+    });
+  }
   },
   hideview() {
     this.setData({

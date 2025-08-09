@@ -107,6 +107,7 @@
   top: 114px;
   position: fixed;
   width: 300px;
+  display: flex;
 }
 
 .ts1 {
@@ -125,7 +126,25 @@
   text-align: left;
   vertical-align: top;
 }
-
+.texts{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ts0 {
+  margin-left: 12px;
+  width: 98px;
+  height: 28px;
+  opacity: 1;
+  /** 文本1 */
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 26.06px;
+  color: rgba(255, 255, 255, 1);
+  text-align: left;
+  vertical-align: top;
+}
 .ts2 {
   position: fixed;
   left: 112px;
