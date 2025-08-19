@@ -10,8 +10,10 @@ Page({
     items: [
       // '小红书','超威电源集团有限公司','慧眼数据分析有限公司','云端信息科技','星辰网络服务有限公司'
     ],
+    coitem: [],
     msg: '',
     flag: true,
+    lolo:false,
   },
   inputed(e) {
     let msg = e.detail.value
@@ -65,7 +67,8 @@ Page({
     }
     
     this.setData({
-      items: record
+      items: record,
+      lolo:true
     });
     
     wx.setStorageSync('srecord', record);
@@ -84,13 +87,43 @@ Page({
       success: (res) => {
         if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res.data, 'search')
-          app.globalData.sharecoitem = res.data.data.records
-          if (res.data.data.records.length != 0) {
-            wx.switchTab({
-              url: '/pages/home/home?op=1',
+          //修改为本页显示
+          //app.globalData.sharecoitem = res.data.data.records
+          let op = res.data.data.records
+          if (op.length != 0) {
+            // wx.switchTab({
+            //   url: '/pages/home/home?op=1',
+            // })
+            let tt = []
+            op.forEach((item, k) => {
+              let t = {
+                id: item.id,
+                icon: item.companyLogo,
+                name: item.companyName,
+                time: app.timeSub(item.deadline),
+                jobPosition:item.jobPosition,
+                iszhao: item.overTime ? false : true,
+                industryType:item.industryType,
+                sum: item.pageview,
+                tags: [{
+                  title: item.businessNature
+                }, {
+                  title: item.internshipType
+                }, {
+                  title: this.getSubstringAfterDash(item.location)
+                }]
+              }
+              if (item.internshipType == '远程') {
+                t.tags.pop()
+                //console.log(t.tags)
+              }
+              if (!t.sum) t.sum = 0
+              tt.push(t)
             })
             this.setData({
-              flag:true
+              flag:true,
+              coitem: tt,
+              lolo:false
             })
           } else {
             // wx.showToast({
@@ -98,12 +131,16 @@ Page({
             //   icon: 'error'
             // }, 1000)
             this.setData({
-              flag:false
+              flag:false,
+              lolo:false
             })
           }
         } else {
           console.error('请求失败:', res);
           wx.setStorageSync('loginStatus', false)
+          this.setData({
+            lolo:false
+          })
           wx.showModal({
             title: '未登录！',
             content: '请先去个人页面进行登录',
@@ -126,6 +163,9 @@ Page({
           title: '搜索失败',
           icon: 'error'
         }, 1000)
+        this.setData({
+          lolo:false
+        })
       },
     });
   },
@@ -154,5 +194,21 @@ Page({
         res.node.focus();
       }
     }).exec();
+  },
+  getSubstringAfterDash(str) {
+    // 使用 split 方法分割字符串
+    const parts = str.split('-');
+    // 如果有 '-'，返回 '-' 后面的部分；如果没有，返回原字符串
+    return parts.length > 1 ? parts[1] : str;
+    },
+      //带参跳转
+  navigates: function (e) {
+    let ww = e.currentTarget.dataset.id
+    let ans = this.data.coitem[ww].id
+    let url = `/pkgA/pages/detail/detail?id=${ans}`
+    //console.log(url)
+    wx.navigateTo({
+      url: url
+    });
   },
 })

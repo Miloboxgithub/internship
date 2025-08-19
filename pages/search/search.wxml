@@ -1,5 +1,6 @@
 <view class="containers" >
 <!-- 搜索栏 -->
+<custom-loading show="{{lolo}}" title="加载中..."></custom-loading>
 <view style="display:flex; justify-content: center; margin-top: 10px;">
   <view class="navv">
       <view class="search">
@@ -12,7 +13,7 @@
 </view>
 <view class="syl" wx:if="{{flag}}">搜索历史 <image bind:tap="shanchu" class="shanchu" src="/img/shachu.png" mode=""/></view>
 <view class="kuai" wx:if="{{flag}}">
-  <view class="items" wx:for="{{items}}" bind:tap="shang" data-s="{{item}}"><text>{{item}}</text></view>
+  <view class="hitems" wx:for="{{items}}" bind:tap="shang" data-s="{{item}}"><text>{{item}}</text></view>
 </view>
 </view>
 <view class="nono" wx:if="{{!flag}}">
@@ -21,3 +22,28 @@
     当前未找到与关键词相关的内容，建议您调整搜索词或尝试其他关键词。
   </text>
 </view>
+<view class="items"  wx:if="{{flag}}">
+    <view class="item" wx:for="{{coitem}}" wx:key="index" bind:tap="navigates" data-url="/pkgA/pages/detail/detail" data-id="{{index}}">
+      <view class="coicon">
+        <image src="{{item.icon}}" mode="aspectFit" lazy-load="false" mode="" />
+      </view>
+      <view class="info">
+        <text class="cotitle" selectable="false" space="false" decode="false">{{item.jobPosition}}</text>
+        <text class="comName">{{item.name}}</text>
+        <view class="tags">
+          <view class="tt">
+            <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="ttt">{{tag.title}}</view>
+          </view>
+        </view>
+        <view class="iszhao {{item.iszhao?'gg':'rr'}}">{{item.iszhao?'招募中':'已结束'}}</view>
+        <view class="fuji">
+          <!-- <view class="times">截止时间：{{item.time}}</view> -->
+          <view class="sums">
+            <image src="/img/浏览.png" mode="" />
+            <text>{{item.sum}}</text>
+            <!-- <image src="/img/路径 1.png" mode="" /> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

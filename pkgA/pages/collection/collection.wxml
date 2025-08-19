@@ -21,7 +21,7 @@
  <view class="boox">
   <view class="abc" bind:tap="dianji" data-id="{{index}}"><image src="/pkgA/img/圆形 1.png" class="blacks" mode=""/><image src="/pkgA/img/圆形 2.png"  style="display: {{item.isdian?'':'none'}};"  class="blues" mode=""/></view>
       <view class="coicon">
-        <image src="{{item.icon}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" mode="" />
+        <image src="{{item.icon}}" mode="aspectFit" lazy-load="false" mode="" />
       </view>
  </view>
       <view class="info" bind:tap="navigates" data-url="/pkgA/pages/detail/detail"  data-id="{{index}}">

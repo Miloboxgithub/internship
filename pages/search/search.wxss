@@ -66,7 +66,7 @@ vertical-align: top;
   display: flex;
   flex-wrap: wrap;
 }
-.items{
+.hitems{
   margin-top: 1vh;
   border-radius: 15px;
 background: rgba(255, 255, 255, 1);
@@ -84,7 +84,7 @@ display: flex;
 align-items: center;
 padding: 1px 8px 1px 8px;
 }
-.items text{
+.hitems text{
   margin-left: 3px;
   margin-right: 3px;
 }
@@ -118,13 +118,242 @@ text-align: justify;
 vertical-align: top;
 }
 .guan{
-  position: fixed;
- right: 20px;
+  /* position: fixed; */
+ /* right: 20px; */
 z-index: 100;
-width: 18.5px;
+width: 22.5px;
 height: 18.5px;
 padding: 10px;
 opacity: 1;
 z-index: 1000;
+
+}
+/* kkk */
+.items {
+
+  margin-top: 10px;
+  width: 100vw;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 500px;
+}
+
+.item {
+  width: 90vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  /* border-bottom: solid 0.5px #e0e0e0; */
+  padding-bottom: 7px;
+  padding-left: 9px;
+  padding-right: 9px;
+  height: 112px;
+  opacity: 1;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 1);
+  box-shadow:4px 4px 4px 2px rgba(0, 0, 0, 0.05);
+}
+
+.coicon {
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 1);
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  overflow: hidden;
+}
+
+.coicon image {
+  width: 100%;
+  height: 100%;
+}
+
+.info {
+  flex-grow: 1;
+  margin-left: 69px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 74px;
+  overflow: hidden;
+}
+
+.cotitle {
+  position: absolute;
+  left: 80px;
+  top: 10px;
+  height: 32px;
+  opacity: 1;
+
+  /** 文本1 */
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0px;
+  line-height: 28.96px;
+  color: rgba(56, 56, 56, 1);
+  text-align: left;
+  vertical-align: top;
+
+  white-space: nowrap;
+  /* 不允许换行 */
+  overflow: hidden;
+  /* 隐藏超出部分 */
+  text-overflow: ellipsis;
+  /* 超出部分显示为省略号 */
+  width: 65%;
+  /* 设置宽度，确保省略号效果生效 */
+}
+
+.comName {
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 62%;
+  height: 22px;
+  opacity: 1;
+  /** 文本1 */
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 20.27px;
+  color: rgba(128, 128, 128, 1);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+  /* 不允许换行 */
+  overflow: hidden;
+  /* 隐藏超出部分 */
+  text-overflow: ellipsis;
+  /* 超出部分显示为省略号 */
+}
+
+.tags {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  overflow: hidden;
+  position: absolute;
+  bottom: 14px;
+  left: 80px;
+}
+
+.fuji {
+  display: flex;
+  justify-content: space-between;
+}
+
+.times {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 14.48px;
+  color: rgba(166, 166, 166, 1);
+  text-align: center;
+  vertical-align: top;
+  border-radius: 3px;
+  background: rgba(245, 245, 245, 1);
+  height: 14px;
+  padding: 1px 4px 1px 4px;
+}
+
+.sums image {
+  width: 14px;
+  height: 14px;
+}
+
+.sums text {
+  margin-right: 7px;
+  margin-left: 3px;
+}
+
+.sums {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 11.58px;
+  color: rgba(56, 56, 56, 0.86);
+  text-align: left;
+  vertical-align: top;
+}
+
+.iszhao {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 9px;
+  border-radius: 3px;
+  width: 51px;
+  height: 18px;
+
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  vertical-align: top;
+}
+
+.tt {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+}
+
+.gg {
+  background: rgba(80, 177, 178, 1);
+}
+
+.rr {
+  background: rgb(214, 30, 30);
+}
+
+.tag {
+  border-radius: 3px;
+  background: rgba(245, 245, 245, 1);
+  margin-right: 5px;
+  width: auto;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 6px;
+  padding-right: 6px;
+  height: 18px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0px;
+  line-height: 17.38px;
+  color: rgba(128, 128, 128, 1);
+  text-align: center;
+  vertical-align: top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zhezhao {
+  height: 31px;
+  padding-left: 5vw;
+  background-color: rgb(255, 255, 255, 1);
+  width: 100vw;
+  /* position: absolute; */
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
 
 }
