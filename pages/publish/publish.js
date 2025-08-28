@@ -832,6 +832,7 @@ Page({
           },
           success: (res) => {
             if (res.statusCode == 200) {
+              //console.log(res)
               that.setData({
                 logoImageUrl: JSON.parse(res.data).data
               });

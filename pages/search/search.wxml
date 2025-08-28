@@ -1,7 +1,7 @@
 <view class="containers" >
 <!-- 搜索栏 -->
 <custom-loading show="{{lolo}}" title="加载中..."></custom-loading>
-<view style="display:flex; justify-content: center; margin-top: 10px;">
+<view style="display:flex; justify-content: center; padding-top: 10px; position: fixed; top:0; background-color: white; z-index: 99999; width: 100vw;height:43px;">
   <view class="navv">
       <view class="search">
         <image bind:tap="searchs" src="/img/搜索.png" mode="" />
@@ -11,8 +11,8 @@
       <image class="guan" src="/img/cha1.png" catchtap="ggg" hover-stop-propagation="true" mode=""/>
     </view>
 </view>
-<view class="syl" wx:if="{{flag}}">搜索历史 <image bind:tap="shanchu" class="shanchu" src="/img/shachu.png" mode=""/></view>
-<view class="kuai" wx:if="{{flag}}">
+<view class="syl" wx:if="{{flag&&!isShou}}">搜索历史 <image bind:tap="shanchu" class="shanchu" src="/img/shachu.png" mode=""/></view>
+<view class="kuai" wx:if="{{flag&&!isShou}}">
   <view class="hitems" wx:for="{{items}}" bind:tap="shang" data-s="{{item}}"><text>{{item}}</text></view>
 </view>
 </view>

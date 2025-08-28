@@ -4,7 +4,7 @@
     <view class="item" wx:for="{{coitem}}" wx:key="index"  data-id="{{index}}">
  <view class="boox">
       <view class="coicon">
-        <image src="{{item.icon}}" mode="aspectFill" lazy-load="false" mode="" />
+        <image src="{{item.icon}}" mode="aspectFit" lazy-load="false" mode="" />
       </view>
  </view>
       <view class="info" bind:tap="navigates" data-url="/pkgA/pages/fabudetail/fabudetail" data-id="{{index}}">

@@ -13,6 +13,7 @@ Page({
     coitem: [],
     msg: '',
     flag: true,
+    isShou:false,//是否搜索了
     lolo:false,
   },
   inputed(e) {
@@ -27,7 +28,9 @@ Page({
     //console.log(546)
     this.setData({
       msg: '',
-      flag:true
+      flag:true,
+      isShou:false,
+      coitem:[],
     })
   },
   shanchu(){
@@ -123,7 +126,8 @@ Page({
             this.setData({
               flag:true,
               coitem: tt,
-              lolo:false
+              lolo:false,
+              isShou:true,
             })
           } else {
             // wx.showToast({
