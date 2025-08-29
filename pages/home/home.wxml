@@ -1,10 +1,10 @@
-<scroll-view class="containers" scroll-y="true" style="height: 120%;">
+<scroll-view class="containers" bindscroll="onScroll" scroll-y="true" style="height: 100vh;">
   <custom-loading show="{{lolo}}" title="加载中..."></custom-loading>
   <!-- 轮播图 -->
   <view class="swiper">
     <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
       <swiper-item wx:for="{{swiperList}}" wx:key>
-        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+        <image bindtap="goTowebView" data-link="{{}}" src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
         <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
       </swiper-item>
     </swiper>
@@ -22,7 +22,7 @@
     </view>
   </view>
   <!-- 搜索选择栏 -->
-  <view class="nav">
+  <view class="nav {{isFixed ? 'fixed' : ''}}">
     <view class="nav1" id="types1" bindtap="changetypes" style="color: {{lei=='类型'?'rgba(25, 25, 25, 1)':'rgba(80, 177, 178, 1)'}};"><text>{{lei}}</text>
       <image src="{{types1?'/img/shang.png':lei=='类型'?'/img/xia.png':'/img/xiab.png'}}" mode="" />
     </view>

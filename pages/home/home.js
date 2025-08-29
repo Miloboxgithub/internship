@@ -41,6 +41,8 @@ Page({
     page: 1,
     gun: true, //是否下滑刷新
     sharecoitem:[],
+    isFixed : false, // 是否固定顶部
+    stickyTop: 210, // 滚动多少px后开始固定
   },
   onLoad() {
     this.getSwiper()
@@ -612,6 +614,28 @@ Page({
     return {
       title: '更多机会，更优选择！',
 
+    }
+  },
+  goTowebView(e){
+    let url = e.currentTarget.dataset.link
+    //if(!url)return
+    url = encodeURIComponent(url)
+    wx.navigateTo({
+      url: `/pages/webView/webView?url=${url}`,
+    })
+  },
+  onScroll(e) {
+    const scrollTop = e.detail.scrollTop;
+    this.setData({
+      isFixed: scrollTop >= this.data.stickyTop,
+    });
+    if(scrollTop >= this.data.stickyTop){
+      this.setData({
+        toppx:48
+      })
+    }
+    else{
+      this.getweizhi();
     }
   }
 })

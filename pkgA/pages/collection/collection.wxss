@@ -4,6 +4,8 @@
 }
 .nav {
   /* margin-top: 5px; */
+  position: fixed;
+  top: 0;
   background: rgba(255, 255, 255, 1);
   width: 100vw;
   display: flex;
@@ -105,6 +107,7 @@
 .items {
   margin-left: 3vw;
   width: 94vw;
+  margin-top: 60px;
 }
 
 .blacks{

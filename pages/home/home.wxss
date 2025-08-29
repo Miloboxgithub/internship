@@ -23,11 +23,16 @@
   /* margin-top: 5px; */
   display: flex;
   align-items: center;
-  margin-left: 5vw;
-  width: 90vw;
+  padding-left: 5vw;
+  width: 95vw;
   height: 48px;
 }
-
+.fixed {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  background-color: #fff;
+}
 .nav image {
   height: 5px;
   width: 2.3vw;

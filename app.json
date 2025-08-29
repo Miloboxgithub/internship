@@ -4,12 +4,12 @@
     "pages/publish/publish",
     "pages/person/person",
     "pages/search/search",
-    "pages/trys/trys"
+    "pages/webView/webView"
   ],
   "subPackages": [
     {
       "root": "pkgA",
-      "name":"p1",
+      "name": "p1",
       "pages": [
         "pages/detail/detail",
         "pages/warning/warning",
@@ -27,8 +27,8 @@
     }
   ],
   "sharingInfo": {
-        "shareAppMessage": "onShareAppMessage"
-      },
+    "shareAppMessage": "onShareAppMessage"
+  },
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#FFFFFF"
@@ -38,31 +38,29 @@
     "custom-loading": "/components/custom-loading/index",
     "custom-modal": "/components/custom-modal/index"
   },
-
-     
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
- 
   "tabBar": {
     "custom": true,
     "color": "#808080",
     "selectedColor": "#388BFF",
     "backgroundColor": "#ffffff",
     "borderStyle": "black",
-    "list":[
+    "list": [
       {
         "pagePath": "pages/home/home",
         "iconPath": "img/1.png",
         "selectedIconPath": "img/11.png",
         "text": "实习咨讯"
-      }, {
+      },
+      {
         "pagePath": "pages/publish/publish",
         "iconPath": "img/2.png",
         "selectedIconPath": "img/22.png",
         "text": "实习发布"
-      }
-      , {
+      },
+      {
         "pagePath": "pages/person/person",
         "iconPath": "img/3.png",
         "selectedIconPath": "img/33.png",
