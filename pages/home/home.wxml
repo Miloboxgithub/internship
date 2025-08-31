@@ -1,4 +1,4 @@
-<scroll-view class="containers" bindscroll="onScroll" scroll-y="true" style="height: 100vh;">
+<scroll-view class="containers" scroll-y="true" >
   <custom-loading show="{{lolo}}" title="加载中..."></custom-loading>
   <!-- 轮播图 -->
   <view class="swiper">
@@ -23,6 +23,7 @@
   </view>
   <!-- 搜索选择栏 -->
   <view class="nav {{isFixed ? 'fixed' : ''}}">
+  <view style="width: 90vw; height: auto; display: flex; align-items: center; justify-content: space-between;">
     <view class="nav1" id="types1" bindtap="changetypes" style="color: {{lei=='类型'?'rgba(25, 25, 25, 1)':'rgba(80, 177, 178, 1)'}};"><text>{{lei}}</text>
       <image src="{{types1?'/img/shang.png':lei=='类型'?'/img/xia.png':'/img/xiab.png'}}" mode="" />
     </view>
@@ -40,6 +41,11 @@
       <input type="text" class="input" placeholder="请输入搜索内容" id="search" />
     </view>
   </view>
+  </view>
+  <view wx:if="{{isFixed}}" style="height: 48px; width: 100vw;">
+    
+  </view>
+    
   <view class="divider"></view>
   <view class="items">
     <view class="item" wx:for="{{coitem}}" wx:key="index" bind:tap="navigates" data-url="/pkgA/pages/detail/detail" data-id="{{index}}">
@@ -74,8 +80,8 @@
 <view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 2000; position: fixed; top: 0;"></view>
 <view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types2?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 2000; position: fixed; top: 0;"></view>
 <view class="sdsf" catchtouchmove="true" bindtap='hideview' style="display:{{types3?'block':'none'}}; height: {{toppx}}px; width: 100vw; z-index: 2000; position: fixed; top: 0;"></view>
-<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; top: {{toppx}}px;"></view>
-<view catchtouchmove="true" style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
+<view class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types1?'block':'none'}}; top: {{toppx}}px; "></view>
+<view catchtouchmove="true" style="top:{{toppx-10}}px; width:100vw; position: fixed; z-index: 2001;">
   <view class="zhezhao" wx:for="{{leixin}}" wx:key="index" style="display: {{types1?'block':'none'}};">
     <view class="zg" id="{{index}}" bind:tap="chooseop" style="color: {{item.ch?'rgba(80, 177, 178, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
       <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />
@@ -83,7 +89,7 @@
   </view>
 </view>
 <view catchtouchmove="true" class="bg" catchtouchmove="true" bindtap='hideview' style="display:{{types3?'block':'none'}}; top: {{toppx}}px;"></view>
-<view style="top:{{toppx-10}}px; width:100vw; position: absolute; z-index: 2001;">
+<view style="top:{{toppx-10}}px; width:100vw; position: fixed; z-index: 2001;">
   <view class="zhezhao" wx:for="{{xinzhi}}" wx:key="index" style="display: {{types3?'block':'none'}};">
     <view class="zg" id="{{index}}" bind:tap="chooseopp" style="color: {{item.ch?'rgba(80, 177, 178, 1);':'rgba(25, 25, 25, 1);' }};"><text>{{item.op}}</text>
       <image src="{{item.ch?'/img/xuan.png':''}}" mode="" />

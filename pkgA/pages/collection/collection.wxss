@@ -1,6 +1,5 @@
 .containers {
   background: rgba(245, 245, 245, 1);
-  height: 120vh;
 }
 .nav {
   /* margin-top: 5px; */
@@ -107,7 +106,9 @@
 .items {
   margin-left: 3vw;
   width: 94vw;
+  min-height: calc(100vh - 50px);
   margin-top: 60px;
+  padding-bottom: 20px;
 }
 
 .blacks{
@@ -334,7 +335,7 @@ box-shadow: 0px 2px 4px  rgba(0, 0, 0, 0.05);
 
 .bg {
   display: none;
-  position: absolute;
+  position: fixed;
 
   left: 0%;
   width: 100vw;

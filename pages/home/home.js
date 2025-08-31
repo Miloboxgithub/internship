@@ -16,7 +16,7 @@ Page({
     industry: [{
       op: '全部',
       id: 0
-    }, ],
+    },],
     types1: false,
     types2: false,
     types3: false,
@@ -40,9 +40,9 @@ Page({
     lolo: false,
     page: 1,
     gun: true, //是否下滑刷新
-    sharecoitem:[],
-    isFixed : false, // 是否固定顶部
-    stickyTop: 210, // 滚动多少px后开始固定
+    sharecoitem: [],
+    isFixed: false, // 是否固定顶部
+    stickyTop: 0, // 滚动多少px后开始固定
   },
   onLoad() {
     this.getSwiper()
@@ -50,26 +50,26 @@ Page({
     // 初始化towerSwiper 传已有的数组名即可
     this.getType()
     wx.showShareMenu({
- 
-      withShareTicket:true,
-       
-      menus:['shareAppMessage','shareTimeline']
-       
-      })
-   
+
+      withShareTicket: true,
+
+      menus: ['shareAppMessage', 'shareTimeline']
+
+    })
+
   },
   fetchData: function () {
     //console.log('t', this.data.hang, this.data.lei, this.data.xing)
     let r1 = this.data.lei
     let r3 = this.data.xinzhi.find(item => item.op === this.data.xing);
     let r2 = this.data.industry.find(item => item.op === this.data.hang)
-    if(r2){
+    if (r2) {
       r2 = r2.id
     }
-    if(r3){
+    if (r3) {
       r3 = r3.id
     }
-    if(r1=='类型'||r1=='全部')r1 = ''
+    if (r1 == '类型' || r1 == '全部') r1 = ''
     //console.log(r1,r2,r3)
     let that = this
     this.setData({
@@ -79,8 +79,8 @@ Page({
       url: `${apiUrl}/internship/selectByContent`, // 拼接完整的 URL
       method: 'POST',
       data: {
-        "businessNatureId" :r3,
-        "industryTypeId" : r2,
+        "businessNatureId": r3,
+        "industryTypeId": r2,
         "internshipType": r1,
         "page": this.data.page,
         "pageSize": 20
@@ -90,7 +90,7 @@ Page({
         //'token': wx.getStorageSync('v_token') // 传递 token
       },
       success: (res) => {
-        if (res.statusCode === 200&&res.data.code==1) {
+        if (res.statusCode === 200 && res.data.code == 1) {
           //console.log(res)
           let op = res.data.data.records
           let tt = that.data.coitem
@@ -100,7 +100,7 @@ Page({
               icon: item.companyLogo,
               name: item.companyName,
               time: app.timeSub(item.deadline),
-              jobPosition:item.jobPosition,
+              jobPosition: item.jobPosition,
               iszhao: item.overTime ? false : true,
               sum: item.pageview,
               industryType: item.industryType,
@@ -119,7 +119,7 @@ Page({
             if (!t.sum) t.sum = 0
             tt.push(t)
           })
-          
+
           // if (this.data.hang != '行业' && this.data.hang != '全部') {
           //   tt = tt.filter(item => item.industryType == this.data.hang);
           // }
@@ -164,7 +164,7 @@ Page({
         'content-type': 'application/json',
       },
       success: (res) => {
-        if (res.statusCode === 200&&res.data.code==1) {
+        if (res.statusCode === 200 && res.data.code == 1) {
           //console.log(res.data.data)
           let ttt = this.data.xinzhi
           res.data.data.forEach((i, k) => {
@@ -184,7 +184,7 @@ Page({
               'content-type': 'application/json',
             },
             success: (res) => {
-              if (res.statusCode === 200&&res.data.code==1) {
+              if (res.statusCode === 200 && res.data.code == 1) {
                 //console.log(res.data.data,'ty')
                 let ttt = this.data.industry
                 res.data.data.forEach((i, k) => {
@@ -222,7 +222,7 @@ Page({
         //console.log('请求完成');
       }
     });
-    
+
   },
   extractDate(dateTimeString) {
     // 使用字符串分割方法提取日期部分
@@ -242,7 +242,7 @@ Page({
       cardCur: e.detail.current
     })
   },
-  getSwiper(){
+  getSwiper() {
     let that = this
     wx.request({
       url: `${apiUrl}/carousel/getAllCarousel`, // 拼接完整的 URL
@@ -250,22 +250,22 @@ Page({
       header: {
       },
       success: (res) => {
-       //console.log(res,'getAllCarousel')
-       if(res.statusCode==200){
-        let op = []
-        res.data.data.forEach((i,k)=>{
-          op.push({
-            id:k,
-            type:'image',
-            url:i.image,
-            link:i.link
+        //console.log(res,'getAllCarousel')
+        if (res.statusCode == 200) {
+          let op = []
+          res.data.data.forEach((i, k) => {
+            op.push({
+              id: k,
+              type: 'image',
+              url: i.image,
+              link: i.link
+            })
           })
-        })
-        that.setData({
-          swiperList:op
-        })
-        this.towerSwiper('swiperList');
-       }
+          that.setData({
+            swiperList: op
+          })
+          this.towerSwiper('swiperList');
+        }
 
       },
       fail: (err) => {
@@ -336,8 +336,8 @@ Page({
         selected: 0
       })
     }
-    
-    if (app.globalData.sharecoitem.length == 0) {}
+
+    if (app.globalData.sharecoitem.length == 0) { }
     //this.fetchData()
     else {
       wx.showToast({
@@ -359,9 +359,9 @@ Page({
           icon: item.companyLogo,
           name: item.companyName,
           time: app.timeSub(item.deadline),
-          jobPosition:item.jobPosition,
+          jobPosition: item.jobPosition,
           iszhao: item.overTime ? false : true,
-          industryType:item.industryType,
+          industryType: item.industryType,
           sum: item.pageview,
           tags: [{
             title: item.businessNature
@@ -380,7 +380,7 @@ Page({
       })
       that.setData({
         coitem: tt,
-        sharecoitem:tt,
+        sharecoitem: tt,
         lolo: false
       })
       app.globalData.sharecoitem = []
@@ -394,10 +394,10 @@ Page({
     }
   },
   getSubstringAfterDash(str) {
-  // 使用 split 方法分割字符串
-  const parts = str.split('-');
-  // 如果有 '-'，返回 '-' 后面的部分；如果没有，返回原字符串
-  return parts.length > 1 ? parts[1] : str;
+    // 使用 split 方法分割字符串
+    const parts = str.split('-');
+    // 如果有 '-'，返回 '-' 后面的部分；如果没有，返回原字符串
+    return parts.length > 1 ? parts[1] : str;
   },
   changetypes(e) {
     let ce = true
@@ -447,12 +447,18 @@ Page({
     const qq = wx.createSelectorQuery();
     qq.select('.divider').boundingClientRect();
     qq.exec((res) => {
-      //console.log(res[0].top)
       this.setData({
         toppx: res[0].top
       })
     })
-
+    if(this.data.stickyTop!=0)return
+    //获取上边界
+    qq.select('.nav').boundingClientRect();
+    qq.exec((res) => {
+      this.setData({
+        stickyTop: res[0].top-48
+      })
+    })
   },
   //选择类型
   chooseop(e) {
@@ -475,9 +481,9 @@ Page({
       page: 1,
       coitem: []
     })
-    if(this.data.gun)
-    this.fetchData()
-    else{
+    if (this.data.gun)
+      this.fetchData()
+    else {
       let tt = this.data.sharecoitem
       if (this.data.hang != '行业' && this.data.hang != '全部') {
         tt = tt.filter(item => item.industryType == this.data.hang);
@@ -489,7 +495,7 @@ Page({
         tt = tt.filter(item => item.tags[0].title == this.data.xing);
       }
       this.setData({
-        coitem:tt
+        coitem: tt
       })
     }
     that.hideview()
@@ -514,9 +520,9 @@ Page({
       page: 1,
       coitem: []
     })
-    if(this.data.gun)
-    this.fetchData()
-    else{
+    if (this.data.gun)
+      this.fetchData()
+    else {
       let tt = this.data.sharecoitem
       if (this.data.hang != '行业' && this.data.hang != '全部') {
         tt = tt.filter(item => item.industryType == this.data.hang);
@@ -528,7 +534,7 @@ Page({
         tt = tt.filter(item => item.tags[0].title == this.data.xing);
       }
       this.setData({
-        coitem:tt
+        coitem: tt
       })
     }
     this.hideview()
@@ -547,9 +553,9 @@ Page({
       page: 1,
       coitem: []
     })
-    if(this.data.gun)
-    this.fetchData()
-    else{
+    if (this.data.gun)
+      this.fetchData()
+    else {
       let tt = this.data.sharecoitem
       //console.log(tt)
       if (this.data.hang != '行业' && this.data.hang != '全部') {
@@ -562,7 +568,7 @@ Page({
         tt = tt.filter(item => item.tags[0].title == this.data.xing);
       }
       this.setData({
-        coitem:tt
+        coitem: tt
       })
     }
     this.hideview()
@@ -609,14 +615,14 @@ Page({
       path: '/pages/home/home',
     }
   },
-  onShareTimeline: function(){
+  onShareTimeline: function () {
 
     return {
       title: '更多机会，更优选择！',
 
     }
   },
-  goTowebView(e){
+  goTowebView(e) {
     let url = e.currentTarget.dataset.link
     //if(!url)return
     url = encodeURIComponent(url)
@@ -624,9 +630,27 @@ Page({
       url: `/pages/webView/webView?url=${url}`,
     })
   },
-  onScroll(e) {
-    const scrollTop = e.detail.scrollTop;
-    this.setData({
+  //sroll-view滚动触发
+  // onScroll(e) {
+  //   const scrollTop = e.detail.scrollTop;
+  //   console.log(e.detail.scrollTop)
+  //   this.setData({
+  //     isFixed: scrollTop >= this.data.stickyTop,
+  //   });
+  //   if(scrollTop >= this.data.stickyTop){
+  //     this.setData({
+  //       toppx:48
+  //     })
+  //   }
+  //   else{
+  //     this.getweizhi();
+  //   }
+  // },
+
+  // 页面滚动就会触发
+  onPageScroll(e) {
+    const scrollTop = e.scrollTop;
+        this.setData({
       isFixed: scrollTop >= this.data.stickyTop,
     });
     if(scrollTop >= this.data.stickyTop){
