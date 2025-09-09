@@ -250,7 +250,7 @@ Page({
       header: {
       },
       success: (res) => {
-        //console.log(res,'getAllCarousel')
+        console.log(res,'getAllCarousel')
         if (res.statusCode == 200) {
           let op = []
           res.data.data.forEach((i, k) => {
@@ -661,5 +661,26 @@ Page({
     else{
       this.getweizhi();
     }
+  },
+   goToDashi  () {
+    wx.navigateToMiniProgram({
+    appId: 'wx41a6aa7bf69d48a5',      // 必填
+    path: '/pages/index/index',   // 可空；不传则打开首页
+    envVersion: 'release',         // 可选 release | trial | develop
+    extraData: { from: 'source' }, // 可选；目标小程序可在 App.onLaunch 获取
+    success(res) { /* 成功 */ },
+    fail(err) { console.log(err.errMsg); }
+  })
+  },
+   goToReferrals  () {
+    wx.navigateToMiniProgram({
+    appId: 'wxede5715e13efa3b2',      // 必填
+    path: '/pages/index/index',   // 可空；不传则打开首页
+    envVersion: 'release',         // 可选 release | trial | develop
+    extraData: { from: 'source' }, // 可选；目标小程序可在 App.onLaunch 获取
+    success(res) { /* 成功 */ },
+    fail(err) { console.log(err.errMsg); }
+  })
+  
   }
 })

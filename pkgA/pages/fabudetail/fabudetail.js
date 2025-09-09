@@ -696,7 +696,7 @@ Page({
       deliveryMethod: this.data.contactInfo,
       deadline: this.translateTime(this.data.applicationDeadLine),
       companyLogo: this.data.logoImageUrl,
-      consultPhoto: this.data.zixunImageUrl,
+      consultPhoto: this.getAllImageUrls()?this.getAllImageUrls():null,
       pageview : 0,//浏览量
       weights : 1,//权重
       remark: this.data.memo,
@@ -704,7 +704,7 @@ Page({
       businessNatureId:this.data.xin.id,
       overTime: 1,
     }
-    //console.log(pmsg,'xiugai')
+    console.log(pmsg,'xiugai')
     wx.request({
       url: `${apiUrl}/internship/modifyById`, // 拼接完整的 URL
       method: 'PUT',
@@ -745,6 +745,18 @@ Page({
     });
 
   },
+    // 获取所有图片 URL 并用 | 分隔
+    getAllImageUrls: function () {
+      let urls = [];
+      for (let i = 1; i <= 9; i++) {
+        const url = this.data[`zixunImageUrl${i}`];
+        if (url) {
+          urls.push(url);
+        }
+      }
+      //console.log(urls.join('|'))
+      return urls.join('|');
+    },
   initDatePicker() {
     const date = new Date();
     const year = date.getFullYear();
@@ -787,18 +799,49 @@ Page({
   },
   chooseImagelogo: function(e) {
     let that=this
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1, // 默认9
+      mediaType: ['image'],
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function(res) {
+      success: function (res) {
         // tempFilePath可以作为img标签的src属性显示图片
-        const tempFilePaths = res.tempFilePaths;
-        that.setData({
-          logoImageUrl: tempFilePaths[0]
+        //console.log(res)
+        wx.uploadFile({
+          url: `${apiUrl}/internship/companyLogoUpload`, // 你的上传接口地址
+          filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
+          name: 'file', // 与后端约定的文件参数名
+          header: {
+            'Content-Type': 'multipart/form-data', // 设置请求头
+            'token': wx.getStorageSync('v_token') // 传递 token
+          },
+          success: (res) => {
+            if (res.statusCode == 200) {
+              //console.log(res)
+              that.setData({
+                logoImageUrl: JSON.parse(res.data).data
+              });
+              wx.showToast({
+                title: '上传成功',
+                icon: 'success'
+              });
+            } else {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'none'
+              });
+            }
+          },
+          fail: (err) => {
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
         });
       },
-      fail: function(err) {
+      fail: function (err) {
         console.error('选择图片失败：', err);
       }
     });
@@ -809,6 +852,7 @@ Page({
     let that = this
     wx.chooseMedia({
       count: 1, // 默认9
+      mediaType: ['image'],
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
