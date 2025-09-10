@@ -255,7 +255,7 @@ Page({
           let op = []
           res.data.data.forEach((i, k) => {
             op.push({
-              id: k,
+              id: i.id,
               type: 'image',
               url: i.image,
               link: i.link
@@ -624,6 +624,22 @@ Page({
   },
   goTowebView(e) {
     let url = e.currentTarget.dataset.link
+    let id = e.currentTarget.dataset.id
+    wx.request({
+      url: `${apiUrl}/carousel/clickArticleLink/${id}`, // 拼接完整的 URL
+      method: 'POST',
+      header: {
+        token: wx.getStorageSync('v_token')
+      },
+      success: (res) => {
+      },
+      fail: (err) => {
+        console.error('请求失败:', err);
+      },
+      complete: () => {
+        //console.log('请求完成');
+      }
+    });
     //if(!url)return
     url = encodeURIComponent(url)
     wx.navigateTo({
