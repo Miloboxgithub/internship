@@ -6,11 +6,11 @@
     <!-- <image style="width: 6px;height: 6px; margin-left:5px" src="/img/三角形 1.png" mode=""/> -->
     <view class="sad"></view>
   </view>
-    <input type="number" style="color: #000;" placeholder="请输入手机号" bindinput="bindPhoneInput" />
+    <input class="input1" type="number" style="color: #000;" placeholder="请输入手机号" bindinput="bindPhoneInput" />
   </view>
   <view class="input-group">
     <input style="position: absolute; left: 20px; color: #000;"  type="number" placeholder="请输入验证码" bindinput="bindCodeInput" />
-    <view style="position: absolute; right: 22px; color: {{phone.length==11?'rgba(80, 177, 178, 1)':''}};" wx:if="{{canGetCode}}" bindtap="sendCode">获取验证码</view>
+    <view style="z-index:9999; position: absolute; right: 22px; color: {{phone.length==11?'rgba(80, 177, 178, 1)':''}};" wx:if="{{canGetCode}}" bindtap="sendCode">获取验证码</view>
     <view style="position: absolute; right: 22px;"  wx:else>{{countdown}} s 后可重新获取</view>
   </view>
   <view class="login" bindtap="login" style="background: {{phone.length==11?'rgba(80, 177, 178, 1)':''}};">登录</view>

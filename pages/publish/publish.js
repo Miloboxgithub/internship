@@ -815,7 +815,52 @@ Page({
   chooseImagelogo: function (e) {
     let that = this
     //console.log('hhh')
-    
+    wx.chooseMedia({
+      count: 1, // 默认9
+      mediaType: ['image'],
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        //console.log(res)
+        wx.uploadFile({
+          url: `${apiUrl}/internship/companyLogoUpload`, // 你的上传接口地址
+          filePath: res.tempFiles[0].tempFilePath, // 选择的图片路径
+          name: 'file', // 与后端约定的文件参数名
+          header: {
+            'Content-Type': 'multipart/form-data', // 设置请求头
+            'token': wx.getStorageSync('v_token') // 传递 token
+          },
+          success: (res) => {
+            if (res.statusCode == 200) {
+              //console.log(res)
+              that.setData({
+                logoImageUrl: JSON.parse(res.data).data
+              });
+              wx.showToast({
+                title: '上传成功',
+                icon: 'success'
+              });
+            } else {
+              wx.showToast({
+                title: '上传失败',
+                icon: 'none'
+              });
+            }
+          },
+          fail: (err) => {
+            console.error('上传失败:', err);
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+          }
+        });
+      },
+      fail: function (err) {
+        console.error('选择图片失败：', err);
+      }
+    });
   },
   chooseImagezixun(e) {
     //console.log(e.currentTarget.dataset.index)

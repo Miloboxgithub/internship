@@ -31,7 +31,12 @@
   background: rgba(166, 166, 166, 1);
 }
 
-.input-group input {}
+.input1 {
+  width: calc(100% - 70px);   /* 300 - 50(+86) - 20(左边距) */
+  margin-left: 70px;          /* 把内容区整体右移，避免重叠 */
+  border: none;
+  background: transparent;
+}
 
 .input-group button {
   margin-left: 10px;
@@ -43,6 +48,7 @@
 }
 
 .login {
+  z-index: 9999;
   margin-top: 13px;
   width: 300px;
   height: 44px;
