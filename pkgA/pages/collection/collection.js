@@ -55,6 +55,7 @@ Page({
         token: wx.getStorageSync('v_token')
       },
       success: (res) => {
+        //console.log(res)
         if (res.statusCode === 200&&res.data.code==1) {
           //console.log(res)
           let op = res.data.data

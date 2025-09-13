@@ -28,18 +28,7 @@ Page({
         avatar:'/img/头像.png'
       })
     }
-    
-    setTimeout(()=>{
-      let info = wx.getStorageSync('userInfo')
-      if(info){
-        //console.log(342)
-        this.setData({
-          username:info.name?info.name:'微信用户',
-          avatar:info.avatar?info.avatar:'/img/头像.png'
-        })
-      }
-    },500)
-   
+
   },
   //跳转页面
   navigate: function (e) {
@@ -170,15 +159,28 @@ Page({
           wx.setStorageSync('userInfo', res.data.data);
           let info = wx.getStorageSync('userInfo')
             this.setData({
+              islogins:false,
               username:info.name?info.name:'微信用户',
               avatar:info.avatar?info.avatar:'/img/头像.png'
             })
         } else {
           console.error('请求失败:', res);
+          wx.setStorageSync('loginStatus', false)
+          this.setData({
+            islogins: true,
+            username:'微信用户',
+            avatar:'/img/头像.png'
+          })
         }
       },
       fail: (err) => {
         console.error('请求失败:', err);
+        wx.setStorageSync('loginStatus', false)
+        this.setData({
+          islogins: true,
+          username:'微信用户',
+          avatar:'/img/头像.png'
+        })
       },
     });
   },
@@ -211,6 +213,5 @@ Page({
     this.setData({
       gous: !this.data.gous
     })
-    //console.log(this.data.gous)
   },
 })

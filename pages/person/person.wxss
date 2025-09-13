@@ -114,7 +114,7 @@
   position: fixed;
   left: 112px;
   top: 117px;
-  width: 98px;
+  width: 198px;
   height: 28px;
   opacity: 1;
   /** 文本1 */
@@ -149,7 +149,7 @@
   position: fixed;
   left: 112px;
   top: 149px;
-  width: 136px;
+  width: 188px;
   height: 22px;
   opacity: 1;
   /** 文本1 */

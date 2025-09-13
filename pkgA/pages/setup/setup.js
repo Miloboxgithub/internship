@@ -24,7 +24,8 @@ Page({
    */
   onShow() {
     let info = wx.getStorageSync('userInfo')
-    if (info) {
+    let loginstatus = wx.getStorageSync('loginStatus')
+    if (info&&loginstatus) {
       //console.log(info)
       this.setData({
         inputValue: info.name ? info.name : '微信用户',
@@ -34,8 +35,7 @@ Page({
         diqu: info.location ? info.location : '未知'
       })
     }
-    let fl = wx.getStorageSync('loginStatus')
-    if (fl) {
+    if (loginstatus) {
       this.setData({
         islogin: true
       })
